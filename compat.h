@@ -26,54 +26,54 @@ typedef int bool;
 
 /* Stub out Windows 3.x API calls */
 #define INITTASK() 1
-#define INITAPP(x,y) 1
-#define WAITEVENT(x,y)
-#define LOCKSEGMENT(x,y)
-#define UNLOCKSEGMENT()
-#define GETWINFLAGS(x) 0
-#define LOCALALLOC(x,y) NULL
-#define LOCALFREE(x)
-#define LOCALREALLOC(x,y,z) NULL
-#define BEGINPAINT(x,y) NULL
-#define ENDPAINT(x,y)
-#define CREATECARET(x,y,z,w)
+#define INITAPP(...) 1
+#define WAITEVENT(...)
+#define LOCKSEGMENT(...)
+#define UNLOCKSEGMENT(...)
+#define GETWINFLAGS(...) 0
+#define LOCALALLOC(...) NULL
+#define LOCALFREE(...)
+#define LOCALREALLOC(...) NULL
+#define BEGINPAINT(...) NULL
+#define ENDPAINT(...)
+#define CREATECARET(...)
 #define DESTROYCARET()
-#define CREATEWINDOW(a,b,c,d,e,f,g,h,i,j,k) NULL
-#define DEFWINDOWPROC(a,b,c,d) 0
-#define DESTROYWINDOW(x) 0
-#define DISPATCHMESSAGE(x) 0
-#define ENABLEMENUITEM(a,b,c)
-#define GETDC(x) NULL
+#define CREATEWINDOW(...) NULL
+#define DEFWINDOWPROC(...) 0
+#define DESTROYWINDOW(...) 0
+#define DISPATCHMESSAGE(...) 0
+#define ENABLEMENUITEM(...)
+#define GETDC(...) NULL
 #define GETDESKTOPWINDOW() NULL
-#define GETKEYSTATE(x) 0
-#define GETMESSAGE(a,b,c,d) 0
-#define GETMODULEFILENAME(a,b,c) 0
-#define GETSTOCKOBJECT(x) NULL
-#define GETSYSTEMMENU(x,y) NULL
+#define GETKEYSTATE(...) 0
+#define GETMESSAGE(...) 0
+#define GETMODULEFILENAME(...) 0
+#define GETSTOCKOBJECT(...) NULL
+#define GETSYSTEMMENU(...) NULL
 #define GETSYSTEMMETRICS(...) 0
-#define GETTEXTMETRICS(x,y) 0
-#define INVALIDATERECT(a,b,c)
-#define LOADCURSOR(x,y) NULL
-#define LOADICON(x,y) NULL
-#define LOADLIBRARY(x) NULL
-#define MESSAGEBEEP(x)
-#define MESSAGEBOX(a,b,c,d) 0
-#define PEEKMESSAGE(a,b,c,d,e) 0
-#define POSTQUITMESSAGE(x)
-#define REGISTERCLASS(x) 0
-#define RELEASEDC(a,b)
-#define SCROLLWINDOW(a,b,c,d,e)
-#define SELECTOBJECT(a,b) NULL
-#define SETCARETPOS(x,y)
-#define SETSCROLLPOS(a,b,c) 0
-#define SETSCROLLRANGE(a,b,c,d,e)
-#define SETWINDOWTEXT(a,b)
-#define SHOWCARET(x)
-#define SHOWWINDOW(x,y) 0
-#define TRANSLATEMESSAGE(x) 0
-#define UPDATEWINDOW(x)
-#define TEXTOUT(a,b,c,d,e)
-#define OEMTOANSI(a,b,c)
+#define GETTEXTMETRICS(...) 0
+#define INVALIDATERECT(...)
+#define LOADCURSOR(...) NULL
+#define LOADICON(...) NULL
+#define LOADLIBRARY(...) NULL
+#define MESSAGEBEEP(...)
+#define MESSAGEBOX(...) 0
+#define PEEKMESSAGE(...) 0
+#define POSTQUITMESSAGE(...)
+#define REGISTERCLASS(...) 0
+#define RELEASEDC(...)
+#define SCROLLWINDOW(...)
+#define SELECTOBJECT(...) NULL
+#define SETCARETPOS(...)
+#define SETSCROLLPOS(...) 0
+#define SETSCROLLRANGE(...)
+#define SETWINDOWTEXT(...)
+#define SHOWCARET(...)
+#define SHOWWINDOW(...) 0
+#define TRANSLATEMESSAGE(...) 0
+#define UPDATEWINDOW(...)
+#define TEXTOUT(...)
+#define OEMTOANSI(...)
 #define _WSPRINTF sprintf
 
 /* Console I/O stubs */
@@ -221,8 +221,8 @@ typedef int (*code)();
 #define CARRY1(a,b) ((unsigned int)(a) + (unsigned int)(b) > 0xFF)
 #define CARRY2(a,b) ((unsigned int)(a) + (unsigned int)(b) > 0xFFFF)
 
-/* String reference stub - all string references will be resolved to actual strings */
-#define s_Empty ""
+/* String reference stub */
+/* s_Empty removed - conflicts with variable declarations */
 
 /* File I/O stubs */
 typedef struct {
@@ -237,5 +237,7 @@ typedef struct {
 
 /* Additional type stubs */
 typedef int undefined;
+typedef unsigned char unkbyte10[10];
+typedef long double longdouble;
 
 #endif /* BADKING_COMPAT_H */

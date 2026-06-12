@@ -5,6 +5,8 @@
 // Game: The Bad King - An RPG by Griffin Knodle
 
 #include "compat.h"
+
+/* All auto-generated global variables */
 #include "decls.h"
 // Published: 1991 by Flatrat Production
 // Platform: Windows 3.x (16-bit)
@@ -42,26 +44,79 @@
    Other Flags:       00
     */
 
-/* Windows entry point - commented out for Linux port */
-#if 0
 void __cdecl16far entry(void)
-{
-  /* ... Windows initialization code ... */
-}
-#endif
 
-/* Linux main function */
-int main(void) {
-    printf("The Bad King - A Text RPG\n");
-    printf("Original game by Griffin Knodle (1991)\n\n");
-    
-    /* Initialize game */
-    FUN_1000_00ea();
-    FUN_1000_6daa(0,0,0,0,0);
-    FUN_1000_3430(0);
-    
-    printf("Game initialization complete.\n");
-    return 0;
+{
+  undefined1 *puVar1;
+  code *pcVar2;
+  char cVar3;
+  int iVar4;
+  undefined2 uVar5;
+  int iVar6;
+  undefined2 extraout_DX;
+  undefined2 in_BX;
+  undefined2 unaff_SI;
+  undefined2 unaff_DI;
+  undefined1 *puVar7;
+  undefined2 unaff_ES;
+  undefined4 uVar8;
+  ulong uVar9;
+  
+                    /* Segment:    1
+                       Offset:     00000200
+                       Length:     6fb1
+                       Min Alloc:  6fb1
+                       Flags:      1d50
+                           Code
+                           Discardable
+                           Moveable
+                           Preload
+                           Impure (Non-shareable)
+                        */
+  uVar8 = INITTASK();
+  if ((int)uVar8 != 0) {
+    DAT_1008_0016 = unaff_ES;
+    DAT_1008_0018 = unaff_DI;
+    DAT_1008_001a = unaff_SI;
+    DAT_1008_001c = in_BX;
+    DAT_1008_001e = (int)((ulong)uVar8 >> 0x10);
+    LOCKSEGMENT((char *)s_st_For_the_Trees__A_guard_is_sta_1008_0fff + 0x11,0xffff);
+    puVar7 = (undefined1 *)0x4f0a;
+    for (iVar6 = 0x18c; iVar6 != 0; iVar6 = iVar6 + -1) {
+      puVar1 = puVar7;
+      puVar7 = puVar7 + 1;
+      *puVar1 = 0;
+    }
+    WAITEVENT((char *)s_st_For_the_Trees__A_guard_is_sta_1008_0fff + 0x11,0);
+    iVar4 = INITAPP((char *)s_st_For_the_Trees__A_guard_is_sta_1008_0fff + 0x11,DAT_1008_0018);
+    if (iVar4 != 0) {
+      pcVar2 = (code *)swi(0x1a);
+      cVar3 = (*pcVar2)();
+      if (cVar3 != '\0') {
+        DAT_0040_0070 = 1;
+      }
+      pcVar2 = (code *)swi(0x21);
+      DAT_1008_0020 = extraout_DX;
+      DAT_1008_0022 = iVar6;
+      DAT_1008_0024 = (*pcVar2)();
+      uVar9 = GETWINFLAGS((char *)s_st_For_the_Trees__A_guard_is_sta_1008_0fff + 0x11);
+      if ((uVar9 & 1) != 0) {
+        DAT_1008_0012 = 8;
+      }
+      if ((uVar9 & 0x40000) != 0) {
+        DAT_1008_0014 = 1;
+      }
+      FUN_1000_00ea();
+      uVar5 = FUN_1000_6daa(DAT_1008_001e,DAT_1008_001c,DAT_1008_0016,DAT_1008_001a,DAT_1008_0018);
+      FUN_1000_3430(uVar5);
+      FUN_1000_012e(0x4efe,0x4ece);
+      return;
+    }
+  }
+  FUN_1000_3430(0xff);
+  pcVar2 = (code *)swi(0x21);
+  (*pcVar2)();
+  return;
 }
 
 
@@ -2155,7 +2210,7 @@ void __cdecl16near FUN_1000_2802(void)
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void __cdecl16near FUN_1000_2817(int param_1,int param_2)
+int __cdecl16near FUN_1000_2817(int param_1,int param_2)
 
 {
   undefined1 local_18 [10];
@@ -2167,8 +2222,7 @@ void __cdecl16near FUN_1000_2817(int param_1,int param_2)
   local_6 = (float)param_2 / _DAT_1008_4134;
   local_a = local_e * local_6;
   FUN_1000_29da((double)local_a,4,local_18);
-  FUN_1000_29cb(local_18);
-  return;
+  return FUN_1000_29cb(local_18);
 }
 
 
@@ -2261,45 +2315,39 @@ void __cdecl16near FUN_1000_299b(void)
 // Identified as: random
 // Address: 1000:29ab
 
-void __cdecl16near FUN_1000_29ab(void)
+int __cdecl16near FUN_1000_29ab(void)
 
 {
-  undefined4 uVar1;
+  int uVar1;
   
   FUN_1000_3707(0x8000,0);
   uVar1 = FUN_1000_36de();
   FUN_1000_3492(uVar1);
-  return;
+  return uVar1;
 }
 
 
 // Function: FUN_1000_29cb
 // Address: 1000:29cb
 
-void __cdecl16near FUN_1000_29cb(undefined2 param_1)
+int __cdecl16near FUN_1000_29cb(undefined2 param_1)
 
 {
-  FUN_1000_4408(param_1);
-  return;
+  return FUN_1000_4408(param_1);
 }
 
 
 // Function: FUN_1000_29da
 // Address: 1000:29da
 
-undefined2 __cdecl16near FUN_1000_29da(void)
+undefined2 __cdecl16near FUN_1000_29da()
 
 {
-  undefined2 uVar1;
+  undefined1 local_18 [10];
   byte bVar2;
-  undefined2 in_stack_0000000a;
-  undefined2 in_stack_0000000c;
   
-  uVar1 = in_stack_0000000c;
-  bVar2 = (byte)((uint)&stack0x0002 >> 8);
-  thunk_FUN_1000_2ab7(6,(uint)bVar2 << 8,CONCAT11(bVar2,0x67),in_stack_0000000c,in_stack_0000000a,
-                      &stack0x0002);
-  return uVar1;
+  FUN_1000_2ab7(6,(uint)&stack0x0002 >> 8,((uint)&stack0x0002 >> 8) << 8 | 0x67,0,4,local_18);
+  return FUN_1000_29cb(local_18);
 }
 
 
@@ -3400,7 +3448,7 @@ void __cdecl16near FUN_1000_36f6(undefined2 param_1)
 // Function: FUN_1000_3707
 // Address: 1000:3707
 
-ulong __cdecl16near FUN_1000_3707(void)
+ulong __cdecl16near FUN_1000_3707(int param_1, int param_2)
 
 {
   long lVar1;
