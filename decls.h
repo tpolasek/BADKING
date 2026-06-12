@@ -142,6 +142,12 @@ int DAT_1008_4d7a;
 int DAT_1008_4d7c;
 int DAT_1008_4d7e;
 int DAT_1008_4d80;
+int DAT_1008_4d82;
+int DAT_1008_4d84;
+int DAT_1008_4d86;
+int DAT_1008_4d88;
+int DAT_1008_4d8e;
+int DAT_1008_4d96;
 
 /* Additional DAT_ variables from 4f range */
 int DAT_1008_4f19;
@@ -181,6 +187,10 @@ int DAT_1008_4fc0;
 int DAT_1008_4fc2;
 int DAT_1008_4fcc;
 int DAT_1008_4fd0;
+int DAT_1008_4ec6;
+int DAT_1008_4ec8;
+int DAT_1008_4eca;
+int DAT_1008_4ecc;
 
 /* String references - all string variables referenced in the code */
 char* s_Empty;
@@ -495,37 +505,41 @@ int DAT_1008_503e;
 int DAT_1008_5054;
 int DAT_1008_5056;
 
-/* Forward declarations for functions called before definition */
+/* Forward declarations for functions - signatures must match actual definitions */
 short unsigned int FUN_1000_091b(void);
 short unsigned int FUN_1000_1d4e(void);
 int FUN_1000_29cb(short unsigned int param_1);
-short unsigned int FUN_1000_29da();
-void FUN_1000_2ab7(short unsigned int param_1, char param_2, unsigned char param_3, unsigned char *param_4, unsigned int param_5, short unsigned int param_6);
-short unsigned int FUN_1000_3579(short unsigned int param_1);
-unsigned int FUN_1000_36de();
-unsigned long FUN_1000_3707();
+short unsigned int FUN_1000_29da(void);
+void FUN_1000_2ab7(short unsigned int param_1, char param_2, byte param_3, byte *param_4, uint param_5, short unsigned int param_6);
+short unsigned int FUN_1000_3579(undefined2 param_1);
+ulong FUN_1000_358c(int param_1);
 short unsigned int FUN_1000_37a9(void);
-short unsigned int FUN_1000_3c43(void);
-unsigned int FUN_1000_3eb8(short unsigned int *param_1);
-short unsigned int FUN_1000_3f8e(void);
-int FUN_1000_43e2(int param_1, short unsigned int param_2);
-unsigned long FUN_1000_4408(unsigned char *param_1);
-short unsigned int FUN_1000_44c6(int param_1);
+undefined4 FUN_1000_3c43(code *param_1, code *param_2, undefined2 param_3, uint param_4, int param_5, int *param_6, undefined2 *param_7);
+undefined2 FUN_1000_3f8e(undefined2 param_1);
+int FUN_1000_43e2(int param_1, short unsigned int param_2, int param_3);
+ulong FUN_1000_4408(byte *param_1);
+undefined2 FUN_1000_44c6(int param_1);
+undefined2 FUN_1000_4484(undefined2 param_1, undefined2 param_2, undefined2 param_3);
 short unsigned int FUN_1000_455c(int *param_1);
 short unsigned int FUN_1000_45d6(int *param_1);
 short unsigned int FUN_1000_47ff(short unsigned int param_1, short unsigned int param_2);
 unsigned int FUN_1000_4a63(int *param_1);
-unsigned char * FUN_1000_4b78(unsigned char *param_1);
+undefined1 * FUN_1000_4b78(undefined1 *param_1);
 short unsigned int * FUN_1000_4bd2(short unsigned int *param_1, short unsigned int *param_2, unsigned int param_3);
 int FUN_1000_4ce1(short unsigned int param_1, unsigned int param_2, unsigned int param_3);
 int FUN_1000_4e2e(short unsigned int param_1, unsigned int param_2);
-unsigned int FUN_1000_4eab(unsigned char param_1, int *param_2);
+unsigned int FUN_1000_4eab(byte param_1, int *param_2);
+undefined2 FUN_1000_4c18(undefined2 param_1, undefined1 param_2, undefined2 param_3);
 short unsigned int FUN_1000_5240(int *param_1, int param_2, int param_3, unsigned int param_4);
-int FUN_1000_53a6(short unsigned int param_1, short unsigned int param_2);
-unsigned long FUN_1000_536c(char *param_1, char *param_2);
-long FUN_1000_546c(unsigned int *param_1, int param_2);
-short unsigned int FUN_1000_58c1(int param_1, unsigned int param_2, unsigned int param_3, unsigned char param_4);
-short unsigned int FUN_1000_5aee(int param_1, short unsigned int param_2, short unsigned int param_3);
-short unsigned int FUN_1000_6ac8(short unsigned int param_1, int param_2);
+int FUN_1000_53a6(char *param_1, char *param_2);
+ulong FUN_1000_536c(char *param_1, char *param_2);
+long FUN_1000_546c(uint *param_1, int param_2);
+short unsigned int FUN_1000_58c1(int param_1, unsigned int param_2, unsigned int param_3, byte param_4);
+short unsigned int FUN_1000_5aee(int param_1, undefined2 param_2, undefined2 param_3);
+short unsigned int FUN_1000_6ac8(undefined2 param_1, int param_2, int param_3);
 short unsigned int FUN_1000_6f17(int param_1);
-int DAT_1008_4d86;
+
+/* Stack variable storage */
+int stack0x0002_val;
+int stack0x0004_val;
+int stack0x0006_val;

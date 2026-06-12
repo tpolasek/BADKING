@@ -213,7 +213,7 @@ void __cdecl16near FUN_1000_00ea(void)
 // Identified as: FUN_1000_012e_cleanup
 // Address: 1000:012e
 
-void __cdecl16near FUN_1000_012e(void)
+void __cdecl16near FUN_1000_012e(int param_1, int param_2)
 
 {
   char cVar1;
@@ -252,7 +252,7 @@ void __cdecl16near FUN_1000_012e(void)
 // Function: FUN_1000_0170
 // Address: 1000:0170
 
-void __cdecl16near FUN_1000_0170(void)
+void __cdecl16near FUN_1000_0170(int param_1, int param_2, int param_3)
 
 {
   int iVar1;
@@ -2354,7 +2354,7 @@ undefined2 __cdecl16near FUN_1000_29da()
 // Function: FUN_1000_29fc
 // Address: 1000:29fc
 
-void FUN_1000_29fc(void)
+void FUN_1000_29fc(int param_1, unkbyte10 param_2, int param_3)
 
 {
   char *pcVar1;
@@ -2827,7 +2827,7 @@ void __cdecl16near FUN_1000_2f30(double *param_1,uint param_2)
       *(float *)param_1 = (float)in_ST1;
     }
     else {
-      *(unkbyte10 *)param_1 = in_ST0;
+      memcpy(param_1, in_ST0, sizeof(unkbyte10));
     }
   }
   else {
@@ -3056,14 +3056,14 @@ void FUN_1000_33e3(undefined2 param_1,int param_2,int param_3)
       (*(code *)*(undefined2 *)(DAT_1008_48b0 * 2 + 0x4f72))();
     }
     FUN_1000_00b7();
-    (*DAT_1008_49b4)();
+    (*(code *)DAT_1008_49b4)();
   }
   FUN_1000_00ca();
   FUN_1000_00c9();
   if (param_2 == 0) {
     if (param_3 == 0) {
-      (*DAT_1008_49b6)();
-      (*DAT_1008_49b8)();
+      (*(code *)DAT_1008_49b6)();
+      (*(code *)DAT_1008_49b8)();
     }
     FUN_1000_00cb();
   }
@@ -3133,7 +3133,7 @@ void __cdecl16near FUN_1000_347f(undefined2 *param_1)
 // Function: FUN_1000_3492
 // Address: 1000:3492
 
-void FUN_1000_3492(void)
+undefined4 FUN_1000_3492(int param_1, int param_2, int param_3, int param_4)
 
 {
   FUN_1000_34af();
@@ -3144,7 +3144,7 @@ void FUN_1000_3492(void)
 // Function: FUN_1000_34a1
 // Address: 1000:34a1
 
-void FUN_1000_34a1(void)
+undefined4 FUN_1000_34a1(int param_1, int param_2, int param_3, int param_4)
 
 {
   FUN_1000_34af();
@@ -3226,7 +3226,7 @@ undefined4 __stdcall16far FUN_1000_34af(uint param_1,uint param_2,uint param_3,u
 // Function: FUN_1000_3540
 // Address: 1000:3540
 
-undefined2 FUN_1000_3540(int param_1)
+undefined2 FUN_1000_3540(int param_1) /* called with 0 or 1 args */
 
 {
   if (param_1 < 0) {
@@ -3248,7 +3248,7 @@ LAB_1000_3553:
 // Function: FUN_1000_3579
 // Address: 1000:3579
 
-undefined2 FUN_1000_3579(undefined2 param_1)
+undefined2 FUN_1000_3579(void)
 
 {
   FUN_1000_3540(param_1);
@@ -3259,7 +3259,7 @@ undefined2 FUN_1000_3579(undefined2 param_1)
 // Function: FUN_1000_358c
 // Address: 1000:358c
 
-ulong __cdecl16near FUN_1000_358c(void)
+ulong __cdecl16near FUN_1000_358c(int param_1)
 
 {
   code *pcVar1;
@@ -3347,7 +3347,7 @@ void FUN_1000_361b(undefined2 param_1,undefined2 param_2)
 // Function: FUN_1000_3638
 // Address: 1000:3638
 
-void __cdecl16near FUN_1000_3638(int param_1)
+undefined4 __cdecl16near FUN_1000_3638(int param_1, int param_2, int param_3, int param_4)
 
 {
   uint *puVar1;
@@ -3360,7 +3360,7 @@ void __cdecl16near FUN_1000_3638(int param_1)
   pcVar2 = (code *)swi(0x21);
   (*pcVar2)();
   if (bVar3) {
-    FUN_1000_3540();
+    FUN_1000_3540(0);
   }
   return;
 }
@@ -3494,7 +3494,7 @@ void __cdecl16near FUN_1000_372e(int param_1,undefined2 param_2,undefined2 param
 // Function: FUN_1000_377c
 // Address: 1000:377c
 
-void FUN_1000_377c(void)
+void FUN_1000_377c(int param_1, int param_2, undefined2 param_3, undefined2 param_4, int *param_5)
 
 {
   FUN_1000_37a9();
@@ -3505,7 +3505,7 @@ void FUN_1000_377c(void)
 // Function: FUN_1000_3790
 // Address: 1000:3790
 
-void __cdecl16near FUN_1000_3790(void)
+undefined2 __cdecl16near FUN_1000_3790(void)
 
 {
   int unaff_BP;
@@ -4092,7 +4092,7 @@ undefined4 __cdecl16near FUN_1000_3eb8(undefined2 *param_1)
 // Function: FUN_1000_3f00
 // Address: 1000:3f00
 
-undefined2 __cdecl16near FUN_1000_3f00(void)
+undefined2 __cdecl16near FUN_1000_3f00(int param_1)
 
 {
   code *pcVar1;
@@ -4102,7 +4102,7 @@ undefined2 __cdecl16near FUN_1000_3f00(void)
   pcVar1 = (code *)swi(0x21);
   (*pcVar1)();
   if ((bool)in_CF) {
-    uVar2 = FUN_1000_3540();
+    uVar2 = FUN_1000_3540(0);
   }
   else {
     uVar2 = 0;
@@ -4114,7 +4114,7 @@ undefined2 __cdecl16near FUN_1000_3f00(void)
 // Function: FUN_1000_3f16
 // Address: 1000:3f16
 
-void FUN_1000_3f16(void)
+void FUN_1000_3f16(int param_1)
 
 {
   byte bVar1;
@@ -4205,7 +4205,7 @@ void __cdecl16near FUN_1000_3f26(void)
 // Function: FUN_1000_3f2e
 // Address: 1000:3f2e
 
-void FUN_1000_3f2e(void)
+void FUN_1000_3f2e(int param_1, undefined2 param_2, int *param_3, int param_4)
 
 {
   undefined2 unaff_SI;
@@ -4299,7 +4299,7 @@ void __cdecl16near FUN_1000_3f5e(void)
 
 /* WARNING (jumptable): Unable to track spacebase fully for stack */
 
-undefined2 FUN_1000_3f8e(void)
+undefined2 FUN_1000_3f8e(undefined2 param_1)
 
 {
   char *pcVar1;
@@ -4719,7 +4719,7 @@ LAB_1000_4288:
 // Function: FUN_1000_43e2
 // Address: 1000:43e2
 
-int __cdecl16near FUN_1000_43e2(int param_1,undefined2 param_2)
+int __cdecl16near FUN_1000_43e2(int param_1, undefined2 param_2, int param_3)
 
 {
   int iVar1;
@@ -4803,7 +4803,7 @@ undefined2 __cdecl16near FUN_1000_4484(undefined2 param_1,undefined2 param_2,und
   pcVar1 = (code *)swi(0x21);
   (*pcVar1)();
   if ((bool)in_CF) {
-    param_3 = FUN_1000_3540();
+    param_3 = FUN_1000_3540(0);
   }
   return param_3;
 }
@@ -4839,7 +4839,7 @@ undefined2 __cdecl16near FUN_1000_44c6(int param_1)
   pcVar1 = (code *)swi(0x21);
   (*pcVar1)();
   if ((bool)in_CF) {
-    uVar2 = FUN_1000_3540();
+    uVar2 = FUN_1000_3540(0);
   }
   else {
     *(undefined2 *)(param_1 * 2 + 0x4afc) = 0;
@@ -5360,7 +5360,7 @@ undefined2 FUN_1000_49fb(int *param_1)
 // Function: FUN_1000_4a52
 // Address: 1000:4a52
 
-void __cdecl16near FUN_1000_4a52(int *param_1)
+uint __cdecl16near FUN_1000_4a52(int *param_1)
 
 {
   *param_1 = *param_1 + 1;
@@ -5664,7 +5664,7 @@ undefined2 __cdecl16near FUN_1000_4c9d(undefined2 param_1,undefined2 param_2,und
 // Function: FUN_1000_4cb6
 // Address: 1000:4cb6
 
-void FUN_1000_4cb6(void)
+undefined2 FUN_1000_4cb6(int param_1, int param_2)
 
 {
   code *pcVar1;
@@ -5673,7 +5673,7 @@ void FUN_1000_4cb6(void)
   pcVar1 = (code *)swi(0x21);
   (*pcVar1)();
   if ((bool)in_CF) {
-    FUN_1000_3540();
+    FUN_1000_3540(0);
   }
   return;
 }
@@ -5682,7 +5682,7 @@ void FUN_1000_4cb6(void)
 // Function: FUN_1000_4ccf
 // Address: 1000:4ccf
 
-void FUN_1000_4ccf(void)
+void FUN_1000_4ccf(int param_1)
 
 {
   code *pcVar1;
@@ -5708,7 +5708,7 @@ int __cdecl16near FUN_1000_4ce1(undefined2 param_1,uint param_2,uint param_3)
   if ((param_2 & 0xc000) == 0) {
     param_2 = param_2 | DAT_1008_4b24 & 0xc000;
   }
-  local_4 = FUN_1000_4484(param_1,0);
+  local_4 = FUN_1000_4484(param_1,0,0);
   if ((param_2 & 0x100) == 0) {
 LAB_1000_4d89:
     iVar2 = FUN_1000_4e2e(param_1,param_2);
@@ -6462,8 +6462,8 @@ void __cdecl16near FUN_1000_5583(uint param_1,int param_2,uint *param_3,undefine
     *(char *)((int)param_3 + 3) = *(char *)((int)param_3 + 3) + '\x01';
   }
   *(char *)((int)param_3 + 3) = *(char *)((int)param_3 + 3) + '\x01';
-  param_1._0_1_ = (undefined1)lVar3;
-  *(undefined1 *)(param_3 + 1) = (undefined1)param_1;
+  *(undefined1 *)&param_1 = (undefined1)lVar3;
+  *(undefined1 *)(param_3 + 1) = *(undefined1 *)&param_1;
   return;
 }
 
@@ -6997,7 +6997,7 @@ void __cdecl16near FUN_1000_5e25(void)
 // Function: FUN_1000_5e93
 // Address: 1000:5e93
 
-undefined4 __cdecl16near FUN_1000_5e93(int param_1,int param_2)
+undefined4 __cdecl16near FUN_1000_5e93(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6)
 
 {
   param_2 = param_2 + DAT_1008_4cf2;
@@ -7057,7 +7057,7 @@ void __cdecl16near FUN_1000_5f00(undefined2 *param_1,undefined2 *param_2)
       DAT_1008_4cf2 = 0;
     }
     uVar2 = FUN_1000_5e93(0,DAT_1008_4cca,0x20,DAT_1008_4cc4);
-    FUN_1000_4c18(uVar2);
+    FUN_1000_4c18(uVar2,0,0);
     uVar2 = DAT_1008_4cfe;
     SCROLLWINDOW(unaff_CS,0,0,0,0,-DAT_1008_502e,0);
     UPDATEWINDOW((char *)s_st_For_the_Trees__A_guard_is_sta_1008_0fff + 0x11,DAT_1008_4cfe,uVar2);
@@ -7142,7 +7142,7 @@ LAB_1000_605e:
 // Function: FUN_1000_609d
 // Address: 1000:609d
 
-void __cdecl16near FUN_1000_609d(void)
+void __cdecl16near FUN_1000_609d(int param_1)
 
 {
   FUN_1000_5f88(&stack0x0002,1);
@@ -7550,11 +7550,11 @@ void __cdecl16near FUN_1000_664b(char param_1)
 }
 
 
-// Function: @_EASYWINPROC$QUIUIUIL
+// Function: EASYWINPROC_QUIUIUIL
 // Address: 1000:6718
 
 void __stdcall16far
-__EASYWINPROC_QUIUIUIL
+EASYWINPROC_QUIUIUIL
           (undefined2 param_1,undefined2 param_2,undefined2 param_3,int param_4,undefined2 param_5)
 
 {
@@ -7736,7 +7736,7 @@ void __cdecl16near FUN_1000_6ab5(int param_1)
 // Function: FUN_1000_6ac8
 // Address: 1000:6ac8
 
-undefined2 __cdecl16near FUN_1000_6ac8(undefined2 param_1,int param_2)
+undefined2 __cdecl16near FUN_1000_6ac8(undefined2 param_1, int param_2, int param_3)
 
 {
   code *pcVar1;
@@ -7748,7 +7748,7 @@ undefined2 __cdecl16near FUN_1000_6ac8(undefined2 param_1,int param_2)
   uVar3 = (*pcVar1)();
   uVar2 = (undefined2)uVar3;
   if ((bool)in_CF) {
-    uVar2 = FUN_1000_3540();
+    uVar2 = FUN_1000_3540(0);
   }
   else if (param_2 == 0) {
     uVar2 = (int)((ulong)uVar3 >> 0x10);
@@ -7839,7 +7839,7 @@ void __cdecl16near FUN_1000_6cd0(void)
 // Identified as: load_game
 // Address: 1000:6daa
 
-void FUN_1000_6daa(void)
+undefined2 FUN_1000_6daa(int param_1, int param_2, int param_3, int param_4, int param_5)
 
 {
   FUN_1000_0170(DAT_1008_4d5c,DAT_1008_4d5e,DAT_1008_4d84);
