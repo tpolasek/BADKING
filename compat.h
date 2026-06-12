@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include <time.h>
 #include <stdarg.h>
+#include <stdint.h>
 
 /* Ghidra auto-generated types */
 typedef unsigned char undefined1;
@@ -164,6 +165,12 @@ typedef int (*code)();
 #define SBORROW2(a,b) ((((signed short)(a)) < 0) != (((signed short)(b)) < 0) && (((signed short)(a)) - ((signed short)(b)) < 0) != (((signed short)(a)) < 0))
 #define CARRY1(a,b) ((unsigned int)(a) + (unsigned int)(b) > 0xFF)
 #define CARRY2(a,b) ((unsigned int)(a) + (unsigned int)(b) > 0xFFFF)
+
+/* Additional Ghidra helper macros */
+#define CONCAT12(a,b) ((unsigned int)(((unsigned char)(a)) << 8 | ((unsigned char)(b))))
+#define LOCK()
+#define UNLOCK()
+#define SBORROW1(a,b) ((((signed char)(a)) < 0) != (((signed char)(b)) < 0) && (((signed char)(a)) - ((signed char)(b)) < 0) != (((signed char)(a)) < 0))
 
 /* Console I/O stubs */
 #define _getch getchar
