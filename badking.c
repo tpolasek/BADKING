@@ -474,7 +474,15 @@ int get_random(int max) {
 }
 
 int calculate_damage(int attack, int defense) {
-    int variance = get_random(70) + 70; /* 70-139% */
+    /* From decompiled FUN_1000_25af: variance = random(31) + 70 */
+    int variance = get_random(31) + 70;
+    
+    /* Dragon Slayer special: if attack > 100 and weapon is Dragon Slayer */
+    if (attack > 100 && player.weapon == WEAPON_DRAGON_SLAYER) {
+        variance = get_random(9) + 93;
+    }
+    
+    /* FUN_1000_2817: damage = attack * variance / 100 */
     int damage = (attack * variance / 100) - defense;
     if (damage < 1) damage = 1;
     return damage;
@@ -1021,9 +1029,22 @@ void combat_magic(int enemy_id, int *enemy_hp) {
         }
         case SPELL_FIRE: {
             int damage = get_random(5) + player.level + 8;
-            /* Bonus vs certain enemies */
-            if (enemy_id == ENEMY_VAMPIRE || enemy_id == ENEMY_GREEN_DRAGON) {
+            /* Decompiled: bonus vs enemy 5 (Vampire) and 9 (Demon Knight) */
+            if (enemy_id == ENEMY_VAMPIRE || enemy_id == ENEMY_DEMON_KNIGHT) {
                 damage += player.level + 14;
+            }
+            /* Decompiled: enemy 0xd (Red Dragon) resistant: damage * 10 / 100 */
+            if (enemy_id == ENEMY_RED_DRAGON) {
+                damage = damage * 10 / 100;
+            }
+            /* Decompiled: enemy 0xe (Bad King) immune */
+            if (enemy_id == ENEMY_BAD_KING) {
+                printf("The spell had no effect.\n");
+                return;
+            }
+            /* Decompiled: enemy 0xf (Black Dragon) resistant: damage * 33 / 100 */
+            if (enemy_id == ENEMY_BLACK_DRAGON) {
+                damage = damage * 33 / 100;
             }
             *enemy_hp -= damage;
             printf("The %s receives %d damage.\n", enemy->name, damage);
@@ -1031,8 +1052,18 @@ void combat_magic(int enemy_id, int *enemy_hp) {
         }
         case SPELL_ICE: {
             int damage = get_random(5) + player.level + 8;
-            if (enemy_id == ENEMY_SERPENT || enemy_id == ENEMY_WYVERN) {
+            /* Decompiled: bonus vs enemy 7 (Wyvern) and 0xb (Serpent) */
+            if (enemy_id == ENEMY_WYVERN || enemy_id == ENEMY_SERPENT) {
                 damage += player.level + 14;
+            }
+            /* Decompiled: enemies 9, 10, 0xf resistant: damage * 33 / 100 */
+            if (enemy_id == ENEMY_DEMON_KNIGHT || enemy_id == ENEMY_WARLOCK || enemy_id == ENEMY_BLACK_DRAGON) {
+                damage = damage * 33 / 100;
+            }
+            /* Decompiled: enemy 0xe (Bad King) immune */
+            if (enemy_id == ENEMY_BAD_KING) {
+                printf("The spell had no effect.\n");
+                return;
             }
             *enemy_hp -= damage;
             printf("The %s receives %d damage.\n", enemy->name, damage);
@@ -1040,19 +1071,34 @@ void combat_magic(int enemy_id, int *enemy_hp) {
         }
         case SPELL_LIT: {
             int damage = get_random(5) + player.level + 8;
+            /* Decompiled: bonus vs enemy 6 (Knight) and 0xb (Blue Dragon) */
             if (enemy_id == ENEMY_KNIGHT || enemy_id == ENEMY_BLUE_DRAGON) {
                 damage += player.level + 14;
+            }
+            /* Decompiled: enemies 9, 10, 0xd, 0xf resistant: damage * 33 / 100 */
+            if (enemy_id == ENEMY_DEMON_KNIGHT || enemy_id == ENEMY_WARLOCK || 
+                enemy_id == ENEMY_RED_DRAGON || enemy_id == ENEMY_BLACK_DRAGON) {
+                damage = damage * 33 / 100;
+            }
+            /* Decompiled: enemy 0xe (Bad King) immune */
+            if (enemy_id == ENEMY_BAD_KING) {
+                printf("The spell had no effect.\n");
+                return;
             }
             *enemy_hp -= damage;
             printf("The %s receives %d damage.\n", enemy->name, damage);
             break;
         }
         case SPELL_SLEEP: {
+            /* Decompiled: success = random(4), works on enemies <= 10 (Warlock) */
+            int success = get_random(4);
             if (enemy_id > ENEMY_WARLOCK) {
+                success = 0;
+            }
+            if (success == 0) {
                 printf("The spell had no effect.\n");
             } else {
                 printf("The %s is asleep.\n", enemy->name);
-                /* Sleep lasts 2-3 turns */
             }
             break;
         }
@@ -1074,8 +1120,16 @@ void combat_magic(int enemy_id, int *enemy_hp) {
         }
         case SPELL_NUKE: {
             int damage = get_random(41) + player.level * 3 + 80;
-            if (enemy_id > ENEMY_DEMON_KNIGHT) {
-                damage = damage * 67 / 100;
+            /* Decompiled: enemies 9, 10, 0xd, 0xf, 0x10 resistant: damage * 33 / 100 */
+            if (enemy_id == ENEMY_DEMON_KNIGHT || enemy_id == ENEMY_WARLOCK || 
+                enemy_id == ENEMY_RED_DRAGON || enemy_id == ENEMY_BLACK_DRAGON || 
+                enemy_id == ENEMY_WIND_WIZARDS) {
+                damage = damage * 33 / 100;
+            }
+            /* Decompiled: enemy 0xe (Bad King) immune */
+            if (enemy_id == ENEMY_BAD_KING) {
+                printf("The spell had no effect.\n");
+                return;
             }
             *enemy_hp -= damage;
             printf("The %s receives %d damage.\n", enemy->name, damage);
