@@ -194,7 +194,6 @@ typedef int undefined;
 typedef unsigned char unkbyte10[10];
 typedef long double longdouble;
 
-/* _WSPRINTF - map to sprintf */
-#define _WSPRINTF(...) sprintf(__VA_ARGS__)
+/* _WSPRINTF - map to sprintf (not defined as macro to avoid conflict with function stub) */
 
 #endif /* BADKING_COMPAT_H */
