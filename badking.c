@@ -657,7 +657,7 @@ static void do_talk(void) {
                "with the Red Dragon of Thorns.\"\n");
         break;
     case LOC_EMPTY_SQUARE:
-        printf("You call out a greeting. From behind the corner of a\n"
+        printf("You call out a greeting.  From behind the corner of a\n"
                "building, a voice whispers, \"The Rune Ring shields you\n"
                "from magical harm. It wards against foul vapors.\"\n");
         break;
@@ -665,14 +665,14 @@ static void do_talk(void) {
     case LOC_HAPPY_FACE_INN:   inn(1); break;
     case LOC_THURAS_MAGIC:     shop_magic(1); break;
     case LOC_THRONE_ROOM:
-        printf("The Bad King gazes down coldly.\n\n"
-               "\"So, %s, you are the 'hero' I've been hearing about.\n"
-               "Ready yourself! We shall find the truth!!!\"\n"
+        printf("The Bad King gazes down coldly.\n\n\n\n"
+               "\"So, %s, you are the 'hero' I've been hearing about.  \n"
+               "Ready yourself!  We shall find the truth!!!\"\n"
                "He pulls a dark sword from his belt and advances.\n", player.name);
         do_combat(ENEMY_BAD_KING, 5); /* special_type 5 = endgame */
         break;
     case LOC_TOWER_ROOF:
-        printf("You call out a greeting. The three wizards turn as one\n"
+        printf("You call out a greeting.  The three wizards turn as one\n"
                "and raise their hands.\n");
         do_combat(ENEMY_WIND_WIZARDS, 7); /* special_type 7 = Rune Ring reward */
         break;
