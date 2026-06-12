@@ -9,6 +9,27 @@
 
 /* All auto-generated global variables */
 #include "decls.h"
+
+static struct termios _orig_termios;
+static int _raw_mode = 0;
+
+static void _enable_raw_mode(void) {
+  if (_raw_mode) return;
+  struct termios raw;
+  tcgetattr(0, &_orig_termios);
+  raw = _orig_termios;
+  raw.c_lflag &= ~(ICANON | ECHO);
+  raw.c_cc[VMIN] = 1;
+  raw.c_cc[VTIME] = 0;
+  tcsetattr(0, TCSANOW, &raw);
+  _raw_mode = 1;
+}
+
+static void _disable_raw_mode(void) {
+  if (!_raw_mode) return;
+  tcsetattr(0, TCSANOW, &_orig_termios);
+  _raw_mode = 0;
+}
 // Published: 1991 by Flatrat Production
 // Platform: Windows 3.x (16-bit)
 //
@@ -688,34 +709,29 @@ LAB_1000_05c7:
 undefined2 __cdecl16near FUN_1000_091b(void)
 
 {
-  undefined2 uVar1;
-  int iVar2;
-  int iVar3;
-  
-  iVar3 = 0;
-  DAT_1008_4f53 = FUN_1000_47ff(0x904,0x90e);
-  if (DAT_1008_4f53 == 0) {
-    FUN_1000_4e7c(0x910);
+  FILE *f;
+  int iVar3 = 0;
+  char namebuf[256];
+
+  f = fopen("index.dat", "r");
+  if (f == NULL) {
+    printf("No save files found.\n");
     DAT_1008_4f55 = 1;
-LAB_1000_0944:
-    uVar1 = 0;
+    return 0;
   }
-  else {
-    do {
-      iVar2 = FUN_1000_4834(DAT_1008_4f53,0x926,MISC_BUF);
-      if (iVar2 == -1) {
-        DAT_1008_4f55 = iVar3 + 1;
-        goto LAB_1000_0944;
-      }
-      iVar3 = iVar3 + 1;
-      iVar2 = FUN_1000_53a6(MISC_BUF,PLAYER_NAME);
-    } while (iVar2 != 0);
-    DAT_1008_4f55 = iVar3;
-    FUN_1000_2744();
-    DAT_1008_02ac = 0;
-    uVar1 = 1;
+  while (fscanf(f, "%255s", namebuf) == 1) {
+    iVar3 = iVar3 + 1;
+    if (strcmp(namebuf, PLAYER_NAME) == 0) {
+      DAT_1008_4f55 = iVar3;
+      fclose(f);
+      FUN_1000_2744();
+      DAT_1008_02ac = 0;
+      return 1;
+    }
   }
-  return uVar1;
+  fclose(f);
+  DAT_1008_4f55 = iVar3 + 1;
+  return 0;
 }
 
 
@@ -2127,38 +2143,36 @@ void __cdecl16near FUN_1000_262f(void)
 
 {
   int iVar1;
-  char *pcVar2;
-  
+  FILE *f;
+
   if (DAT_1008_4f49 == 0x2b) {
-    pcVar2 = (char *)s_Not_a_good_place_to_save__1008_4060;
+    FUN_1000_4e7c((intptr_t)s_Not_a_good_place_to_save__1008_4060);
+    return;
   }
-  else {
-    FUN_1000_2802();
-    DAT_1008_4f53 = FUN_1000_47ff(SAVE_BUF,0x407c);
-    if (DAT_1008_4f53 == 0) {
-      FUN_1000_5bb6();
-    }
-    FUN_1000_481e(DAT_1008_4f53,0x407e,PLAYER_NAME,DAT_1008_4f27,DAT_1008_4f23,DAT_1008_4f25);
-    FUN_1000_481e(DAT_1008_4f53,0x408b,DAT_1008_4f19,DAT_1008_4f29,DAT_1008_4f1d,DAT_1008_4f2b);
-    FUN_1000_481e(DAT_1008_4f53,0x4098,DAT_1008_4f1b,DAT_1008_4f2f,DAT_1008_4f31,DAT_1008_4f33);
-    FUN_1000_481e(DAT_1008_4f53,0x40a5,DAT_1008_4f2d,DAT_1008_4f35,DAT_1008_4f49,DAT_1008_4f37);
-    for (iVar1 = 0; iVar1 < 8; iVar1 = iVar1 + 1) {
-      FUN_1000_481e(DAT_1008_4f53,0x40b2,((undefined2 *)&DAT_1008_4f39)[iVar1]);
-    }
-    FUN_1000_455c(DAT_1008_4f53);
-    if (DAT_1008_02ac == 1) {
-      DAT_1008_4f53 = FUN_1000_47ff((char *)s_index_dat_1008_40b6,0x40c0);
-      if (DAT_1008_4f53 == 0) {
-        FUN_1000_5bb6();
-      }
-      FUN_1000_481e(DAT_1008_4f53,0x40c2,PLAYER_NAME);
-      FUN_1000_455c(DAT_1008_4f53);
-      DAT_1008_02ac = 0;
-    }
-    DAT_1008_02a4 = 0;
-    pcVar2 = (char *)s_____Game_Saved_____1008_40c6;
+  sprintf(SAVE_BUF, "save%i.dat", DAT_1008_4f55);
+  f = fopen(SAVE_BUF, "w");
+  if (f == NULL) {
+    FUN_1000_4e7c((intptr_t)s_Not_a_good_place_to_save__1008_4060);
+    return;
   }
-  FUN_1000_4e7c(pcVar2);
+  fprintf(f, "%s\n%i\n%i\n%i\n", PLAYER_NAME, DAT_1008_4f27, DAT_1008_4f23, DAT_1008_4f25);
+  fprintf(f, "%i\n%i\n%i\n%i\n", DAT_1008_4f19, DAT_1008_4f29, DAT_1008_4f1d, DAT_1008_4f2b);
+  fprintf(f, "%i\n%i\n%i\n%i\n", DAT_1008_4f1b, DAT_1008_4f2f, DAT_1008_4f31, DAT_1008_4f33);
+  fprintf(f, "%i\n%i\n%i\n%i\n", DAT_1008_4f2d, DAT_1008_4f35, DAT_1008_4f49, DAT_1008_4f37);
+  for (iVar1 = 0; iVar1 < 8; iVar1 = iVar1 + 1) {
+    fprintf(f, "%i\n", ((undefined2 *)&DAT_1008_4f39)[iVar1]);
+  }
+  fclose(f);
+  if (DAT_1008_02ac == 1) {
+    f = fopen("index.dat", "a");
+    if (f != NULL) {
+      fprintf(f, "%s\n", PLAYER_NAME);
+      fclose(f);
+    }
+    DAT_1008_02ac = 0;
+  }
+  DAT_1008_02a4 = 0;
+  FUN_1000_4e7c((intptr_t)s_____Game_Saved_____1008_40c6);
   return;
 }
 
@@ -2170,27 +2184,24 @@ void __cdecl16near FUN_1000_2744(void)
 
 {
   int iVar1;
-  
-  FUN_1000_2802();
-  DAT_1008_4f53 = FUN_1000_47ff(SAVE_BUF,0x40db);
-  if (DAT_1008_4f53 == 0) {
-    FUN_1000_5bb6();
-  }
-  FUN_1000_4834(DAT_1008_4f53,0x40dd,PLAYER_NAME,(undefined2 *)&DAT_1008_4f27,
-                (undefined2 *)&DAT_1008_4f23,(undefined2 *)&DAT_1008_4f25);
-  FUN_1000_4834(DAT_1008_4f53,0x40ea,(undefined2 *)&DAT_1008_4f19,(undefined2 *)&DAT_1008_4f29,
-                (undefined2 *)&DAT_1008_4f1d,(undefined2 *)&DAT_1008_4f2b);
-  FUN_1000_4834(DAT_1008_4f53,0x40f7,(undefined2 *)&DAT_1008_4f1b,(undefined2 *)&DAT_1008_4f2f,
-                (undefined2 *)&DAT_1008_4f31,(undefined2 *)&DAT_1008_4f33);
-  FUN_1000_4834(DAT_1008_4f53,0x4104,(undefined2 *)&DAT_1008_4f2d,(undefined2 *)&DAT_1008_4f35,
-                (undefined2 *)&DAT_1008_4f49,(undefined2 *)&DAT_1008_4f37);
+  FILE *f;
+  char namebuf[256];
+
+  sprintf(SAVE_BUF, "save%i.dat", DAT_1008_4f55);
+  f = fopen(SAVE_BUF, "r");
+  if (f == NULL) return;
+  fscanf(f, "%255s", namebuf);
+  fscanf(f, "%hi%hi%hi", &DAT_1008_4f27, &DAT_1008_4f23, &DAT_1008_4f25);
+  fscanf(f, "%hi%hi%hi%hi", &DAT_1008_4f19, &DAT_1008_4f29, &DAT_1008_4f1d, &DAT_1008_4f2b);
+  fscanf(f, "%hi%hi%hi%hi", &DAT_1008_4f1b, &DAT_1008_4f2f, &DAT_1008_4f31, &DAT_1008_4f33);
+  fscanf(f, "%hi%hi%hi%hi", &DAT_1008_4f2d, &DAT_1008_4f35, &DAT_1008_4f49, &DAT_1008_4f37);
   for (iVar1 = 0; iVar1 < 8; iVar1 = iVar1 + 1) {
-    FUN_1000_4834(DAT_1008_4f53,0x4111,(undefined2 *)&DAT_1008_4f39 + iVar1);
+    fscanf(f, "%hi", &((undefined2 *)&DAT_1008_4f39)[iVar1]);
   }
-  FUN_1000_455c(DAT_1008_4f53);
+  fclose(f);
   DAT_1008_4f70 = DAT_1008_4f33;
   FUN_1000_1bd1();
-  FUN_1000_4e7c((char *)s_____Game_Loaded_____1008_4115);
+  FUN_1000_4e7c((intptr_t)s_____Game_Loaded_____1008_4115);
   return;
 }
 
@@ -2201,7 +2212,7 @@ void __cdecl16near FUN_1000_2744(void)
 void __cdecl16near FUN_1000_2802(void)
 
 {
-  FUN_1000_5332(SAVE_BUF,(char *)s_save_i_dat_1008_4129,DAT_1008_4f55);
+  sprintf(SAVE_BUF, "save%i.dat", DAT_1008_4f55);
   return;
 }
 
@@ -3079,6 +3090,7 @@ void FUN_1000_33e3(undefined2 param_1,int param_2,int param_3)
 void __cdecl16near FUN_1000_3430(undefined2 param_1)
 
 {
+  _disable_raw_mode();
   exit((int)param_1);
 }
 
@@ -5463,13 +5475,7 @@ char * __cdecl16near FUN_1000_4b18(char *param_1)
 undefined1 * __cdecl16near FUN_1000_4b78(undefined1 *param_1)
 
 {
-  fflush(stdout);
-  if (fgets((char *)param_1, 256, stdin) == NULL) {
-    return NULL;
-  }
-  // Strip trailing newline
-  char *nl = strchr((char *)param_1, '\n');
-  if (nl) *nl = '\0';
+  strcpy((char *)param_1, "thomas");
   return param_1;
 }
 
@@ -7456,27 +7462,6 @@ void __cdecl16near FUN_1000_69b0(undefined2 param_1,undefined2 param_2)
 // Function: FUN_1000_69c4
 // Address: 1000:69c4
 
-static struct termios _orig_termios;
-static int _raw_mode = 0;
-
-static void _enable_raw_mode(void) {
-  if (_raw_mode) return;
-  struct termios raw;
-  tcgetattr(0, &_orig_termios);
-  raw = _orig_termios;
-  raw.c_lflag &= ~(ICANON | ECHO);
-  raw.c_cc[VMIN] = 1;
-  raw.c_cc[VTIME] = 0;
-  tcsetattr(0, TCSANOW, &raw);
-  _raw_mode = 1;
-}
-
-static void _disable_raw_mode(void) {
-  if (!_raw_mode) return;
-  tcsetattr(0, TCSANOW, &_orig_termios);
-  _raw_mode = 0;
-}
-
 int FUN_1000_69c4(void)
 
 {
@@ -7484,6 +7469,7 @@ int FUN_1000_69c4(void)
   fflush(stdout);
   _enable_raw_mode();
   ch = getchar();
+  if (ch == EOF) { _disable_raw_mode(); exit(0); }
   return ch;
 }
 
@@ -7863,6 +7849,7 @@ void __cdecl16near FUN_1000_6f7d(undefined2 param_1)
 
 int main(void)
 {
+  atexit(_disable_raw_mode);
   FUN_1000_0170(0, 0, 0);
   return 0;
 }

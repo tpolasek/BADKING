@@ -8,6 +8,9 @@
 #include <time.h>
 #include <stdarg.h>
 #include <stdint.h>
+#include <termios.h>
+#include <unistd.h>
+#include <signal.h>
 
 /* Ghidra auto-generated types */
 typedef unsigned char undefined1;
