@@ -1,0 +1,979 @@
+// String constants from BADKING.EXE data segment
+// These are referenced by name in the decompiled code
+
+// 1008:002b: Borland C++ - Copyright 1991 Borland Intl.
+// 1008:02b4: Slime
+// 1008:02ba: Goblin
+// 1008:02c6: Viper
+// 1008:02cc: Vampire
+// 1008:02d4: Knight
+// 1008:02e2: Green Dragon
+// 1008:02ef: Demon Knight
+// 1008:02fc: Warlock
+// 1008:0304: Serpent
+// 1008:030c: Blue Dragon
+// 1008:0318: Red Dragon
+// 1008:0323: Bad King
+// 1008:032c: Black Dragon
+// 1008:0339: Wind Wizards
+// 1008:0346: 
+
+A Flatrat Production
+
+
+// 1008:035f: The Bad King
+// 1008:036c: 
+
+
+What is your name? (Enter 'quit' to quit)
+// 1008:03a3: Your name is not on record, %s.
+// 1008:03c3:   Start a new game?
+// 1008:03d7: 
+
+Do you need instructions(y/n)?
+// 1008:03f8: 
+
+Press any key to begin.
+// 1008:0412: 
+
+
+
+*** Good Luck, %s ***
+// 1008:042c: 
+(y)es or (n)o?
+// 1008:0442:    HP %i,MP %i
+
+// 1008:0452: Command?
+// 1008:045d: Enemy gen.error:loc=%i
+// 1008:0474: Error! Attackable=%i
+// 1008:0489: 
+
+
+
+You are attacked by 
+// 1008:04a2: an Imp.
+// 1008:04aa: the Bad King!
+// 1008:04b8: the %s.
+// 1008:04c0: a %s.
+// 1008:04c6: 
+
+Your HP: %i/%i
+Your MP: %i/%i
+// 1008:04e6: 
+Press a key to continue.
+// 1008:0500: 
+
+%s is asleep.
+// 1008:0510: 
+
+%s has awakened!
+// 1008:0523: 
+Command?
+// 1008:052d: 
+
+The %s is asleep.
+// 1008:0541: 
+
+The %s has awoken!
+// 1008:0556: 
+
+You have defeated the %s.
+// 1008:0572: 
+
+Received Water Shoes!
+// 1008:058a: 
+
+Received Heal Ring!
+// 1008:05a0: 
+
+Received Dragon Slayer!
+// 1008:05ba: 
+
+Received Rune Ring!
+// 1008:05d0: 
+
+Found %i Gold.
+// 1008:05e1: 
+Experience up %i.
+// 1008:05f4: 
+
+You have reached Level %i!
+// 1008:0611: 
+
+
+Poor %s.  It seems that the %s 
+// 1008:0634: were
+too much for you.
+// 1008:064b: was
+too much for you.
+// 1008:0661: 
+Press any key to continue.
+// 1008:0686: 
+
+Press any key to continue.
+// 1008:06ad: Congratulations, mighty %s.
+
+Your heroic
+// 1008:06d6:  deeds will live on in memory for
+years to come.
+// 1008:0707: 
+
+
+
+The Bad King's evil castle crumbled to the gr
+// 1008:0739: ound
+the moment %s left it.  The dark clouds di
+// 1008:0769: spersed.
+As %s walked back along the road, new 
+// 1008:0799: clouds
+gathered, and a warm cleansing rain began
+// 1008:07ca:  to fall.
+// 1008:07d4: 
+
+%s left Dragon Slayer imbedded in a stone
+// 1008:0800:  at the ruins
+of the castle, as a reminder of the
+// 1008:0832:  evil that once
+existed there.  And as years sli
+// 1008:0863: pped into decades,
+and flowering vines claimed t
+// 1008:0894: he ruins, the sword
+remained, waiting for the fa
+// 1008:08c5: r-off day when it would
+be needed again.
+// 1008:08ee: 
+
+            THE END
+// 1008:0904: index.dat
+// 1008:0910: No save files found.
+
+// 1008:0929: Tree Square
+// 1008:0935: Squirrel's Nook Inn
+// 1008:0949: Grubby's Armory
+// 1008:0959: Mura's Magic Shop
+// 1008:096b: Forest Gate
+// 1008:0977: Forest Path
+// 1008:0983: Tall Tree
+// 1008:098d: Bear Rock
+// 1008:0997: Shadowy Path
+// 1008:09a4: Big Oaks
+// 1008:09ad: Meadow
+// 1008:09b4: Babbling Brook
+// 1008:09c3: Rushing Falls
+// 1008:09d1: Slippery Path
+// 1008:09df: Rushing Pool
+// 1008:09ec: Dark Tunnel
+// 1008:09f8: Darker Tunnel
+// 1008:0a06: Darkest Tunnel
+// 1008:0a15: Cave's End
+// 1008:0a20: Lake Shore
+// 1008:0a2b: Lake Hobs - West
+// 1008:0a3c: Lake Hobs
+// 1008:0a46: Lake Hobs - East
+// 1008:0a57: East Shore
+// 1008:0a62: Dusty Road
+// 1008:0a6d: Stony Gate
+// 1008:0a78: Empty Square
+// 1008:0a85: Tyr's Battle Gear
+// 1008:0a97: Happy Face Inn
+// 1008:0aa6: Thura's Magic Shop
+// 1008:0ab9: Dusty Road - East
+// 1008:0acb: Crossroads
+// 1008:0ad6: North Road
+// 1008:0ae1: Brambles
+// 1008:0aea: Brambles
+// 1008:0af3: Brambles
+// 1008:0afc: East Road
+// 1008:0b06: Castle Wall
+// 1008:0b12: Garden Path
+// 1008:0b1e: Castle Keep
+// 1008:0b2a: Entrance Hall
+// 1008:0b38: Passage
+// 1008:0b40: Throne Room
+// 1008:0b4c: Tower - 1F
+// 1008:0b57: Tower - 2F
+// 1008:0b62: Tower - 3F
+// 1008:0b6d: Tower - 4F
+// 1008:0b78: Tower Roof
+// 1008:0b83: Error!
+// 1008:0b93: x. Cancel
+
+// 1008:0ba6: 
+
+You can't swim across the lake.  Sorry.
+// 1008:0bd0: 
+
+The keep door flatly refuses to open.
+// 1008:0bf8: 
+
+You gingerly start to walk across the water.
+// 1008:0c27: 
+
+The key turns in the lock with an ominous click.
+// 1008:0c5a: 
+
+The throne room is cloaked in shadows.  A raspy voi
+// 1008:0c90: ce
+says, \"It is him!  Destroy him, my servant!\
+// 1008:0cc2: You are standing in the town square of Fo
+// 1008:0cec: rest-For-the-Trees.
+The square is full of peo
+// 1008:0d1a: ple bustling about.  Nearby are an
+inn, a wea
+// 1008:0d48: pon/armor shop, and a mysterious shop with sym
+// 1008:0d77: bols
+carved over the door.  Next to you, a ca
+// 1008:0da5: rriage is passing.
+// 1008:0db8: You are in the common room of the Squirre
+// 1008:0de2: l's Nook Inn.  There
+are several patrons, but
+// 1008:0e10:  they seem to be more interested in
+their ale.
+// 1008:0e3f:   The innkeeper is standing behind the counter.
+// 1008:0e6f: Inside the shop, the air is filled with t
+// 1008:0e99: he smells of forged
+metal.  You hear the soun
+// 1008:0ec7: d of hammering from the back room.
+A well-dre
+// 1008:0ef5: ssed man walks over to show you his wares.
+// 1008:0f20: Strange smells assault you as you enter t
+// 1008:0f4a: he shop.  Behind a
+counter is standing a robe
+// 1008:0f78: d and hooded man.  He smiles politely
+at you,
+// 1008:0fa6:  and gestures to a table of scrolls and rings.
+// 1008:0fd5: You are standing outside the gate of Fore
+// 1008:0fff: st-For-the-Trees.
+A guard is standing nearby,
+// 1008:102d:  keeping a sharp lookout for
+monsters.  To th
+// 1008:105b: e east you can see the shore of a lake.
+In al
+// 1008:1089: l other directions, the forest stretches away.
+// 1008:10b8: You are on a path that runs east and west
+// 1008:10e2:  through the
+forest.  Nearby is a tall oak tr
+// 1008:1114: You have climbed the tree, using branches
+// 1008:113e:  and knotholes.
+It's very peaceful up here, e
+// 1008:116c: xcept for a dark cloud you
+can see to the eas
+// 1008:119d: You are at the landmark called Bear Rock.
+// 1008:11c7:   It is a large
+granite rock that looks kind 
+// 1008:11f5: of like a bear's head.  The
+path continues on
+// 1008:1223:  to the east and west.
+// 1008:123a: The forest around here is so dense that i
+// 1008:1264: t's hard to see
+the path.  It looks like it t
+// 1008:1292: hins out a ways to the east.
+// 1008:12af: You are walking through a grove of immen
+// 1008:12d8: se oak trees.  You
+can see rays of sunlight 
+// 1008:1305: towards the west.  A squirrel is
+watching you.
+// 1008:1334: You are in a meadow of tall grasses and 
+// 1008:135d: sticker bushes.  You
+hear a stream somewhere 
+// 1008:138b: up ahead.
+// 1008:1395: You are on the banks of a small stream.
+// 1008:13bd:   A little ways downstream,
+you hear a roarin
+// 1008:13eb: g noise.
+// 1008:13f4: You are standing at the top of a waterfa
+// 1008:141d: ll.  The stream
+cascades over a cliff and fal
+// 1008:144b: ls about twenty feet to a
+pool.  A trail lead
+// 1008:1479: s down the cliff nearby.
+// 1008:1492: You are on a narrow path leading down th
+// 1008:14bb: e cliff.  It's a bit
+less steep here, but it'
+// 1008:14e9: s still treacherous, as the spray from
+the fa
+// 1008:1517: lls coats the ground.
+// 1008:152d: You are standing on the edge of a foamin
+// 1008:1556: g pool.  The falls
+crash down in a solid shee
+// 1008:1584: t of water.  At the bottom end
+of the pool, 
+// 1008:15b1: the stream continues on into dense undergrowth.
+// 1008:15e1: You are standing in a dimly lit tunnel. 
+// 1008:160a:  The falls crash
+into the pool behind you.
+// 1008:1635: Further down the tunnel, it becomes very
+// 1008:165e:  hard to see.
+Water drips from the ceiling, b
+// 1008:168c: ut other than that it's
+eerily quiet.
+// 1008:16b2: You can't see anything in this part of t
+// 1008:16db: he tunnel.  Who
+knows what might be in the da
+// 1008:1711: You have reached the end of the cave.  L
+// 1008:173a: ight falls through
+cracks in the ceiling.  Yo
+// 1008:1768: u hear a hissing noise nearby.
+// 1008:1787: You are standing on the shore of Lake Ho
+// 1008:17b0: bs.  Clouds fly by
+in the sky, driven by a st
+// 1008:17de: iff wind.  But in the distance
+to the east yo
+// 1008:180c: u see a large dark cloud that doesn't move.
+
+// 1008:1839: There is a traveler resting nearby.
+// 1008:185d: You hadn't realized how big Lake Hobs wa
+// 1008:1886: s until you tried
+to walk across it.  The eas
+// 1008:18b4: t shore hardly seems any closer.
+// 1008:18d5: You are in the middle of Lake Hobs.  The
+// 1008:18fe:  water is a deep
+blue here.  You're starting 
+// 1008:192c: to make out what looks like
+a road on the far
+// 1008:195a:  shore.
+// 1008:1962: You are drawing near to the eastern shor
+// 1008:198b: e, at last.  Gulls
+circle overhead, crying sa
+// 1008:19b9: dly.  They seem to be warning you.
+// 1008:19dc: The east shore of the lake is barren.  N
+// 1008:1a05: o plants grow,
+and even the rocks look sad.
+// 1008:1a31: This dusty road runs through fields of b
+// 1008:1a5a: rown grass.  You
+can tell that this is the Ba
+// 1008:1a88: d King's realm.  To the
+north, a path leads o
+// 1008:1ab6: ff towards a stone wall with
+colorful flags f
+// 1008:1ae4: lying from it.
+// 1008:1af3: You've reached a gate.  The wall is high
+// 1008:1b1c:  and strong-
+looking.  An exhausted guard is 
+// 1008:1b4a: leaning against the
+wall next to the gate.
+// 1008:1b75: Your footsteps echo hollowly on the ston
+// 1008:1b9e: es.  The central
+square of Bodies-By-the-Lake
+// 1008:1bcc:  seems to be deserted, although
+you think
+// 1008:1bf6:  you hear footsteps pattering away.
+// 1008:1c1a: The shop carries an impressive array of 
+// 1008:1c43: weapons and
+armor.  The shopkeeper, an imposi
+// 1008:1c71: ng man with a florid
+face, eyes you impatiently.
+// 1008:1ca2: The common room of the inn is painted a 
+// 1008:1ccb: garish yellow color.
+The innkeeper gives you 
+// 1008:1cf9: a somewhat forced grin.
+// 1008:1d11: This shop looks strangely familiar.  So 
+// 1008:1d3a: does the robed
+figure behind the counter, for that matter.
+// 1008:1d75: This stretch of road looks much the same as the last.
+// 1008:1dab: Two roads meet here.  The south road is 
+// 1008:1dd4: impassable, though.
+An evil-looking statue wa
+// 1008:1e02: tches over the east road.
+You figure it must be the Bad King.
+// 1008:1e40: Up ahead, the road disappears into a patch of brambles.
+// 1008:1e78: The bramble patch is a thing of twisted,
+// 1008:1ea1:  rotting evil.
+The vines tower overhead like 
+// 1008:1ecf: blackened fingers
+reaching for the sky.  You 
+// 1008:1efd: hear things skittering out
+of sight, and some
+// 1008:1f2b: times you think you hear something
+much bigger in the distance.
+// 1008:1f6b: A steady rain falls on your face as you
+// 1008:1f93:  trudge along
+the road.  Trees grow alongside
+// 1008:1fc1: , but they look more
+like prisoners than plants.
+// 1008:1ff2: You have reached the wall of an imposing
+// 1008:201b:  castle.  The
+whole thing is made out of some
+// 1008:2049:  kind of dark stone.  The
+gate is open; it looks uncomfortably like a gaping
+mouth.
+// 1008:209d: You are on a path paved with flat gray s
+// 1008:20c6: tone.  Flowers
+and herbs grow in regimented r
+// 1008:20f4: ows on either side,
+some reaching immense size.
+// 1008:2124: You are standing at the door to the cast
+// 1008:214d: le's immense tower.
+There is a carved skull s
+// 1008:217b: et into the door.  And the
+door is shut tight.
+// 1008:21aa: The entrance hall is hung with gaudy tap
+// 1008:21d3: estries and
+decorated with jeweled suits of a
+// 1008:2201: rmor and shelves of
+books.  It looks like the
+// 1008:222f:  only exits are the front door
+and a staircase leading up.
+// 1008:226a: Torches light the hallway with a flicker
+// 1008:2293: ing glow.  Ghastly
+portraits line the walls. 
+// 1008:22c1:  Not all of them are human.
+One in particular
+// 1008:22ef:  catches your eye.  It shows a red
+dragon curl
+// 1008:231e: ed around a sword, with towering brambles behin
+// 1008:234e: d
+it.  Its eyes seem to be watching you.
+// 1008:2377: The throne room is lit with an eerie gre
+// 1008:23a0: en light.  On
+the throne sits a man, dressed 
+// 1008:23ce: in black and red, with
+a dark crown on his head.
+// 1008:23ff: You are in a tower room, with stairs leading up
+// 1008:242f:  and down.
+You hear the sound of driving rain,
+// 1008:245e:  and through the
+window you can see a storm ra
+// 1008:248d: ging outside.
+// 1008:249b: Wind buffets you as you stand on top of t
+// 1008:24c5: he tower.  
+// 1008:24d1: Nearby
+are standing three figures i
+// 1008:24f5: n purple robes, facing
+outward and chanting.
+// 1008:2522: Error! Location=%i
+// 1008:2537: You search carefully, but find no
+// 1008:2559: thing.
+// 1008:2560: You reach into a hole in the tree 
+// 1008:2583: and fumble around.  Finally you
+find a 
+// 1008:25ab: pouch containing 80 gold.
+// 1008:25c5: You search the pool but find 
+// 1008:25e3: nothing.  But you know there must
+be so
+// 1008:260b: mething around here.  The roar of the fal
+// 1008:2635: ls catches your
+attention.  You push
+// 1008:265a:  through the curtain of water...
+// 1008:267b: You search carefully, but find no
+// 1008:269d: thing.
+// 1008:26a4: Your foot kicks something in the d
+// 1008:26c7: ark.  You pick it up and
+find that it's 
+// 1008:26f0: a scroll with the spell of Heal Major
+wr
+// 1008:2719: itten on it.
+// 1008:2726: You search carefully, but find no
+// 1008:2748: thing.
+// 1008:274f: Light shines through a crack in th
+// 1008:2772: e ceiling, falling on a
+treasure chest.
+// 1008:279a:   But before you can lift the lid...
+// 1008:27bf: You search carefully, but find no
+// 1008:27e1: thing.
+// 1008:27e8: Looking into the deep blue of the 
+// 1008:280b: lake, you see something
+that glints a 
+// 1008:2832: different shade.  You dive down toward
+// 1008:2859: s
+it.  Then you find something that didn
+// 1008:2882: 't
+glint at all...
+// 1008:2895: You search carefully, but find no
+// 1008:28b7: thing.
+// 1008:28be: In the dust of the road, something
+// 1008:28e1:  catches your eye.
+You pick it up.  It 
+// 1008:2909: is a dull key, made out of some
+strange 
+// 1008:2932: metal, with a skull carved into the hand
+// 1008:295f: You search carefully, but find no
+// 1008:2981: thing.
+// 1008:2988: Hidden among the towering brambles
+// 1008:29ab:  is a treasure chest.
+But before you ca
+// 1008:29d3: n lift the lid...
+// 1008:29e5: You search the room.  Then you start
+// 1008:2a0a:  on the bookcases.
+When you touch a black-
+// 1008:2a35: bound book, the bookcase swings around.
+// 1008:2a5d: You search carefully, but find no
+// 1008:2a7f: thing.
+// 1008:2a88: A well-dressed woman in a carriage
+// 1008:2aab:  tells you, \"Yes, we're
+leaving town.
+// 1008:2ad1:   The Bad King's monsters have been
+si
+// 1008:2af8: ghted on this shore of the lake more an
+// 1008:2b20: d more
+lately.  We're getting as far a
+// 1008:2b47: way as we can from here.\
+// 1008:2b61: The innkeeper says, \"Well, it's 
+// 1008:2b82: 10 gold for a room for
+the night.  How
+// 1008:2ba9:  about it?\
+// 1008:2bb5: 
+(y)es or (n)o?
+// 1008:2bc5: 
+\"Sorry, you seem to be short on funds.\
+// 1008:2bee: 
+
+You spend a relaxing night in the
+// 1008:2c12:  inn, and awake refreshed.
+// 1008:2c2d: The shopkeeper says, \"Welcome to 
+// 1008:2c4f: Grubby's Armory!  What
+can I get for y
+// 1008:2c76: ou?\"
+a. Short Sword, 10g
+b. Long Sword
+// 1008:2c9d: , 70g
+c. 2-Hand Broadsword, 300g
+d. 
+// 1008:2cc2: Leather, 10g
+e. Chain Mail, 60g
+f. Co
+// 1008:2ce8: pper Plate, 315g
+x. Cancel
+
+\"Well?\
+// 1008:2d0c: 
+Enter a letter, a-f.
+// 1008:2d22: 
+\"Sorry, you don't have enough gold.\
+// 1008:2d48: 
+\"Thank you!\
+// 1008:2d56: The cloaked man behind the counter says, \"Ah, welcome to
+
+// 1008:2d90: my shop.  What can I get for you, good sir?\
+// 1008:2dbd: 
+a. Heal Spell, 30g
+b. Fire Spell, 70g
+c. 
+// 1008:2de8: Ice Spell, 70g
+d. Lit Spell, 70g
+e. Power
+// 1008:2e12:  Ring, 65g
+f. Shield Ring, 85g
+x. Cancel
+// 1008:2e3b: 
+
+\"Anything you like?\
+// 1008:2e52: 
+Enter a letter, a-f.
+// 1008:2e68: 
+\"Terribly sorry, you seem to have misjudged your funds.\
+// 1008:2ea2: 
+\"Thank you very much, sir.\
+// 1008:2ebf: The guard at the gate says, \"You know, if
+// 1008:2ee9:  you're trying to cross
+the lake, you might t
+// 1008:2f17: ry looking for the Water Shoes.  I heard they
+
+// 1008:2f46: were stolen by a monster a long time ago.\
+// 1008:2f71: A squirrel chitters at you from the tre
+// 1008:2f99: es.  \"Hey!  Hey you!
+I know something you do
+// 1008:2fc6: n't!  A long time ago, a warrior fleeing
+the
+// 1008:2ff3:  Bad King's monsters stopped by the shore of t
+// 1008:3022: he lake.
+He took something shiny off his fing
+// 1008:3050: er and threw it in the lake.\
+// 1008:306e: The traveler says, \"Ahhh.  Hi there.  I
+// 1008:3096: 've just escaped
+from the Bad King's realm.
+// 1008:30c2:   I was a prisoner in his dungeons,
+but I fou
+// 1008:30f0: nd the castle's skeleton key.  I made my way h
+// 1008:311f: ere,
+avoiding patrols the whole way.  I had to
+// 1008:314e:  dive into a ditch
+by the crossroads once
+// 1008:3178: , but I made it.\"  He slaps at h
+// 1008:3199: is
+pockets in alarm.  \"Shoot!  I lost the key!
+// 1008:31c8: The tired-looking guard says, \"Oh.  Go
+// 1008:31ef: od day, I guess.
+Pardon me if I seem tired, b
+// 1008:321d: ut I just returned from a three day
+search with no
+// 1008:3250:  luck.  I was looking for a legendary sword th
+// 1008:327f: at
+used to belong to the hero Garion.  He fel
+// 1008:32ad: l in battle with the
+Red Dragon of Thorns.\
+// 1008:32d9: You call out a greeting.  From behind th
+// 1008:3302: e corner of
+a building, a voice whispers, \
+// 1008:332e: The Rune Ring shields you from
+magical harm.
+// 1008:335b:   It wards against foul vapors.\
+// 1008:337c: The shopkeeper says, \"Well, b
+// 1008:339a: oy?  What'll it be?\
+// 1008:33af: 
+a. 2-Hand Broadsword, 260g
+b. Silver Sword
+// 1008:33db: , 1000g
+c. Copper Plate, 300g
+d. Iron Plate
+// 1008:3407: , 850g
+e. Battle Suit, 6970g
+x. Cancel
+// 1008:342e: 
+
+\"Come on, make up your mind.\
+// 1008:344e: 
+Enter a letter, a-e.
+// 1008:3464: 
+\"You're broke, kid.\
+// 1008:347a: 
+\"Thankee.\
+// 1008:3486: The innkeeper says, \"Oh, a new visitor!
+// 1008:34ae:   Glad to see
+you!  To celebrate, I'll give y
+// 1008:34dc: ou a special rate, 50 gold a
+night!  How bout
+// 1008:3510: 
+(y)es or (n)o?
+// 1008:3520: 
+\"Aw, not enough money?\
+// 1008:3539: 
+
+You spend a relaxing night in the
+// 1008:355d:  inn, and awake refreshed.
+// 1008:3578: The cloaked figure says, \"Ah, a visitor
+// 1008:35a0:  from Forest-For-
+the-Trees?  You must have m
+// 1008:35ce: et my brother Mura.  What a bore, eh?
+So what
+// 1008:35fc:  can I getcha?\
+// 1008:360c: 
+a. Sleep Spell, 400g
+b. Heal Major Spell, 
+// 1008:3638: 950g
+c. Return Spell, 950g
+d. Nuke Spell, 2
+// 1008:3664: 250g
+e. Silver Ring, 1420g
+// 1008:367f: 
+x. Cancel
+
+\"Anything?\
+// 1008:3697: 
+Enter a letter, a-e.
+// 1008:36ad: 
+\"Oops!  Looks like you're a bit short.\
+// 1008:36d6: 
+\"Thanks.  Enjoy!\
+// 1008:36e9: The Bad King gazes down coldly.
+
+
+// 1008:370b: 
+
+\"So, %s, you are the 'hero'
+// 1008:3729:  I've been hearing about.  Ready
+yourself!
+// 1008:3754:   We shall find the truth!!!\"
+He pulls a
+// 1008:377d:  dark sword from his belt and advances.
+// 1008:37a5: You call out a greeting, but no one answers.
+// 1008:37d2: You call out a greeting.  The three wizards turn
+// 1008:3803:  as one
+and raise their hands.
+// 1008:3822: You call out a greeting, but no one answers.
+// 1008:384f: 
+a. Heal       (1 MP)
+// 1008:3865: 
+b. Heal Major (5 MP)
+// 1008:387b: 
+c. Return     (1 MP)
+// 1008:3891: 
+You don't have any spells you can use now.
+// 1008:38bd: 
+x. Cancel
+// 1008:38c8: 
+
+Which will you cast?
+// 1008:38df: 
+Enter the letter of your choice.
+// 1008:3901: 
+Enter the letter of your choice.
+// 1008:3923: 
+Not enough MP.
+// 1008:3933: 
+
+You have cast Heal.
+// 1008:3949: 
+Not enough MP.
+// 1008:3959: 
+
+You have cast Heal Major.
+// 1008:3975: 
+Not enough MP.
+// 1008:3985: 
+
+You have cast Return.
+// 1008:399d: 
+
+Return fell apart in mid-chant.
+// 1008:39bf: 
+%s
+Level %i    (Exp. %i/%i)     %i Gold
+
+// 1008:39e9: HP %i/%i     MP %i/%i
+// 1008:39ff:      Strength %i
+Attack %i     Defense %i
+// 1008:3a29: 
+Sword:
+// 1008:3a31: Short Sword
+// 1008:3a3d: Long Sword
+// 1008:3a48: 2-Hand Broadsword
+// 1008:3a5a: Silver Sword
+// 1008:3a67: Dragon Slayer
+// 1008:3a75: 
+Armor:
+// 1008:3a7d: Leather
+// 1008:3a85: Chain Mail
+// 1008:3a90: Copper Plate
+// 1008:3a9d: Iron Plate
+// 1008:3aa8: Battle Suit
+// 1008:3ab4: 
+Ring: 
+// 1008:3abc: Power Ring
+// 1008:3ac7: Shield Ring
+// 1008:3ad3: Heal Ring
+// 1008:3add: Silver Ring
+// 1008:3ae9: Rune Ring
+// 1008:3af3: 
+Spells:
+
+// 1008:3afd:       Heal
+
+// 1008:3b09:       Fire
+
+// 1008:3b38:       Heal Major
+
+// 1008:3b4a:       Return
+
+// 1008:3b64: You also have water shoes
+// 1008:3b7e:  and a key
+// 1008:3b8b: 
+Error in weapon!
+// 1008:3b9d: 
+Error in armor!
+// 1008:3bae: Error in ring!
+// 1008:3bbd: 
+
+%s attacks!
+// 1008:3bcb: 
+The sword had no effect.
+// 1008:3be5: 
+The %s receives %i damage.
+// 1008:3c07: Heal       (1 MP)
+// 1008:3c19: Fire       (2 MP)
+// 1008:3c2b: Ice        (2 MP)
+// 1008:3c3d: Lit        (2 MP)
+// 1008:3c4f: Sleep      (3 MP)
+// 1008:3c61: Heal Major (5 MP)
+// 1008:3c73: Return     (1 MP)
+// 1008:3c97: 
+You don't know any spells.
+// 1008:3cb3: 
+x. Cancel
+
+// 1008:3cbf: 
+Enter Letter?
+// 1008:3cce: 
+
+Not enough MP.
+// 1008:3cdf: 
+
+%s has cast 
+// 1008:3cf4: 
+Recovered %i HP.
+// 1008:3d06: Fire.
+// 1008:3d0c: 
+The spell had no effect.
+// 1008:3d26: 
+The %s receives %i damage.
+// 1008:3d47: 
+The spell had no effect.
+// 1008:3d61: 
+The %s receives %i damage.
+// 1008:3d82: 
+The spell had no effect.
+// 1008:3d9c: 
+The %s receives %i damage.
+// 1008:3dbf: 
+The spell had no effect.
+// 1008:3dd9: 
+The %s is asleep.
+// 1008:3dec: Heal Major.
+// 1008:3df8: 
+Recovered %i HP.
+// 1008:3e0a: Return.
+// 1008:3e12: 
+The spell had no effect.
+// 1008:3e2c: 
+Mist carries %s away.
+// 1008:3e49: 
+The spell had no effect.
+// 1008:3e63: 
+The %s receives %i damage.
+// 1008:3e7f: 
+%s turned and ran.
+// 1008:3e93: 
+But there was no escape.
+// 1008:3ead: 
+
+The %s 
+// 1008:3eb7: attack.
+// 1008:3ebf: attacks.
+// 1008:3ec8: 
+%s takes %i damage.
+// 1008:3edd: 
+
+The %s 
+// 1008:3ee7: have cast 
+// 1008:3ef2: has cast 
+// 1008:3efc: 
+
+The %s has blown 
+// 1008:3f16: 
+Recovered %i HP.
+// 1008:3f28: Fire.
+// 1008:3f2e: 
+%s takes %i damage.
+// 1008:3f48: 
+%s takes %i damage.
+// 1008:3f62: 
+%s takes %i damage.
+// 1008:3f7e: 
+The spell had no effect.
+// 1008:3f98: 
+%s is asleep.
+// 1008:3fa7: blitz breath.
+// 1008:3fb5: 
+%s receives %i damage.
+// 1008:3fcd: flaming breath.
+// 1008:3fdd: 
+%s receives %i damage.
+// 1008:3ffb: 
+%s receives %i damage.
+// 1008:4013: poison breath.
+// 1008:4022: 
+%s resisted.
+// 1008:4030: 
+
+Are you sure you want to quit? (y)es or (n)o?
+// 1008:4060: 
+
+Not a good place to save.
+// 1008:40b6: index.dat
+// 1008:40c6: 
+
+*** Game Saved ***
+// 1008:4115: *** Game Loaded ***
+// 1008:4129: save%i.dat
+// 1008:4137: B
+
+
+There are two parts to the game, travel and battle.
+// 1008:416f: 
+These are the commands used when walking around:
+// 1008:41a1: 
+  m     (m)ove.  Lets you walk to a different location.
+// 1008:41da: 
+  l     (l)ook.  Gives you a description of where you are.
+// 1008:4216: 
+  t     (t)alk.  Lets you talk to anyone nearby.  Use
+
+// 1008:424e:              this command to buy things from shops, too.
+// 1008:4287: 
+  s     (s)earch.  Lets you search for treasure, secret
+// 1008:42c0: 
+             passages, and so on.
+// 1008:42e3: 
+  c     (c)ast.  Lets you use a magic spell.
+// 1008:4311: 
+  a     Status.  Shows a list of statistics, such as HP,
+// 1008:434b: 
+             MP, strength, etc.
+// 1008:436c: 
+  b     Save.  Saves your game.
+
+// 1008:438e: 
+
+These are the commands used in battle:
+// 1008:43b7: 
+  f     (f)ight.  Lets you attack the enemy with your sword.
+// 1008:43f5: 
+  c     (c)ast.  Lets you use a magic spell.
+// 1008:4423: 
+  r     (r)un.  Too hot for you?  Use 'r' to run away.
+// 1008:445b: 
+             Careful!  It doesn't work with tough monsters.
+// 1008:4498: 
+
+   This game is freeware.  You're under no obligati
+// 1008:44ce: on
+to pay for it.  You're welcome to give it to a
+// 1008:4500: 
+friend, as long as you don't change it.
+// 1008:4529: 
+   However, if you'd like to support my game-making
+// 1008:455e: 
+efforts, I'd appreciate any contribution you want
+// 1008:4591: 
+to send.  Or if you have any suggestions for me,
+// 1008:45c3: 
+or just want to tell me what you thought of The
+// 1008:45f4: 
+Bad King, I'd appreciate hearing from you.
+// 1008:4620: 
+   I'm working on a game called Tower Quest, which
+// 1008:4654: 
+will be a more complex RPG, with a more developed
+// 1008:4687: 
+storyline and a much longer playing time.  I plan
+// 1008:46ba: 
+to start working with graphics and action games
+// 1008:46eb: 
+later on.  If you'd like me to keep you informed
+// 1008:471d: 
+on FlatRat Games, write me!
+// 1008:473a: 
+   Thanks for trying The Bad King!
+%20s
+// 1008:4763: Sincerely,
+// 1008:476e: 
+
+     Griffin Knodle
+// 1008:4784: 
+     14611 Vashon Hwy.SW.
+// 1008:479f: 
+     Vashon, WA  98070
+// 1008:47b7: 
+On America Online:    GriffinJK
+// 1008:47d8: 
+(Press a key to continue)
+// 1008:4d3c: (Inactive %s)
+// 1008:4d4a: BCEasyWin
+// 1008:4d62: Out of memory in _setargv0
+// 1008:4da2: Floating Point: Square Root of Negative Number
+// 1008:4dd1: Invalid
+// 1008:4dd9: DeNormal
+// 1008:4de2: Divide by Zero
+// 1008:4df1: Overflow
+// 1008:4dfa: Underflow
+// 1008:4e04: Inexact
+// 1008:4e0c: Unemulated
+// 1008:4e17: Stack Overflow
+// 1008:4e26: Stack Underflow
+// 1008:4e36: Exception Raised
+// 1008:4e47: Program Aborted
+// 1008:4e57: Illegal Instruction
+// 1008:4e6b: Segment Violation
+// 1008:4e7d: Floating Point Trap
+// 1008:4e91: Program Terminated
+// 1008:4ea4: Abnormal Program Termination
