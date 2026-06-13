@@ -1226,59 +1226,311 @@ void __cdecl16near FUN_1000_0c6a(void)
 // Function: FUN_1000_10ef
 // Identified as: search_locations
 // Address: 1000:10ef
+// Fixed: replaced broken dispatch table with switch statement
 
 void __cdecl16near FUN_1000_10ef(void)
-
 {
-  int iVar1;
-  int *piVar2;
-  
   FUN_1000_4e7c(0x2535);
   DAT_1008_02a4 = 1;
-  iVar1 = 8;
-  piVar2 = (int *)((char *)s_You_are_walking_through_a_grove_o_1008_12af + 0x27);
-  do {
-    if (*piVar2 == DAT_1008_4f49) {
-                    /* WARNING: Could not recover jumptable at 0x1000111e. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-      (*(code *)piVar2[8])();
-      return;
+
+  switch(DAT_1008_4f49) {
+  case 7: /* Tall Tree - find 80 gold */
+    if (DAT_1008_4f37 == 1) {
+      FUN_1000_4e7c(0x267b); FUN_1000_4e7c(0x269d);
+    } else {
+      FUN_1000_4e7c(0x2560); FUN_1000_4e7c(0x2583);
+      FUN_1000_4e7c(0x25ab);
+      DAT_1008_4f25 += 80;
+      DAT_1008_4f37 = 1;
     }
-    piVar2 = piVar2 + 1;
-    iVar1 = iVar1 + -1;
-  } while (iVar1 != 0);
-  FUN_1000_4e7c((char *)s_You_search_carefully__but_find_n_1008_2a5d);
-  FUN_1000_4e7c((char *)s_thing__1008_2a7f);
-  return;
+    return;
+  case 15: /* Rushing Pool - waterfall to Dark Tunnel */
+    FUN_1000_4e7c(0x25c5); FUN_1000_4e7c(0x25e3);
+    FUN_1000_4e7c(0x260b); FUN_1000_4e7c(0x2635);
+    FUN_1000_4e7c(0x265a);
+    DAT_1008_4f49 = 16; /* Dark Tunnel */
+    DAT_1008_4f4b = 1;
+    return;
+  case 18: /* Darkest Tunnel - find Heal Major scroll */
+    if (DAT_1008_4f43 == 1) {
+      FUN_1000_4e7c(0x267b); FUN_1000_4e7c(0x269d);
+    } else {
+      FUN_1000_4e7c(0x26a4); FUN_1000_4e7c(0x26c7);
+      FUN_1000_4e7c(0x26f0); FUN_1000_4e7c(0x2719);
+      DAT_1008_4f43 = 1; /* Heal Major spell */
+    }
+    return;
+  case 19: /* Cave End - treasure chest, Blue Dragon fight */
+    if (DAT_1008_4f2d == 1) {
+      FUN_1000_4e7c(0x2726); FUN_1000_4e7c(0x2748);
+    } else {
+      FUN_1000_4e7c(0x274f); FUN_1000_4e7c(0x2772);
+      FUN_1000_4e7c(0x278e); FUN_1000_4e7c(0x279a);
+      DAT_1008_02a4 = 2; /* Blue Dragon fight */
+    }
+    return;
+  case 22: /* Lake - dive, Serpent fight, get Water Shoes */
+    if (DAT_1008_4f33 == 3) {
+      FUN_1000_4e7c(0x27bf); FUN_1000_4e7c(0x27e1);
+    } else {
+      FUN_1000_4e7c(0x27e8); FUN_1000_4e7c(0x280b);
+      FUN_1000_4e7c(0x2832); FUN_1000_4e7c(0x2859);
+      FUN_1000_4e7c(0x2882);
+      DAT_1008_02a4 = 3; /* Serpent fight */
+    }
+    return;
+  case 32: /* Crossroads - find skull key */
+    if (DAT_1008_4f35 == 1) {
+      FUN_1000_4e7c(0x2895); FUN_1000_4e7c(0x28b7);
+    } else {
+      FUN_1000_4e7c(0x28be); FUN_1000_4e7c(0x28e1);
+      FUN_1000_4e7c(0x2909); FUN_1000_4e7c(0x2932);
+      DAT_1008_4f35 = 1; /* has key */
+    }
+    return;
+  case 36: /* Brambles - treasure chest, Red Dragon fight */
+    if (DAT_1008_4f2f == 5) {
+      FUN_1000_4e7c(0x295f); FUN_1000_4e7c(0x2981);
+    } else {
+      FUN_1000_4e7c(0x2988); FUN_1000_4e7c(0x29ab);
+      FUN_1000_4e7c(0x29c6); FUN_1000_4e7c(0x29d3);
+      DAT_1008_02a4 = 4; /* Red Dragon fight */
+    }
+    return;
+  case 41: /* Entrance Hall - bookcase passage */
+    FUN_1000_4e7c(0x29e5); FUN_1000_4e7c(0x2a0a);
+    FUN_1000_4e7c(0x2a35);
+    DAT_1008_4f49 = 42; /* Passage */
+    DAT_1008_4f4b = 1;
+    return;
+  default:
+    FUN_1000_4e7c(0x267b); FUN_1000_4e7c(0x269d);
+    return;
+  }
 }
 
 
 // Function: FUN_1000_12f6
 // Identified as: talk_locations
 // Address: 1000:12f6
+// Fixed: replaced broken dispatch table with switch statement
+
+static void talk_inn_cheap(void) {
+  FUN_1000_4e7c(0x2b61); FUN_1000_4e7c(0x2b82); FUN_1000_4e7c(0x2ba9);
+  FUN_1000_4e7c(0x2bb5);
+  DAT_1008_4f6f = FUN_1000_69c4();
+  if (DAT_1008_4f6f == 'y') {
+    if (DAT_1008_4f25 < 10) {
+      FUN_1000_4e7c(0x2bc5);
+    } else {
+      DAT_1008_4f25 -= 10;
+      DAT_1008_4f19 = DAT_1008_4f29;
+      DAT_1008_4f1d = DAT_1008_4f2b;
+      FUN_1000_4e7c(0x2bee); FUN_1000_4e7c(0x2c12);
+    }
+  }
+}
+
+static void talk_shop_armory(void) {
+  FUN_1000_4e7c(0x2c2d); FUN_1000_4e7c(0x2c4f); FUN_1000_4e7c(0x2c76);
+  FUN_1000_4e7c(0x2c9d); FUN_1000_4e7c(0x2cc2); FUN_1000_4e7c(0x2ce8);
+  /* menu loop */
+  while (1) {
+    FUN_1000_4e7c(0x2d0c);
+    DAT_1008_4f6f = FUN_1000_69c4();
+    if (DAT_1008_4f6f == 'x') break;
+    int cost = 0, type = 0, is_weapon = 0;
+    switch(DAT_1008_4f6f) {
+      case 'a': cost=10;  type=1; is_weapon=1; break; /* Short Sword */
+      case 'b': cost=70;  type=2; is_weapon=1; break; /* Long Sword */
+      case 'c': cost=300; type=3; is_weapon=1; break; /* 2-Hand Broadsword */
+      case 'd': cost=10;  type=1; is_weapon=0; break; /* Leather */
+      case 'e': cost=60;  type=2; is_weapon=0; break; /* Chain Mail */
+      case 'f': cost=315; type=3; is_weapon=0; break; /* Copper Plate */
+      default: continue;
+    }
+    if (DAT_1008_4f25 < cost) {
+      FUN_1000_4e7c(0x2d22);
+    } else {
+      DAT_1008_4f25 -= cost;
+      if (is_weapon) DAT_1008_4f2f = type;
+      else DAT_1008_4f31 = type;
+      FUN_1000_4e7c(0x2d48);
+    }
+  }
+}
+
+static void talk_shop_magic(void) {
+  FUN_1000_4e7c(0x2d56); FUN_1000_4e7c(0x2d90);
+  FUN_1000_4e7c(0x2dbd); FUN_1000_4e7c(0x2de8);
+  FUN_1000_4e7c(0x2e12); FUN_1000_4e7c(0x2e3b);
+  while (1) {
+    FUN_1000_4e7c(0x2e52);
+    DAT_1008_4f6f = FUN_1000_69c4();
+    if (DAT_1008_4f6f == 'x') break;
+    int cost = 0, type = 0, is_spell = 1;
+    switch(DAT_1008_4f6f) {
+      case 'a': cost=30;  type=0; break; /* Heal spell -> DAT_1008_4f39 */
+      case 'b': cost=70;  type=1; break; /* Fire spell -> DAT_1008_4f3b */
+      case 'c': cost=70;  type=2; break; /* Ice spell -> DAT_1008_4f3d */
+      case 'd': cost=70;  type=3; break; /* Lit spell -> DAT_1008_4f3f */
+      case 'e': cost=65;  type=1; is_spell=0; break; /* Power Ring */
+      case 'f': cost=85;  type=2; is_spell=0; break; /* Shield Ring */
+      default: continue;
+    }
+    if (DAT_1008_4f25 < cost) {
+      FUN_1000_4e7c(0x2e68);
+    } else {
+      DAT_1008_4f25 -= cost;
+      if (is_spell) {
+        ((int*)&DAT_1008_4f39)[type] = 1;
+      } else {
+        DAT_1008_4f33 = type;
+      }
+      FUN_1000_4e7c(0x2ea2);
+    }
+  }
+}
+
+static void talk_shop_tyr(void) {
+  FUN_1000_4e7c(0x337c); FUN_1000_4e7c(0x339a);
+  FUN_1000_4e7c(0x33af); FUN_1000_4e7c(0x33db);
+  FUN_1000_4e7c(0x3407); FUN_1000_4e7c(0x342e);
+  while (1) {
+    FUN_1000_4e7c(0x344e);
+    DAT_1008_4f6f = FUN_1000_69c4();
+    if (DAT_1008_4f6f == 'x') break;
+    int cost = 0, type = 0, is_weapon = 0;
+    switch(DAT_1008_4f6f) {
+      case 'a': cost=260;  type=3; is_weapon=1; break; /* 2-Hand Broadsword */
+      case 'b': cost=1000; type=4; is_weapon=1; break; /* Silver Sword */
+      case 'c': cost=300;  type=3; is_weapon=0; break; /* Copper Plate */
+      case 'd': cost=850;  type=4; is_weapon=0; break; /* Iron Plate */
+      case 'e': cost=6970; type=5; is_weapon=0; break; /* Battle Suit */
+      default: continue;
+    }
+    if (DAT_1008_4f25 < cost) {
+      FUN_1000_4e7c(0x3464);
+    } else {
+      DAT_1008_4f25 -= cost;
+      if (is_weapon) DAT_1008_4f2f = type;
+      else DAT_1008_4f31 = type;
+      FUN_1000_4e7c(0x347a);
+    }
+  }
+}
+
+static void talk_inn_happy(void) {
+  FUN_1000_4e7c(0x3486); FUN_1000_4e7c(0x34ae);
+  FUN_1000_4e7c(0x34dc); FUN_1000_4e7c(0x3510);
+  DAT_1008_4f6f = FUN_1000_69c4();
+  if (DAT_1008_4f6f == 'y') {
+    if (DAT_1008_4f25 < 50) {
+      FUN_1000_4e7c(0x3520);
+    } else {
+      DAT_1008_4f25 -= 50;
+      DAT_1008_4f19 = DAT_1008_4f29;
+      DAT_1008_4f1d = DAT_1008_4f2b;
+      FUN_1000_4e7c(0x3539); FUN_1000_4e7c(0x355d);
+    }
+  }
+}
+
+static void talk_shop_thura(void) {
+  FUN_1000_4e7c(0x3578); FUN_1000_4e7c(0x35a0);
+  FUN_1000_4e7c(0x35ce); FUN_1000_4e7c(0x35fc);
+  FUN_1000_4e7c(0x360c); FUN_1000_4e7c(0x3638);
+  FUN_1000_4e7c(0x3664); FUN_1000_4e7c(0x367f);
+  while (1) {
+    FUN_1000_4e7c(0x3697);
+    DAT_1008_4f6f = FUN_1000_69c4();
+    if (DAT_1008_4f6f == 'x') break;
+    int cost = 0, type = 0, is_spell = 1;
+    switch(DAT_1008_4f6f) {
+      case 'a': cost=400;  type=4; break;  /* Sleep spell -> DAT_1008_4f41 */
+      case 'b': cost=950;  type=5; break;  /* Heal Major -> DAT_1008_4f43 */
+      case 'c': cost=950;  type=6; break;  /* Return -> DAT_1008_4f45 */
+      case 'd': cost=2250; type=7; break;  /* Nuke -> DAT_1008_4f47 */
+      case 'e': cost=1420; type=4; is_spell=0; break; /* Silver Ring */
+      default: continue;
+    }
+    if (DAT_1008_4f25 < cost) {
+      FUN_1000_4e7c(0x36ad);
+    } else {
+      DAT_1008_4f25 -= cost;
+      if (is_spell) {
+        ((int*)&DAT_1008_4f39)[type] = 1;
+      } else {
+        DAT_1008_4f33 = type;
+      }
+      FUN_1000_4e7c(0x36d6);
+    }
+  }
+}
 
 void __cdecl16near FUN_1000_12f6(void)
-
 {
-  int iVar1;
-  int *piVar2;
-  
   DAT_1008_02a4 = 1;
   FUN_1000_4e7c(0x2a86);
-  iVar1 = 0xe;
-  piVar2 = (int *)((char *)s_You_hadn_t_realized_how_big_Lake_1008_185d + 0x12);
-  do {
-    if (*piVar2 == DAT_1008_4f49) {
-                    /* WARNING: Could not recover jumptable at 0x10001328. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-      (*(code *)piVar2[0xe])();
-      return;
-    }
-    piVar2 = piVar2 + 1;
-    iVar1 = iVar1 + -1;
-  } while (iVar1 != 0);
-  FUN_1000_4e7c((char *)s_You_call_out_a_greeting__but_no_o_1008_3822);
-  return;
+
+  switch(DAT_1008_4f49) {
+  case 1: /* Tree Square - woman in carriage */
+    FUN_1000_4e7c(0x2a88); FUN_1000_4e7c(0x2aab);
+    FUN_1000_4e7c(0x2ad1); FUN_1000_4e7c(0x2af8);
+    FUN_1000_4e7c(0x2b20); FUN_1000_4e7c(0x2b47);
+    break;
+  case 2: /* Squirrel's Nook Inn */
+    talk_inn_cheap();
+    break;
+  case 3: /* Grubby's Armory */
+    talk_shop_armory();
+    break;
+  case 4: /* Mura's Magic Shop */
+    talk_shop_magic();
+    break;
+  case 5: /* Forest Gate - guard hint about Water Shoes */
+    FUN_1000_4e7c(0x2ebf); FUN_1000_4e7c(0x2ee9);
+    FUN_1000_4e7c(0x2f17); FUN_1000_4e7c(0x2f46);
+    break;
+  case 10: /* Big Oaks - squirrel ring story */
+    FUN_1000_4e7c(0x2f71); FUN_1000_4e7c(0x2f99);
+    FUN_1000_4e7c(0x2fc6); FUN_1000_4e7c(0x2ff3);
+    FUN_1000_4e7c(0x3022); FUN_1000_4e7c(0x3050);
+    break;
+  case 20: /* Lake Shore - traveler story */
+    FUN_1000_4e7c(0x306e); FUN_1000_4e7c(0x3096);
+    FUN_1000_4e7c(0x30c2); FUN_1000_4e7c(0x30f0);
+    FUN_1000_4e7c(0x311f); FUN_1000_4e7c(0x314e);
+    FUN_1000_4e7c(0x3178); FUN_1000_4e7c(0x3199);
+    break;
+  case 26: /* Stony Gate - guard sword story */
+    FUN_1000_4e7c(0x31c8); FUN_1000_4e7c(0x31ef);
+    FUN_1000_4e7c(0x321d); FUN_1000_4e7c(0x3250);
+    FUN_1000_4e7c(0x327f); FUN_1000_4e7c(0x32ad);
+    break;
+  case 27: /* Empty Square - whisper about Rune Ring */
+    FUN_1000_4e7c(0x32d9); FUN_1000_4e7c(0x3302);
+    FUN_1000_4e7c(0x332e); FUN_1000_4e7c(0x335b);
+    break;
+  case 28: /* Tyr's Battle Gear */
+    talk_shop_tyr();
+    break;
+  case 29: /* Happy Face Inn */
+    talk_inn_happy();
+    break;
+  case 30: /* Thura's Magic Shop */
+    talk_shop_thura();
+    break;
+  case 43: /* Throne Room - Bad King boss fight */
+    FUN_1000_4e7c(0x36e9); FUN_1000_4e7c(0x370b);
+    FUN_1000_4e7c(0x3729); FUN_1000_4e7c(0x3754);
+    FUN_1000_4e7c(0x377d);
+    DAT_1008_02a4 = 5; /* Bad King fight */
+    break;
+  default:
+    FUN_1000_4e7c(0x37a5);
+    break;
+  }
 }
 
 
