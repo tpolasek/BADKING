@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wno-all
+CFLAGS = -w
 TARGET = badking
 SRC = decompiled.c strings.c dataseg.c
 
