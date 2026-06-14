@@ -2575,9 +2575,8 @@ int __cdecl16near FUN_1000_29ab(int param_1)
 
 {
   int uVar1;
-  
-  FUN_1000_3707(0x8000,0);
-  uVar1 = FUN_1000_36de();
+
+  uVar1 = (int)FUN_1000_3707(0x8000,0);
   if (param_1 != 0) {
     uVar1 = uVar1 % param_1;
   }
@@ -3697,16 +3696,22 @@ void __cdecl16near FUN_1000_36f6(undefined2 param_1)
 
 // Function: FUN_1000_3707
 // Address: 1000:3707
+// Borland/Turbo C rand() engine: advances the 32-bit seed stored in
+// DAT_1008_4b8e (low) / DAT_1008_4b90 (high) and returns (seed>>16)&0x7fff.
+// (The original decompilation relied on __lmul via uninitialized register
+// pseudo-variables; reimplemented directly from the global seed.)
 
 ulong __cdecl16near FUN_1000_3707(int param_1, int param_2)
 
 {
-  long lVar1;
-  
-  lVar1 = FUN_1000_36de();
-  DAT_1008_4b90 = (int)((ulong)(lVar1 + 1) >> 0x10);
-  DAT_1008_4b8e = (int)(lVar1 + 1);
-  return (long)DAT_1008_4b90 & 0xffff7fff;
+  unsigned long seed;
+
+  seed = ((unsigned long)(unsigned int)DAT_1008_4b90 << 16) |
+         (unsigned long)(unsigned int)DAT_1008_4b8e;
+  seed = seed * 0x015a4e35UL + 1UL;
+  DAT_1008_4b8e = (int)(seed & 0xffff);
+  DAT_1008_4b90 = (int)((seed >> 16) & 0xffff);
+  return (ulong)((seed >> 16) & 0x7fff);
 }
 
 
