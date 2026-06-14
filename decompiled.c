@@ -2443,10 +2443,10 @@ void __cdecl16near FUN_1000_2744(void)
   f = fopen(SAVE_BUF, "r");
   if (f == NULL) return;
   fscanf(f, "%255s", namebuf);
-  fscanf(f, "%hi%hi%hi", &DAT_1008_4f27, &DAT_1008_4f23, &DAT_1008_4f25);
-  fscanf(f, "%hi%hi%hi%hi", &DAT_1008_4f19, &DAT_1008_4f29, &DAT_1008_4f1d, &DAT_1008_4f2b);
-  fscanf(f, "%hi%hi%hi%hi", &DAT_1008_4f1b, &DAT_1008_4f2f, &DAT_1008_4f31, &DAT_1008_4f33);
-  fscanf(f, "%hi%hi%hi%hi", &DAT_1008_4f2d, &DAT_1008_4f35, &DAT_1008_4f49, &DAT_1008_4f37);
+  fscanf(f, "%i%i%i", &DAT_1008_4f27, &DAT_1008_4f23, &DAT_1008_4f25);
+  fscanf(f, "%i%i%i%i", &DAT_1008_4f19, &DAT_1008_4f29, &DAT_1008_4f1d, &DAT_1008_4f2b);
+  fscanf(f, "%i%i%i%i", &DAT_1008_4f1b, &DAT_1008_4f2f, &DAT_1008_4f31, &DAT_1008_4f33);
+  fscanf(f, "%i%i%i%i", &DAT_1008_4f2d, &DAT_1008_4f35, &DAT_1008_4f49, &DAT_1008_4f37);
   for (iVar1 = 0; iVar1 < 8; iVar1 = iVar1 + 1) {
     fscanf(f, "%hi", &((undefined2 *)&DAT_1008_4f39)[iVar1]);
   }
