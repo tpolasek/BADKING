@@ -30,6 +30,11 @@ static void _disable_raw_mode(void) {
   tcsetattr(0, TCSANOW, &_orig_termios);
   _raw_mode = 0;
 }
+
+/* Optional fixed RNG seed for deterministic play.
+   Set via the BADKING_SEED env var. 0 = seed from time() (default). */
+long g_game_seed = 0;
+
 // Published: 1991 by Flatrat Production
 // Platform: Windows 3.x (16-bit)
 //
@@ -2319,8 +2324,12 @@ void __cdecl16near FUN_1000_299b(void)
 
 {
   undefined2 uVar1;
-  
-  uVar1 = FUN_1000_3eb8(0);
+
+  if (g_game_seed != 0) {
+    uVar1 = (undefined2)g_game_seed;
+  } else {
+    uVar1 = FUN_1000_3eb8(0);
+  }
   FUN_1000_36f6(uVar1);
   return;
 }
@@ -2462,6 +2471,10 @@ int FUN_1000_69c4(void)
 
 int main(void)
 {
+  const char *seed_env = getenv("BADKING_SEED");
+  if (seed_env) {
+    g_game_seed = strtol(seed_env, NULL, 10);
+  }
   atexit(_disable_raw_mode);
   FUN_1000_0170(0, 0, 0);
   return 0;

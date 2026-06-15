@@ -12,6 +12,10 @@ app = Flask(__name__)
 
 BIN = os.path.join(os.path.dirname(os.path.abspath(__file__)), "badking")
 
+# Default RNG seed for deterministic play. The badking child (forked below)
+# inherits this. Override from the shell: BADKING_SEED=999 python3 server.py
+os.environ.setdefault("BADKING_SEED", "546")
+
 
 class Game:
     def __init__(self):
