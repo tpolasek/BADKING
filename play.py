@@ -150,9 +150,13 @@ def nav(target, pm):
         move_to(path[0])                          # advance one hop; re-evaluate next loop
     return stabilize() == target
 
-def grind(n):
-    """Do n search/fight cycles."""
+def grind(n, low_hp=5):
+    """Do n search/fight cycles. Bail early if HP drops to low_hp so we can
+    retreat and heal instead of fighting to the death."""
     for i in range(n):
+        h = info()["hp"]
+        if h and h <= low_hp:
+            return True
         out = send("s")
         if is_battle(out) or "attacked by" in out.lower():
             result = fight()
@@ -161,6 +165,53 @@ def grind(n):
         if i % 15 == 14:
             pinfo()
     return True
+
+def status():
+    """Open the status screen ('a') and return parsed stats. Travel mode
+    hides level/gold, so this is how we read them reliably."""
+    return info(send("a"))
+
+def rest_at_inn(pm):
+    """Heal to full HP/MP at Squirrel's Nook Inn (costs 10 gold). The inn is
+    off Tree Square, so this is only practical near the start of the map."""
+    nav("Squirrel's Nook Inn", pm)
+    send("t")                                  # talk to the innkeeper
+    send("y")                                  # yes, rest
+    nav("Tree Square", pm)
+
+def save_game():
+    """Persist progress. Death revives from the save file, so we must save
+    after gaining levels or a death erases the XP."""
+    return send("b")
+
+def nav_save(target, pm):
+    """Navigate to target, then checkpoint-save there. Because death revives
+    at the last saved location, saving at each waypoint means a death only
+    costs re-doing one leg instead of the whole route."""
+    if nav(target, pm):
+        save_game()
+
+def train(target_level, pm, attempts=25):
+    """Sustainably grind weak forest enemies, resting at the inn and saving
+    when healthy, until reaching target_level. Forest imps are weak and the
+    inn full-heals for 10 gold, so this loops without death-grinding. We only
+    checkpoint when HP is near full and gold >= 15, so a revive always lands
+    on a healthy state with enough gold to rest again."""
+    print(f"\n=== Training to Lv{target_level} ===")
+    for _ in range(attempts):
+        s = status()
+        if s["level"] >= target_level:
+            print(f"  reached Lv{s['level']}"); break
+        if s["hp"] and s["hp"] <= 6:
+            rest_at_inn(pm)
+        nav("Forest Path", pm)
+        grind(8)                               # fight a few imps (bails on low HP)
+        rest_at_inn(pm)                        # heal
+        s2 = status()
+        if s2["maxhp"] and s2["hp"] >= s2["maxhp"] - 2 and s2["gold"] >= 15:
+            save_game()                        # checkpoint a healthy state
+        print(f"  Lv{s2['level']} HP {s2['hp']}/{s2['maxhp']} G{s2['gold']}")
+    return status()
 
 # Path map
 pm = {
@@ -226,10 +277,8 @@ send("t"); send("a"); send("x")
 nav("Tree Square", pm)
 pinfo()
 
-# ===== GRIND FOREST =====
-print("\n=== Forest Grind ===")
-nav("Forest Path", pm)
-grind(25)
+# ===== GRIND FOREST (sustainable: grind + inn rest + save) =====
+train(3, pm)
 pinfo()
 
 # Tall Tree gold
@@ -241,7 +290,7 @@ print(f"  {send('s')[:80]}")
 print("\n=== Dark Tunnel ===")
 for d in ["Forest Path","Bear Rock","Shadowy Path","Big Oaks","Meadow",
           "Babbling Brook","Rushing Falls","Slippery Path","Rushing Pool"]:
-    nav(d, pm)
+    nav_save(d, pm)
 send("s")  # waterfall -> Dark Tunnel
 print(f"  At: {get_loc()}")
 
@@ -270,6 +319,7 @@ for d in ["Darkest Tunnel","Darker Tunnel","Dark Tunnel","Rushing Pool",
     nav(d, pm)
 nav("Squirrel's Nook Inn", pm)
 send("t"); send("y")  # rest
+save_game()           # persist the healed state
 pinfo()
 
 # ===== CROSS LAKE =====
@@ -289,7 +339,7 @@ pinfo()
 # ===== EAST SIDE =====
 print("\n=== East Side ===")
 for d in ["Lake Hobs - East","East Shore","Dusty Road","Stony Gate","Empty Square"]:
-    nav(d, pm)
+    nav_save(d, pm)
 
 # Shop
 nav("Tyr's Battle Gear", pm)
@@ -341,7 +391,7 @@ pinfo()
 # ===== CASTLE =====
 print("\n=== Castle ===")
 for d in ["East Road","Castle Wall","Garden Path","Castle Keep","Entrance Hall"]:
-    nav(d, pm)
+    nav_save(d, pm)
 print(f"  {send('s')[:80]}")  # bookcase
 
 grind(20)
