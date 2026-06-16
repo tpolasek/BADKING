@@ -509,13 +509,44 @@ int DAT_1008_503e;
 int DAT_1008_5054;
 int DAT_1008_5056;
 
-/* Forward declarations for functions - signatures must match actual definitions */
-short unsigned int load_me(void);
-short unsigned int comb_magic(void);
-undefined1 * set_default_name(undefined1 *param_1);
-int game_strcmp(intptr_t param_1, intptr_t param_2);
+/* Forward declarations for functions - signatures must match actual definitions.
+   These are required so that every function has a prototype before its first use.
+   On Linux/GCC an implicit-then-conflicting definition is only a warning
+   (suppressed by -w), but on macOS/clang it is a hard error, so we declare
+   all functions up front. (Duplicate compatible declarations are legal in C.) */
+void main_game_loop(int param_1, int param_2, int param_3);
+undefined2 load_me(void);
+void print_location(void);
+void move_me(void);
+void look(void);
+void search(void);
+void talk(void);
+void magic(void);
+void status(void);
+void update_stats(void);
+void fight(void);
+undefined2 comb_magic(void);
+void run_away(void);
+void enemy_fight(void);
+void enemy_spell(void);
+int get_damage(int param_1,int param_2);
+void quit(void);
+void save_me(void);
+void read_save_slot(void);
+int divide_int(int param_1,int param_2);
+void main_help(void);
+void combat_help(void);
+void print_freew(void);
+void randomize(void);
+int game_random(int param_1);
+void exit_game(undefined2 param_1);
+void set_seed(undefined2 param_1);
 ulong rand_engine(int param_1, int param_2);
 undefined4 get_time(undefined2 *param_1);
+undefined1 * set_default_name(undefined1 *param_1);
+void game_printf(intptr_t fmt_val, ...);
+int game_strcmp(intptr_t param_1,intptr_t param_2);
+int read_key(void);
 
 /* Stack variable storage */
 int stack0x0002_val;
