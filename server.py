@@ -6,7 +6,8 @@ import pty
 import select
 import subprocess
 import time
-from flask import Flask, request, jsonify
+
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -50,7 +51,7 @@ class Game:
         if len(char) != 1:
             return {"error": "Command must be a single character"}, 400
         os.write(self.master_fd, char.encode())
-        time.sleep(0.3)  # wait for game to process
+        time.sleep(0.1)  # wait for game to process
         self.last_output = self._read()
         return {"output": self.last_output}
 

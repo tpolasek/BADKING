@@ -59,18 +59,26 @@ def pinfo():
     return s
 
 def fight():
+    foe = "enemy"
+    m = re.search(r'attacked by an? ([^\n.]+)', last)
+    if m: foe = m.group(1).strip()
+    print(f"  fight: {foe}")
     for _ in range(300):
         out = send("f")
         low = out.lower()
         if "defeated the" in low:                  # "You have defeated the %s."
+            print(f"    defeated {foe}")
             return out
         if "too much for you" in low:              # "Poor %s ... too much for you."
+            print(f"    died to {foe}")
             send(" ")                              # dismiss "Press any key to continue"
             return out
         loc = get_loc(out)
         if loc and "Command?" in out and not is_battle(out):
+            print(f"    combat ended ({foe})")
             return out
         time.sleep(0.02)
+    print(f"    TIMEOUT vs {foe}")
     return "TIMEOUT"
 
 def stabilize():
@@ -138,15 +146,20 @@ def find_path(start, target, pm):
 
 def nav(target, pm):
     """Navigate to target location using BFS over the path_map."""
+    last_loc = None
     for attempt in range(80):
         loc = stabilize()
         if loc == target:
+            print(f"  arrived {loc}")
             return True
         path = find_path(loc, target, pm)
         if not path:
             if loc:
                 print(f"  No route: {loc} -> {target}")
             return False
+        if loc != last_loc:
+            print(f"  nav: {loc} -> {target}")
+            last_loc = loc
         move_to(path[0])                          # advance one hop; re-evaluate next loop
     return stabilize() == target
 
@@ -156,13 +169,17 @@ def grind(n, low_hp=5):
     for i in range(n):
         h = info()["hp"]
         if h and h <= low_hp:
+            print(f"  low HP ({h}), retreating from grind")
             return True
         out = send("s")
         if is_battle(out) or "attacked by" in out.lower():
+            print(f"  [{i+1}/{n}] encounter:")
             result = fight()
             if "too much for you" in result.lower():
                 print("  DIED!"); return False
-        if i % 15 == 14:
+        elif i % 5 == 0:
+            print(f"  [{i+1}/{n}] searching...")
+        if i % 5 == 4:
             pinfo()
     return True
 
