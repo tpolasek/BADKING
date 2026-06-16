@@ -510,12 +510,12 @@ int DAT_1008_5054;
 int DAT_1008_5056;
 
 /* Forward declarations for functions - signatures must match actual definitions */
-short unsigned int FUN_1000_091b(void);
-short unsigned int FUN_1000_1d4e(void);
-undefined1 * FUN_1000_4b78(undefined1 *param_1);
-int FUN_1000_53a6(intptr_t param_1, intptr_t param_2);
-ulong FUN_1000_3707(int param_1, int param_2);
-undefined4 FUN_1000_3eb8(undefined2 *param_1);
+short unsigned int load_me(void);
+short unsigned int comb_magic(void);
+undefined1 * set_default_name(undefined1 *param_1);
+int game_strcmp(intptr_t param_1, intptr_t param_2);
+ulong rand_engine(int param_1, int param_2);
+undefined4 get_time(undefined2 *param_1);
 
 /* Stack variable storage */
 int stack0x0002_val;

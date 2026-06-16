@@ -46,38 +46,38 @@ long g_game_seed = 0;
 //   get_file_name, divide_int, main_help, combat_help
 //   print_freew, randomize, random
 
-// Function: FUN_1000_0170
+// Function: main_game_loop
 // Address: 1000:0170
 
-void __cdecl16near FUN_1000_0170(int param_1, int param_2, int param_3)
+void __cdecl16near main_game_loop(int param_1, int param_2, int param_3)
 
 {
   int iVar1;
   undefined2 uVar2;
   undefined2 uVar3;
   
-  FUN_1000_299b();
-  FUN_1000_28fc();
-  FUN_1000_4e7c(0x346);
+  randomize();
+  print_freew();
+  game_printf(0x346);
   uVar3 = 0x35f;
   do {
-    FUN_1000_4e7c(uVar3);
+    game_printf(uVar3);
 LAB_1000_0187:
     DAT_1008_02a4 = 0;
-    FUN_1000_4e7c(0x36c);
-    FUN_1000_4b78(PLAYER_NAME);
-    FUN_1000_4e7c(0x399);
-    iVar1 = FUN_1000_53a6(PLAYER_NAME,DS(0x39e));
+    game_printf(0x36c);
+    set_default_name(PLAYER_NAME);
+    game_printf(0x399);
+    iVar1 = game_strcmp(PLAYER_NAME,DS(0x39e));
     if (iVar1 == 0) {
-      FUN_1000_25fd();
+      quit();
     }
-    DAT_1008_02ae = FUN_1000_091b();
+    DAT_1008_02ae = load_me();
     if (DAT_1008_02ae == 0) {
-      FUN_1000_4e7c(0x3a3,PLAYER_NAME);
+      game_printf(0x3a3,PLAYER_NAME);
       uVar3 = 0x3c3;
 LAB_1000_01d4:
-      FUN_1000_4e7c(uVar3);
-      DAT_1008_4f6f = FUN_1000_69c4();
+      game_printf(uVar3);
+      DAT_1008_4f6f = read_key();
       if (DAT_1008_4f6f != 'n') {
         if (DAT_1008_4f6f != 'y') break;
         DAT_1008_02ac = 1;
@@ -103,14 +103,14 @@ LAB_1000_01d4:
         }
         DAT_1008_4f49 = 1;
         DAT_1008_4f4b = 1;
-        FUN_1000_4e7c(0x3d7);
-        DAT_1008_4f6f = FUN_1000_69c4();
+        game_printf(0x3d7);
+        DAT_1008_4f6f = read_key();
         if (DAT_1008_4f6f == 'y') {
-          FUN_1000_287b();
-          FUN_1000_28d4();
-          FUN_1000_4e7c(0x3f8);
-          DAT_1008_4f6f = FUN_1000_69c4();
-          FUN_1000_4e7c(0x412,PLAYER_NAME);
+          main_help();
+          combat_help();
+          game_printf(0x3f8);
+          DAT_1008_4f6f = read_key();
+          game_printf(0x412,PLAYER_NAME);
         }
         goto LAB_1000_07aa;
       }
@@ -121,57 +121,57 @@ LAB_1000_07aa:
       if (DAT_1008_4f33 == 3) {
         DAT_1008_4f19 = DAT_1008_4f29;
       }
-      FUN_1000_4e7c(0x43c);
+      game_printf(0x43c);
       if (DAT_1008_4f4b == 1) {
-        FUN_1000_0c6a();
-        FUN_1000_4e7c(0x43f);
+        look();
+        game_printf(0x43f);
         DAT_1008_4f4b = 0;
       }
-      FUN_1000_098c();
-      FUN_1000_4e7c(0x442,DAT_1008_4f19,DAT_1008_4f1d);
+      print_location();
+      game_printf(0x442,DAT_1008_4f19,DAT_1008_4f1d);
       do {
-        FUN_1000_4e7c(0x452);
-        DAT_1008_4f6f = FUN_1000_69c4();
-        FUN_1000_4e7c(0x45b);
+        game_printf(0x452);
+        DAT_1008_4f6f = read_key();
+        game_printf(0x45b);
         switch(DAT_1008_4f6f) {
         case 'a':
           goto switchD_1000_0323_caseD_61;
         case 'b':
-          FUN_1000_262f();
+          save_me();
           goto LAB_1000_0355;
         case 'c':
-          FUN_1000_18a7();
+          magic();
           goto LAB_1000_0355;
         default:
-          FUN_1000_287b();
+          main_help();
           break;
         case 'l':
-          FUN_1000_0c6a();
+          look();
           goto LAB_1000_0355;
         case 'm':
-          FUN_1000_0b13();
+          move_me();
           goto LAB_1000_0355;
         case 'q':
-          FUN_1000_25fd();
+          quit();
           goto LAB_1000_0355;
         case 's':
-          FUN_1000_10ef();
+          search();
           goto LAB_1000_0355;
         case 't':
-          FUN_1000_12f6();
+          talk();
           goto LAB_1000_0355;
         }
       } while( true );
     }
     DAT_1008_02a2 = 0;
-    FUN_1000_4e7c(0x661);
-    DAT_1008_4f6f = FUN_1000_69c4();
+    game_printf(0x661);
+    DAT_1008_4f6f = read_key();
     uVar3 = 0x67d;
   } while( true );
   uVar3 = 0x42c;
   goto LAB_1000_01d4;
 switchD_1000_0323_caseD_61:
-  FUN_1000_1a17();
+  status();
 LAB_1000_0355:
   if (DAT_1008_02a4 == 0) goto LAB_1000_07aa;
   switch(DAT_1008_4f49) {
@@ -186,20 +186,20 @@ LAB_1000_0355:
   case 6:
   case 7:
   case 0x14:
-    DAT_1008_4f4d = FUN_1000_29ab(2);
+    DAT_1008_4f4d = game_random(2);
     break;
   case 8:
   case 9:
   case 10:
   case 0xb:
-    iVar1 = FUN_1000_29ab(3);
+    iVar1 = game_random(3);
     DAT_1008_4f4d = iVar1 + 1;
     break;
   case 0xc:
   case 0xd:
   case 0xe:
   case 0xf:
-    iVar1 = FUN_1000_29ab(5);
+    iVar1 = game_random(5);
     DAT_1008_4f4d = iVar1 + 2;
     if (4 < DAT_1008_4f4d) {
       DAT_1008_4f4d = 4;
@@ -209,7 +209,7 @@ LAB_1000_0355:
   case 0x11:
   case 0x12:
   case 0x13:
-    iVar1 = FUN_1000_29ab(5);
+    iVar1 = game_random(5);
     DAT_1008_4f4d = iVar1 + 4;
     if (6 < DAT_1008_4f4d) {
       DAT_1008_4f4d = iVar1 + 2;
@@ -224,7 +224,7 @@ LAB_1000_0355:
   case 0x19:
   case 0x1a:
   case 0x1f:
-    iVar1 = FUN_1000_29ab(5);
+    iVar1 = game_random(5);
     DAT_1008_4f4d = iVar1 + 5;
     if (7 < DAT_1008_4f4d) {
       DAT_1008_4f4d = iVar1 + 3;
@@ -241,7 +241,7 @@ LAB_1000_0355:
   case 0x23:
   case 0x24:
   case 0x25:
-    iVar1 = FUN_1000_29ab(5);
+    iVar1 = game_random(5);
     DAT_1008_4f4d = iVar1 + 6;
     if (8 < DAT_1008_4f4d) {
       DAT_1008_4f4d = iVar1 + 4;
@@ -252,7 +252,7 @@ LAB_1000_0355:
   case 0x28:
   case 0x29:
   case 0x2a:
-    iVar1 = FUN_1000_29ab(5);
+    iVar1 = game_random(5);
     DAT_1008_4f4d = iVar1 + 8;
     if (10 < DAT_1008_4f4d) {
       DAT_1008_4f4d = iVar1 + 6;
@@ -267,11 +267,11 @@ switchD_1000_036e_caseD_1:
   case 0x2e:
   case 0x2f:
   case 0x30:
-    iVar1 = FUN_1000_29ab(2);
+    iVar1 = game_random(2);
     DAT_1008_4f4d = iVar1 + 9;
     break;
   default:
-    FUN_1000_4e7c(0x45d,DAT_1008_4f49);
+    game_printf(0x45d,DAT_1008_4f49);
   }
   switch(DAT_1008_02a4) {
   case 1:
@@ -295,17 +295,17 @@ switchD_1000_036e_caseD_1:
     DAT_1008_4f4d = 0x10;
     break;
   default:
-    FUN_1000_4e7c(0x474,DAT_1008_02a4);
+    game_printf(0x474,DAT_1008_02a4);
   }
   if (DAT_1008_4f4d == -1) goto LAB_1000_07aa;
   if (DAT_1008_02a4 == 1) {
-    DAT_1008_4f6f = FUN_1000_29ab(3);
+    DAT_1008_4f6f = game_random(3);
   }
   else {
     DAT_1008_4f6f = '\x01';
   }
   if (DAT_1008_4f6f == '\0') goto LAB_1000_07aa;
-  FUN_1000_4e7c(0x489);
+  game_printf(0x489);
   switch(DAT_1008_4f4d) {
   case 0:
     uVar3 = 0x4a2;
@@ -322,99 +322,99 @@ switchD_1000_036e_caseD_1:
     uVar3 = *(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56];
     uVar2 = 0x4b8;
 LAB_1000_0500:
-    FUN_1000_4e7c(uVar2,DS(uVar3));
+    game_printf(uVar2,DS(uVar3));
     goto LAB_1000_0506;
   case 0xe:
     uVar3 = 0x4aa;
   }
-  FUN_1000_4e7c(uVar3);
+  game_printf(uVar3);
 LAB_1000_0506:
   DAT_1008_4f4f = *(short *)&seg_1008[DAT_1008_4f4d * 2 + 0x78];
   DAT_1008_4f51 = DAT_1008_4f4f;
 LAB_1000_062f:
   if (DAT_1008_02a6 == 0) {
-    FUN_1000_4e7c(0x4c6,DAT_1008_4f19,DAT_1008_4f29,DAT_1008_4f1d,DAT_1008_4f2b);
+    game_printf(0x4c6,DAT_1008_4f19,DAT_1008_4f29,DAT_1008_4f1d,DAT_1008_4f2b);
     if (DAT_1008_02a8 < 1) goto LAB_1000_0572;
-    FUN_1000_4e7c(0x4e6);
-    DAT_1008_4f6f = FUN_1000_69c4();
+    game_printf(0x4e6);
+    DAT_1008_4f6f = read_key();
     DAT_1008_02a8 = DAT_1008_02a8 + -1;
     if (DAT_1008_02a8 < 1) {
-      FUN_1000_4e7c(0x510,PLAYER_NAME);
+      game_printf(0x510,PLAYER_NAME);
     }
     else {
-      FUN_1000_4e7c(0x500,PLAYER_NAME);
+      game_printf(0x500,PLAYER_NAME);
     }
     goto LAB_1000_05c7;
   }
   DAT_1008_02a6 = 0;
   if ((DAT_1008_4f19 < 1) || (DAT_1008_4f4f < 1)) {
     if (DAT_1008_4f4f < 1) {
-      FUN_1000_4e7c(0x556,DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]));
+      game_printf(0x556,DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]));
       if (DAT_1008_02a4 == 5) {
-        FUN_1000_4e7c(0x686);
-        DAT_1008_4f6f = FUN_1000_69c4();
-        FUN_1000_4e7c(0x6a3);
-        FUN_1000_4e7c(0x6ad,PLAYER_NAME);
-        FUN_1000_4e7c(0x6d6);
-        FUN_1000_4e7c(0x707);
-        FUN_1000_4e7c(0x739,PLAYER_NAME);
-        FUN_1000_4e7c(0x769,PLAYER_NAME);
-        FUN_1000_4e7c(0x799);
-        FUN_1000_4e7c(0x7ca);
-        FUN_1000_4e7c(0x7d4,PLAYER_NAME);
-        FUN_1000_4e7c(0x800);
-        FUN_1000_4e7c(0x832);
-        FUN_1000_4e7c(0x863);
-        FUN_1000_4e7c(0x894);
-        FUN_1000_4e7c(0x8c5);
-        FUN_1000_4e7c(0x8ee);
+        game_printf(0x686);
+        DAT_1008_4f6f = read_key();
+        game_printf(0x6a3);
+        game_printf(0x6ad,PLAYER_NAME);
+        game_printf(0x6d6);
+        game_printf(0x707);
+        game_printf(0x739,PLAYER_NAME);
+        game_printf(0x769,PLAYER_NAME);
+        game_printf(0x799);
+        game_printf(0x7ca);
+        game_printf(0x7d4,PLAYER_NAME);
+        game_printf(0x800);
+        game_printf(0x832);
+        game_printf(0x863);
+        game_printf(0x894);
+        game_printf(0x8c5);
+        game_printf(0x8ee);
         return;
       }
       if (DAT_1008_02a4 == 2) {
-        FUN_1000_4e7c(0x572);
+        game_printf(0x572);
         DAT_1008_4f2d = 1;
       }
       if (DAT_1008_02a4 == 3) {
-        FUN_1000_4e7c(0x58a);
+        game_printf(0x58a);
         DAT_1008_4f33 = 3;
-        FUN_1000_1bd1();
+        update_stats();
       }
       if (DAT_1008_02a4 == 4) {
-        FUN_1000_4e7c(0x5a0);
+        game_printf(0x5a0);
         DAT_1008_4f2f = 5;
-        FUN_1000_1bd1();
+        update_stats();
       }
       if (DAT_1008_02a4 == 7) {
-        FUN_1000_4e7c(0x5ba);
+        game_printf(0x5ba);
         DAT_1008_4f33 = 5;
-        FUN_1000_1bd1();
+        update_stats();
       }
-      FUN_1000_4e7c(0x5d0,*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0xde]);
+      game_printf(0x5d0,*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0xde]);
       DAT_1008_4f25 = DAT_1008_4f25 + *(short *)&seg_1008[DAT_1008_4f4d * 2 + 0xde];
-      FUN_1000_4e7c(0x5e1,*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x100]);
+      game_printf(0x5e1,*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x100]);
       DAT_1008_4f23 = DAT_1008_4f23 + *(short *)&seg_1008[DAT_1008_4f4d * 2 + 0x100];
       while (DAT_1008_4f27 * DAT_1008_4f27 * 4 <= DAT_1008_4f23) {
         DAT_1008_4f23 = DAT_1008_4f23 + DAT_1008_4f27 * DAT_1008_4f27 * -4;
         DAT_1008_4f27 = DAT_1008_4f27 + 1;
-        FUN_1000_4e7c(0x5f4,DAT_1008_4f27);
-        iVar1 = FUN_1000_29ab(4);
+        game_printf(0x5f4,DAT_1008_4f27);
+        iVar1 = game_random(4);
         DAT_1008_4f29 = DAT_1008_4f29 + iVar1 + 7;
-        iVar1 = FUN_1000_29ab(2);
+        iVar1 = game_random(2);
         DAT_1008_4f2b = DAT_1008_4f2b + iVar1 + 2;
-        iVar1 = FUN_1000_29ab(2);
+        iVar1 = game_random(2);
         DAT_1008_4f1b = DAT_1008_4f1b + iVar1 + 2;
-        FUN_1000_1bd1();
+        update_stats();
       }
     }
     else {
-      FUN_1000_4e7c(0x611,PLAYER_NAME,DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]));
+      game_printf(0x611,PLAYER_NAME,DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]));
       if (DAT_1008_4f4d == 0x10) {
         uVar3 = 0x634;
       }
       else {
         uVar3 = 0x64b;
       }
-      FUN_1000_4e7c(uVar3);
+      game_printf(uVar3);
       DAT_1008_02a2 = 1;
     }
     DAT_1008_02a8 = 0;
@@ -424,20 +424,20 @@ LAB_1000_062f:
 LAB_1000_0572:
   do {
     while( true ) {
-      FUN_1000_4e7c(0x523);
-      DAT_1008_4f6f = FUN_1000_69c4();
+      game_printf(0x523);
+      DAT_1008_4f6f = read_key();
       if (DAT_1008_4f6f == 'c') break;
       if (DAT_1008_4f6f == 'f') {
-        FUN_1000_1ce8();
+        fight();
         goto LAB_1000_05b1;
       }
       if (DAT_1008_4f6f == 'r') {
-        FUN_1000_21ec();
+        run_away();
         goto LAB_1000_05b1;
       }
-      FUN_1000_28d4();
+      combat_help();
     }
-    iVar1 = FUN_1000_1d4e();
+    iVar1 = comb_magic();
   } while (iVar1 == 1);
 LAB_1000_05b1:
   if (DAT_1008_4f4f < 1) {
@@ -446,16 +446,16 @@ LAB_1000_05b1:
   if (DAT_1008_02a6 != 1) {
 LAB_1000_05c7:
     if (DAT_1008_02aa < 1) {
-      DAT_1008_4f6f = FUN_1000_29ab(5);
+      DAT_1008_4f6f = game_random(5);
       switch(DAT_1008_4f6f) {
       case '\0':
       case '\x01':
       case '\x02':
-        FUN_1000_2222();
+        enemy_fight();
         break;
       case '\x03':
       case '\x04':
-        FUN_1000_2284();
+        enemy_spell();
       }
       if (DAT_1008_4f19 < 1) {
         DAT_1008_02a6 = 1;
@@ -471,17 +471,17 @@ LAB_1000_05c7:
         uVar3 = *(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56];
         uVar2 = 0x52d;
       }
-      FUN_1000_4e7c(uVar2,DS(uVar3));
+      game_printf(uVar2,DS(uVar3));
     }
   }
   goto LAB_1000_062f;
 }
 
 
-// Function: FUN_1000_091b
+// Function: load_me
 // Address: 1000:091b
 
-undefined2 __cdecl16near FUN_1000_091b(void)
+undefined2 __cdecl16near load_me(void)
 
 {
   FILE *f;
@@ -499,7 +499,7 @@ undefined2 __cdecl16near FUN_1000_091b(void)
     if (strcmp(namebuf, PLAYER_NAME) == 0) {
       DAT_1008_4f55 = iVar3;
       fclose(f);
-      FUN_1000_2744();
+      read_save_slot();
       DAT_1008_02ac = 0;
       return 1;
     }
@@ -510,10 +510,10 @@ undefined2 __cdecl16near FUN_1000_091b(void)
 }
 
 
-// Function: FUN_1000_098c
+// Function: print_location
 // Address: 1000:098c
 
-void __cdecl16near FUN_1000_098c(void)
+void __cdecl16near print_location(void)
 
 {
   undefined2 uVar1;
@@ -666,15 +666,15 @@ void __cdecl16near FUN_1000_098c(void)
   default:
     uVar1 = 0xb83;
   }
-  FUN_1000_4e7c(uVar1);
+  game_printf(uVar1);
   return;
 }
 
 
-// Function: FUN_1000_0b13
+// Function: move_me
 // Address: 1000:0b13
 
-void __cdecl16near FUN_1000_0b13(void)
+void __cdecl16near move_me(void)
 
 {
   int iVar1;
@@ -682,21 +682,21 @@ void __cdecl16near FUN_1000_0b13(void)
   int iVar3;
   undefined2 uVar4;
   
-  FUN_1000_4e7c(0xb8a);
+  game_printf(0xb8a);
   iVar1 = DAT_1008_4f49;
   iVar2 = DAT_1008_4f49 + -1;
   for (iVar3 = 0; iVar3 < 4; iVar3 = iVar3 + 1) {
     DAT_1008_4f49 = *(short *)&seg_1008[iVar2 * 8 + iVar3 * 2 + 0x122];
     if (DAT_1008_4f49 != 0) {
-      FUN_1000_4e7c(0xb8c,iVar3 + 0x61);
-      FUN_1000_098c();
-      FUN_1000_4e7c(0xb91);
+      game_printf(0xb8c,iVar3 + 0x61);
+      print_location();
+      game_printf(0xb91);
     }
   }
-  FUN_1000_4e7c(0xb93);
+  game_printf(0xb93);
   do {
-    FUN_1000_4e7c(0xb9e);
-    DAT_1008_4f6f = FUN_1000_69c4();
+    game_printf(0xb9e);
+    DAT_1008_4f6f = read_key();
     if (DAT_1008_4f6f == 'x') {
       DAT_1008_4f49 = iVar1;
       return;
@@ -709,16 +709,16 @@ void __cdecl16near FUN_1000_0b13(void)
   else {
     if ((*(short *)&seg_1008[iVar2 * 8 + iVar3 * 2 + 0x122] != 0x29) || (DAT_1008_4f35 != 0)) {
       if ((*(short *)&seg_1008[iVar2 * 8 + iVar3 * 2 + 0x122] == 0x15) && (iVar2 == 0x13)) {
-        FUN_1000_4e7c(0xbf8);
+        game_printf(0xbf8);
       }
       if ((*(short *)&seg_1008[iVar2 * 8 + iVar3 * 2 + 0x122] == 0x29) && (iVar2 == 0x27)) {
-        FUN_1000_4e7c(0xc27);
+        game_printf(0xc27);
       }
       DAT_1008_4f49 = *(short *)&seg_1008[iVar2 * 8 + iVar3 * 2 + 0x122];
       DAT_1008_02a4 = 1;
       if (DAT_1008_4f49 == 0x2b) {
-        FUN_1000_4e7c(0xc5a);
-        FUN_1000_4e7c(0xc90);
+        game_printf(0xc5a);
+        game_printf(0xc90);
         DAT_1008_02a4 = 6;
       }
       DAT_1008_4f4b = 1;
@@ -726,194 +726,194 @@ void __cdecl16near FUN_1000_0b13(void)
     }
     uVar4 = 0xbd0;
   }
-  FUN_1000_4e7c(uVar4);
+  game_printf(uVar4);
   DAT_1008_4f49 = iVar1;
   return;
 }
 
 
-// Function: FUN_1000_0c6a
+// Function: look
 // Address: 1000:0c6a
 
-void __cdecl16near FUN_1000_0c6a(void)
+void __cdecl16near look(void)
 
 {
   char *pcVar1;
   
-  FUN_1000_4e7c(0xcc0);
+  game_printf(0xcc0);
   switch(DAT_1008_4f49) {
   case 1:
-    FUN_1000_4e7c(0xcc2);
-    FUN_1000_4e7c(0xcec);
-    FUN_1000_4e7c(0xd1a);
-    FUN_1000_4e7c(0xd48);
-    FUN_1000_4e7c(0xd77);
+    game_printf(0xcc2);
+    game_printf(0xcec);
+    game_printf(0xd1a);
+    game_printf(0xd48);
+    game_printf(0xd77);
     pcVar1 = (char *)0xda5;
     break;
   case 2:
-    FUN_1000_4e7c(0xdb8);
-    FUN_1000_4e7c(0xde2);
-    FUN_1000_4e7c(0xe10);
+    game_printf(0xdb8);
+    game_printf(0xde2);
+    game_printf(0xe10);
     pcVar1 = (char *)0xe3f;
     break;
   case 3:
-    FUN_1000_4e7c(0xe6f);
-    FUN_1000_4e7c(0xe99);
-    FUN_1000_4e7c(0xec7);
+    game_printf(0xe6f);
+    game_printf(0xe99);
+    game_printf(0xec7);
     pcVar1 = (char *)0xef5;
     break;
   case 4:
-    FUN_1000_4e7c(0xf20);
-    FUN_1000_4e7c(0xf4a);
-    FUN_1000_4e7c(0xf78);
+    game_printf(0xf20);
+    game_printf(0xf4a);
+    game_printf(0xf78);
     pcVar1 = (char *)0xfa6;
     break;
   case 5:
-    FUN_1000_4e7c(0xfd5);
-    FUN_1000_4e7c(0xfff);
-    FUN_1000_4e7c((char *)s_keeping_a_sharp_lookout_for_mons_1008_102d);
-    FUN_1000_4e7c((char *)s_e_east_you_can_see_the_shore_of_a_1008_105b);
+    game_printf(0xfd5);
+    game_printf(0xfff);
+    game_printf((char *)s_keeping_a_sharp_lookout_for_mons_1008_102d);
+    game_printf((char *)s_e_east_you_can_see_the_shore_of_a_1008_105b);
     pcVar1 = (char *)s_l_other_directions__the_forest_s_1008_1089;
     break;
   case 6:
-    FUN_1000_4e7c((char *)s_You_are_on_a_path_that_runs_east_1008_10b8);
-    FUN_1000_4e7c((char *)s_through_the_forest__Nearby_is_a_t_1008_10e2);
+    game_printf((char *)s_You_are_on_a_path_that_runs_east_1008_10b8);
+    game_printf((char *)s_through_the_forest__Nearby_is_a_t_1008_10e2);
     pcVar1 = (char *)0x1110;
     break;
   case 7:
-    FUN_1000_4e7c((char *)s_You_have_climbed_the_tree__using_1008_1114);
-    FUN_1000_4e7c((char *)s_and_knotholes__It_s_very_peacefu_1008_113e);
-    FUN_1000_4e7c((char *)s_xcept_for_a_dark_cloud_you_can_s_1008_116c);
+    game_printf((char *)s_You_have_climbed_the_tree__using_1008_1114);
+    game_printf((char *)s_and_knotholes__It_s_very_peacefu_1008_113e);
+    game_printf((char *)s_xcept_for_a_dark_cloud_you_can_s_1008_116c);
     pcVar1 = (char *)0x119a;
     break;
   case 8:
-    FUN_1000_4e7c((char *)s_You_are_at_the_landmark_called_B_1008_119d);
-    FUN_1000_4e7c((char *)s_It_is_a_large_granite_rock_that_l_1008_11c7);
-    FUN_1000_4e7c((char *)s_of_like_a_bear_s_head__The_path_c_1008_11f5);
+    game_printf((char *)s_You_are_at_the_landmark_called_B_1008_119d);
+    game_printf((char *)s_It_is_a_large_granite_rock_that_l_1008_11c7);
+    game_printf((char *)s_of_like_a_bear_s_head__The_path_c_1008_11f5);
     pcVar1 = (char *)s_to_the_east_and_west__1008_1223;
     break;
   case 9:
-    FUN_1000_4e7c((char *)s_The_forest_around_here_is_so_den_1008_123a);
-    FUN_1000_4e7c((char *)s_t_s_hard_to_see_the_path__It_loo_1008_1264);
+    game_printf((char *)s_The_forest_around_here_is_so_den_1008_123a);
+    game_printf((char *)s_t_s_hard_to_see_the_path__It_loo_1008_1264);
     pcVar1 = (char *)s_hins_out_a_ways_to_the_east__1008_1292;
     break;
   case 10:
-    FUN_1000_4e7c((char *)s_You_are_walking_through_a_grove_o_1008_12af);
-    FUN_1000_4e7c((char *)s_se_oak_trees__You_can_see_rays_o_1008_12d8);
+    game_printf((char *)s_You_are_walking_through_a_grove_o_1008_12af);
+    game_printf((char *)s_se_oak_trees__You_can_see_rays_o_1008_12d8);
     pcVar1 = (char *)s_towards_the_west__A_squirrel_is_w_1008_1305;
     break;
   case 0xb:
-    FUN_1000_4e7c((char *)s_You_are_in_a_meadow_of_tall_gras_1008_1334);
-    FUN_1000_4e7c((char *)s_sticker_bushes__You_hear_a_strea_1008_135d);
+    game_printf((char *)s_You_are_in_a_meadow_of_tall_gras_1008_1334);
+    game_printf((char *)s_sticker_bushes__You_hear_a_strea_1008_135d);
     pcVar1 = (char *)s_up_ahead__1008_138b;
     break;
   case 0xc:
-    FUN_1000_4e7c((char *)s_You_are_on_the_banks_of_a_small_s_1008_1395);
-    FUN_1000_4e7c((char *)s_A_little_ways_downstream__you_he_1008_13bd);
+    game_printf((char *)s_You_are_on_the_banks_of_a_small_s_1008_1395);
+    game_printf((char *)s_A_little_ways_downstream__you_he_1008_13bd);
     pcVar1 = (char *)s_g_noise__1008_13eb;
     break;
   case 0xd:
-    FUN_1000_4e7c((char *)s_You_are_standing_at_the_top_of_a_1008_13f4);
-    FUN_1000_4e7c((char *)s_ll__The_stream_cascades_over_a_c_1008_141d);
-    FUN_1000_4e7c((char *)s_ls_about_twenty_feet_to_a_pool__A_1008_144b);
+    game_printf((char *)s_You_are_standing_at_the_top_of_a_1008_13f4);
+    game_printf((char *)s_ll__The_stream_cascades_over_a_c_1008_141d);
+    game_printf((char *)s_ls_about_twenty_feet_to_a_pool__A_1008_144b);
     pcVar1 = (char *)s_s_down_the_cliff_nearby__1008_1479;
     break;
   case 0xe:
-    FUN_1000_4e7c((char *)s_You_are_on_a_narrow_path_leading_1008_1492);
-    FUN_1000_4e7c((char *)s_e_cliff__It_s_a_bit_less_steep_h_1008_14bb);
-    FUN_1000_4e7c((char *)s_s_still_treacherous__as_the_spra_1008_14e9);
+    game_printf((char *)s_You_are_on_a_narrow_path_leading_1008_1492);
+    game_printf((char *)s_e_cliff__It_s_a_bit_less_steep_h_1008_14bb);
+    game_printf((char *)s_s_still_treacherous__as_the_spra_1008_14e9);
     pcVar1 = (char *)s_lls_coats_the_ground__1008_1517;
     break;
   case 0xf:
-    FUN_1000_4e7c((char *)s_You_are_standing_on_the_edge_of_a_1008_152d);
-    FUN_1000_4e7c((char *)s_g_pool__The_falls_crash_down_in_a_1008_1556);
-    FUN_1000_4e7c((char *)s_t_of_water__At_the_bottom_end_of_1008_1584);
+    game_printf((char *)s_You_are_standing_on_the_edge_of_a_1008_152d);
+    game_printf((char *)s_g_pool__The_falls_crash_down_in_a_1008_1556);
+    game_printf((char *)s_t_of_water__At_the_bottom_end_of_1008_1584);
     pcVar1 = (char *)s_the_stream_continues_on_into_den_1008_15b1;
     break;
   case 0x10:
-    FUN_1000_4e7c((char *)s_You_are_standing_in_a_dimly_lit_t_1008_15e1);
+    game_printf((char *)s_You_are_standing_in_a_dimly_lit_t_1008_15e1);
     pcVar1 = (char *)s_The_falls_crash_into_the_pool_be_1008_160a;
     break;
   case 0x11:
-    FUN_1000_4e7c((char *)s_Further_down_the_tunnel__it_beco_1008_1635);
-    FUN_1000_4e7c((char *)s_hard_to_see__Water_drips_from_th_1008_165e);
+    game_printf((char *)s_Further_down_the_tunnel__it_beco_1008_1635);
+    game_printf((char *)s_hard_to_see__Water_drips_from_th_1008_165e);
     pcVar1 = (char *)s_ut_other_than_that_it_s_eerily_q_1008_168c;
     break;
   case 0x12:
-    FUN_1000_4e7c((char *)s_You_can_t_see_anything_in_this_p_1008_16b2);
-    FUN_1000_4e7c((char *)s_he_tunnel__Who_knows_what_might_b_1008_16db);
+    game_printf((char *)s_You_can_t_see_anything_in_this_p_1008_16b2);
+    game_printf((char *)s_he_tunnel__Who_knows_what_might_b_1008_16db);
     pcVar1 = (char *)0x1709;
     break;
   case 0x13:
-    FUN_1000_4e7c((char *)s_You_have_reached_the_end_of_the_c_1008_1711);
-    FUN_1000_4e7c((char *)s_ight_falls_through_cracks_in_the_1008_173a);
+    game_printf((char *)s_You_have_reached_the_end_of_the_c_1008_1711);
+    game_printf((char *)s_ight_falls_through_cracks_in_the_1008_173a);
     pcVar1 = (char *)s_u_hear_a_hissing_noise_nearby__1008_1768;
     break;
   case 0x14:
-    FUN_1000_4e7c((char *)s_You_are_standing_on_the_shore_of_1008_1787);
-    FUN_1000_4e7c((char *)s_bs__Clouds_fly_by_in_the_sky__dr_1008_17b0);
-    FUN_1000_4e7c((char *)s_iff_wind__But_in_the_distance_to_1008_17de);
-    FUN_1000_4e7c((char *)s_u_see_a_large_dark_cloud_that_do_1008_180c);
+    game_printf((char *)s_You_are_standing_on_the_shore_of_1008_1787);
+    game_printf((char *)s_bs__Clouds_fly_by_in_the_sky__dr_1008_17b0);
+    game_printf((char *)s_iff_wind__But_in_the_distance_to_1008_17de);
+    game_printf((char *)s_u_see_a_large_dark_cloud_that_do_1008_180c);
     pcVar1 = (char *)s_There_is_a_traveler_resting_near_1008_1839;
     break;
   case 0x15:
-    FUN_1000_4e7c((char *)s_You_hadn_t_realized_how_big_Lake_1008_185d);
-    FUN_1000_4e7c((char *)s_s_until_you_tried_to_walk_across_1008_1886);
+    game_printf((char *)s_You_hadn_t_realized_how_big_Lake_1008_185d);
+    game_printf((char *)s_s_until_you_tried_to_walk_across_1008_1886);
     pcVar1 = (char *)s_t_shore_hardly_seems_any_closer__1008_18b4;
     break;
   case 0x16:
-    FUN_1000_4e7c((char *)s_You_are_in_the_middle_of_Lake_Ho_1008_18d5);
-    FUN_1000_4e7c((char *)s_water_is_a_deep_blue_here__You_r_1008_18fe);
-    FUN_1000_4e7c((char *)s_to_make_out_what_looks_like_a_ro_1008_192c);
+    game_printf((char *)s_You_are_in_the_middle_of_Lake_Ho_1008_18d5);
+    game_printf((char *)s_water_is_a_deep_blue_here__You_r_1008_18fe);
+    game_printf((char *)s_to_make_out_what_looks_like_a_ro_1008_192c);
     pcVar1 = (char *)s_shore__1008_195a;
     break;
   case 0x17:
-    FUN_1000_4e7c((char *)s_You_are_drawing_near_to_the_east_1008_1962);
-    FUN_1000_4e7c((char *)s_e__at_last__Gulls_circle_overhea_1008_198b);
+    game_printf((char *)s_You_are_drawing_near_to_the_east_1008_1962);
+    game_printf((char *)s_e__at_last__Gulls_circle_overhea_1008_198b);
     pcVar1 = (char *)s_dly__They_seem_to_be_warning_you_1008_19b9;
     break;
   case 0x18:
-    FUN_1000_4e7c((char *)s_The_east_shore_of_the_lake_is_ba_1008_19dc);
+    game_printf((char *)s_The_east_shore_of_the_lake_is_ba_1008_19dc);
     pcVar1 = (char *)s_o_plants_grow__and_even_the_rock_1008_1a05;
     break;
   case 0x19:
-    FUN_1000_4e7c((char *)s_This_dusty_road_runs_through_fie_1008_1a31);
-    FUN_1000_4e7c((char *)s_rown_grass__You_can_tell_that_th_1008_1a5a);
-    FUN_1000_4e7c((char *)s_d_King_s_realm__To_the_north__a_p_1008_1a88);
-    FUN_1000_4e7c((char *)s_ff_towards_a_stone_wall_with_col_1008_1ab6);
+    game_printf((char *)s_This_dusty_road_runs_through_fie_1008_1a31);
+    game_printf((char *)s_rown_grass__You_can_tell_that_th_1008_1a5a);
+    game_printf((char *)s_d_King_s_realm__To_the_north__a_p_1008_1a88);
+    game_printf((char *)s_ff_towards_a_stone_wall_with_col_1008_1ab6);
     pcVar1 = (char *)s_lying_from_it__1008_1ae4;
     break;
   case 0x1a:
-    FUN_1000_4e7c((char *)s_You_ve_reached_a_gate__The_wall_i_1008_1af3);
-    FUN_1000_4e7c((char *)s_and_strong__looking__An_exhauste_1008_1b1c);
+    game_printf((char *)s_You_ve_reached_a_gate__The_wall_i_1008_1af3);
+    game_printf((char *)s_and_strong__looking__An_exhauste_1008_1b1c);
     pcVar1 = (char *)s_leaning_against_the_wall_next_to_1008_1b4a;
     break;
   case 0x1b:
-    FUN_1000_4e7c((char *)s_Your_footsteps_echo_hollowly_on_t_1008_1b75);
-    FUN_1000_4e7c((char *)s_es__The_central_square_of_Bodies_1008_1b9e);
-    FUN_1000_4e7c((char *)s_seems_to_be_deserted__although_y_1008_1bcc);
+    game_printf((char *)s_Your_footsteps_echo_hollowly_on_t_1008_1b75);
+    game_printf((char *)s_es__The_central_square_of_Bodies_1008_1b9e);
+    game_printf((char *)s_seems_to_be_deserted__although_y_1008_1bcc);
     pcVar1 = (char *)s_you_hear_footsteps_pattering_awa_1008_1bf6;
     break;
   case 0x1c:
-    FUN_1000_4e7c((char *)s_The_shop_carries_an_impressive_a_1008_1c1a);
-    FUN_1000_4e7c((char *)s_weapons_and_armor__The_shopkeepe_1008_1c43);
+    game_printf((char *)s_The_shop_carries_an_impressive_a_1008_1c1a);
+    game_printf((char *)s_weapons_and_armor__The_shopkeepe_1008_1c43);
     pcVar1 = (char *)s_ng_man_with_a_florid_face__eyes_y_1008_1c71;
     break;
   case 0x1d:
-    FUN_1000_4e7c((char *)s_The_common_room_of_the_inn_is_pa_1008_1ca2);
-    FUN_1000_4e7c((char *)s_garish_yellow_color__The_innkeep_1008_1ccb);
+    game_printf((char *)s_The_common_room_of_the_inn_is_pa_1008_1ca2);
+    game_printf((char *)s_garish_yellow_color__The_innkeep_1008_1ccb);
     pcVar1 = (char *)s_a_somewhat_forced_grin__1008_1cf9;
     break;
   case 0x1e:
-    FUN_1000_4e7c((char *)s_This_shop_looks_strangely_famili_1008_1d11);
+    game_printf((char *)s_This_shop_looks_strangely_famili_1008_1d11);
     pcVar1 = (char *)s_does_the_robed_figure_behind_the_1008_1d3a;
     break;
   case 0x1f:
     pcVar1 = (char *)s_This_stretch_of_road_looks_much_t_1008_1d75;
     break;
   case 0x20:
-    FUN_1000_4e7c((char *)s_Two_roads_meet_here__The_south_r_1008_1dab);
-    FUN_1000_4e7c((char *)s_impassable__though__An_evil_look_1008_1dd4);
+    game_printf((char *)s_Two_roads_meet_here__The_south_r_1008_1dab);
+    game_printf((char *)s_impassable__though__An_evil_look_1008_1dd4);
     pcVar1 = (char *)s_tches_over_the_east_road__You_fi_1008_1e02;
     break;
   case 0x21:
@@ -922,197 +922,195 @@ void __cdecl16near FUN_1000_0c6a(void)
   case 0x22:
   case 0x23:
   case 0x24:
-    FUN_1000_4e7c((char *)s_The_bramble_patch_is_a_thing_of_t_1008_1e78);
-    FUN_1000_4e7c((char *)s_rotting_evil__The_vines_tower_ov_1008_1ea1);
-    FUN_1000_4e7c((char *)s_blackened_fingers_reaching_for_t_1008_1ecf);
-    FUN_1000_4e7c((char *)s_hear_things_skittering_out_of_si_1008_1efd);
+    game_printf((char *)s_The_bramble_patch_is_a_thing_of_t_1008_1e78);
+    game_printf((char *)s_rotting_evil__The_vines_tower_ov_1008_1ea1);
+    game_printf((char *)s_blackened_fingers_reaching_for_t_1008_1ecf);
+    game_printf((char *)s_hear_things_skittering_out_of_si_1008_1efd);
     pcVar1 = (char *)s_times_you_think_you_hear_somethi_1008_1f2b;
     break;
   case 0x25:
-    FUN_1000_4e7c((char *)s_A_steady_rain_falls_on_your_face_1008_1f6b);
-    FUN_1000_4e7c((char *)s_trudge_along_the_road__Trees_gro_1008_1f93);
+    game_printf((char *)s_A_steady_rain_falls_on_your_face_1008_1f6b);
+    game_printf((char *)s_trudge_along_the_road__Trees_gro_1008_1f93);
     pcVar1 = (char *)s___but_they_look_more_like_prison_1008_1fc1;
     break;
   case 0x26:
-    FUN_1000_4e7c((char *)s_You_have_reached_the_wall_of_an_i_1008_1ff2);
-    FUN_1000_4e7c((char *)s_castle__The_whole_thing_is_made_o_1008_201b);
+    game_printf((char *)s_You_have_reached_the_wall_of_an_i_1008_1ff2);
+    game_printf((char *)s_castle__The_whole_thing_is_made_o_1008_201b);
     pcVar1 = (char *)s_kind_of_dark_stone__The_gate_is_o_1008_2049;
     break;
   case 0x27:
-    FUN_1000_4e7c((char *)s_You_are_on_a_path_paved_with_fla_1008_209d);
-    FUN_1000_4e7c((char *)s_tone__Flowers_and_herbs_grow_in_r_1008_20c6);
+    game_printf((char *)s_You_are_on_a_path_paved_with_fla_1008_209d);
+    game_printf((char *)s_tone__Flowers_and_herbs_grow_in_r_1008_20c6);
     pcVar1 = (char *)s_ows_on_either_side__some_reachin_1008_20f4;
     break;
   case 0x28:
-    FUN_1000_4e7c((char *)s_You_are_standing_at_the_door_to_t_1008_2124);
-    FUN_1000_4e7c((char *)s_le_s_immense_tower__There_is_a_c_1008_214d);
+    game_printf((char *)s_You_are_standing_at_the_door_to_t_1008_2124);
+    game_printf((char *)s_le_s_immense_tower__There_is_a_c_1008_214d);
     pcVar1 = (char *)s_et_into_the_door__And_the_door_i_1008_217b;
     break;
   case 0x29:
-    FUN_1000_4e7c((char *)s_The_entrance_hall_is_hung_with_g_1008_21aa);
-    FUN_1000_4e7c((char *)s_estries_and_decorated_with_jewel_1008_21d3);
-    FUN_1000_4e7c((char *)s_rmor_and_shelves_of_books__It_lo_1008_2201);
+    game_printf((char *)s_The_entrance_hall_is_hung_with_g_1008_21aa);
+    game_printf((char *)s_estries_and_decorated_with_jewel_1008_21d3);
+    game_printf((char *)s_rmor_and_shelves_of_books__It_lo_1008_2201);
     pcVar1 = (char *)s_only_exits_are_the_front_door_an_1008_222f;
     break;
   case 0x2a:
-    FUN_1000_4e7c((char *)s_Torches_light_the_hallway_with_a_1008_226a);
-    FUN_1000_4e7c((char *)s_ing_glow__Ghastly_portraits_line_1008_2293);
-    FUN_1000_4e7c((char *)s_Not_all_of_them_are_human__One_i_1008_22c1);
-    FUN_1000_4e7c((char *)s_catches_your_eye__It_shows_a_red_1008_22ef);
-    FUN_1000_4e7c((char *)s_ed_around_a_sword__with_towering_1008_231e);
+    game_printf((char *)s_Torches_light_the_hallway_with_a_1008_226a);
+    game_printf((char *)s_ing_glow__Ghastly_portraits_line_1008_2293);
+    game_printf((char *)s_Not_all_of_them_are_human__One_i_1008_22c1);
+    game_printf((char *)s_catches_your_eye__It_shows_a_red_1008_22ef);
+    game_printf((char *)s_ed_around_a_sword__with_towering_1008_231e);
     pcVar1 = (char *)s_d_it__Its_eyes_seem_to_be_watchi_1008_234e;
     break;
   case 0x2b:
-    FUN_1000_4e7c((char *)s_The_throne_room_is_lit_with_an_e_1008_2377);
-    FUN_1000_4e7c((char *)s_en_light__On_the_throne_sits_a_m_1008_23a0);
+    game_printf((char *)s_The_throne_room_is_lit_with_an_e_1008_2377);
+    game_printf((char *)s_en_light__On_the_throne_sits_a_m_1008_23a0);
     pcVar1 = (char *)s_in_black_and_red__with_a_dark_cr_1008_23ce;
     break;
   case 0x2c:
   case 0x2d:
   case 0x2e:
   case 0x2f:
-    FUN_1000_4e7c((char *)s_You_are_in_a_tower_room__with_st_1008_23ff);
-    FUN_1000_4e7c((char *)s_and_down__You_hear_the_sound_of_d_1008_242f);
-    FUN_1000_4e7c((char *)s_and_through_the_window_you_can_s_1008_245e);
+    game_printf((char *)s_You_are_in_a_tower_room__with_st_1008_23ff);
+    game_printf((char *)s_and_down__You_hear_the_sound_of_d_1008_242f);
+    game_printf((char *)s_and_through_the_window_you_can_s_1008_245e);
     pcVar1 = (char *)s_ging_outside__1008_248d;
     break;
   case 0x30:
-    FUN_1000_4e7c((char *)s_Wind_buffets_you_as_you_stand_on_1008_249b);
-    FUN_1000_4e7c((char *)s_he_tower__1008_24c5);
+    game_printf((char *)s_Wind_buffets_you_as_you_stand_on_1008_249b);
+    game_printf((char *)s_he_tower__1008_24c5);
     if (DAT_1008_4f33 == 5) {
       DAT_1008_02a4 = 0;
       return;
     }
-    FUN_1000_4e7c((char *)s_Nearby_are_standing_three_figure_1008_24d1);
-    FUN_1000_4e7c((char *)s_n_purple_robes__facing_outward_a_1008_24f5);
+    game_printf((char *)s_Nearby_are_standing_three_figure_1008_24d1);
+    game_printf((char *)s_n_purple_robes__facing_outward_a_1008_24f5);
     DAT_1008_02a4 = 0;
     return;
   default:
-    FUN_1000_4e7c((char *)s_Error__Location__i_1008_2522,DAT_1008_4f49);
+    game_printf((char *)s_Error__Location__i_1008_2522,DAT_1008_4f49);
     DAT_1008_02a4 = 0;
     return;
   }
-  FUN_1000_4e7c(pcVar1);
+  game_printf(pcVar1);
   DAT_1008_02a4 = 0;
   return;
 }
 
 
-// Function: FUN_1000_10ef
-// Identified as: search_locations
+// Function: search
 // Address: 1000:10ef
 // Fixed: replaced broken dispatch table with switch statement
 
-void __cdecl16near FUN_1000_10ef(void)
+void __cdecl16near search(void)
 {
-  FUN_1000_4e7c(0x2535);
+  game_printf(0x2535);
   DAT_1008_02a4 = 1;
 
   switch(DAT_1008_4f49) {
   case 7: /* Tall Tree - find 80 gold */
     if (DAT_1008_4f37 == 1) {
-      FUN_1000_4e7c(0x267b); FUN_1000_4e7c(0x269d);
+      game_printf(0x267b); game_printf(0x269d);
     } else {
-      FUN_1000_4e7c(0x2560); FUN_1000_4e7c(0x2583);
-      FUN_1000_4e7c(0x25ab);
+      game_printf(0x2560); game_printf(0x2583);
+      game_printf(0x25ab);
       DAT_1008_4f25 += 80;
       DAT_1008_4f37 = 1;
     }
     return;
   case 15: /* Rushing Pool - waterfall to Dark Tunnel */
-    FUN_1000_4e7c(0x25c5); FUN_1000_4e7c(0x25e3);
-    FUN_1000_4e7c(0x260b); FUN_1000_4e7c(0x2635);
-    FUN_1000_4e7c(0x265a);
+    game_printf(0x25c5); game_printf(0x25e3);
+    game_printf(0x260b); game_printf(0x2635);
+    game_printf(0x265a);
     DAT_1008_4f49 = 16; /* Dark Tunnel */
     DAT_1008_4f4b = 1;
     return;
   case 18: /* Darkest Tunnel - find Heal Major scroll */
     if (DAT_1008_4f43 == 1) {
-      FUN_1000_4e7c(0x267b); FUN_1000_4e7c(0x269d);
+      game_printf(0x267b); game_printf(0x269d);
     } else {
-      FUN_1000_4e7c(0x26a4); FUN_1000_4e7c(0x26c7);
-      FUN_1000_4e7c(0x26f0); FUN_1000_4e7c(0x2719);
+      game_printf(0x26a4); game_printf(0x26c7);
+      game_printf(0x26f0); game_printf(0x2719);
       DAT_1008_4f43 = 1; /* Heal Major spell */
     }
     return;
   case 19: /* Cave End - treasure chest, Blue Dragon fight */
     if (DAT_1008_4f2d == 1) {
-      FUN_1000_4e7c(0x2726); FUN_1000_4e7c(0x2748);
+      game_printf(0x2726); game_printf(0x2748);
     } else {
-      FUN_1000_4e7c(0x274f); FUN_1000_4e7c(0x2772);
-      FUN_1000_4e7c(0x278e); FUN_1000_4e7c(0x279a);
+      game_printf(0x274f); game_printf(0x2772);
+      game_printf(0x278e); game_printf(0x279a);
       DAT_1008_02a4 = 2; /* Blue Dragon fight */
     }
     return;
   case 22: /* Lake - dive, Serpent fight, get Water Shoes */
     if (DAT_1008_4f33 == 3) {
-      FUN_1000_4e7c(0x27bf); FUN_1000_4e7c(0x27e1);
+      game_printf(0x27bf); game_printf(0x27e1);
     } else {
-      FUN_1000_4e7c(0x27e8); FUN_1000_4e7c(0x280b);
-      FUN_1000_4e7c(0x2832); FUN_1000_4e7c(0x2859);
-      FUN_1000_4e7c(0x2882);
+      game_printf(0x27e8); game_printf(0x280b);
+      game_printf(0x2832); game_printf(0x2859);
+      game_printf(0x2882);
       DAT_1008_02a4 = 3; /* Serpent fight */
     }
     return;
   case 32: /* Crossroads - find skull key */
     if (DAT_1008_4f35 == 1) {
-      FUN_1000_4e7c(0x2895); FUN_1000_4e7c(0x28b7);
+      game_printf(0x2895); game_printf(0x28b7);
     } else {
-      FUN_1000_4e7c(0x28be); FUN_1000_4e7c(0x28e1);
-      FUN_1000_4e7c(0x2909); FUN_1000_4e7c(0x2932);
+      game_printf(0x28be); game_printf(0x28e1);
+      game_printf(0x2909); game_printf(0x2932);
       DAT_1008_4f35 = 1; /* has key */
     }
     return;
   case 36: /* Brambles - treasure chest, Red Dragon fight */
     if (DAT_1008_4f2f == 5) {
-      FUN_1000_4e7c(0x295f); FUN_1000_4e7c(0x2981);
+      game_printf(0x295f); game_printf(0x2981);
     } else {
-      FUN_1000_4e7c(0x2988); FUN_1000_4e7c(0x29ab);
-      FUN_1000_4e7c(0x29c6); FUN_1000_4e7c(0x29d3);
+      game_printf(0x2988); game_printf(0x29ab);
+      game_printf(0x29c6); game_printf(0x29d3);
       DAT_1008_02a4 = 4; /* Red Dragon fight */
     }
     return;
   case 41: /* Entrance Hall - bookcase passage */
-    FUN_1000_4e7c(0x29e5); FUN_1000_4e7c(0x2a0a);
-    FUN_1000_4e7c(0x2a35);
+    game_printf(0x29e5); game_printf(0x2a0a);
+    game_printf(0x2a35);
     DAT_1008_4f49 = 42; /* Passage */
     DAT_1008_4f4b = 1;
     return;
   default:
-    FUN_1000_4e7c(0x267b); FUN_1000_4e7c(0x269d);
+    game_printf(0x267b); game_printf(0x269d);
     return;
   }
 }
 
 
-// Function: FUN_1000_12f6
-// Identified as: talk_locations
+// Function: talk
 // Address: 1000:12f6
 // Fixed: replaced broken dispatch table with switch statement
 
 static void talk_inn_cheap(void) {
-  FUN_1000_4e7c(0x2b61); FUN_1000_4e7c(0x2b82); FUN_1000_4e7c(0x2ba9);
-  FUN_1000_4e7c(0x2bb5);
-  DAT_1008_4f6f = FUN_1000_69c4();
+  game_printf(0x2b61); game_printf(0x2b82); game_printf(0x2ba9);
+  game_printf(0x2bb5);
+  DAT_1008_4f6f = read_key();
   if (DAT_1008_4f6f == 'y') {
     if (DAT_1008_4f25 < 10) {
-      FUN_1000_4e7c(0x2bc5);
+      game_printf(0x2bc5);
     } else {
       DAT_1008_4f25 -= 10;
       DAT_1008_4f19 = DAT_1008_4f29;
       DAT_1008_4f1d = DAT_1008_4f2b;
-      FUN_1000_4e7c(0x2bee); FUN_1000_4e7c(0x2c12);
+      game_printf(0x2bee); game_printf(0x2c12);
     }
   }
 }
 
 static void talk_shop_armory(void) {
-  FUN_1000_4e7c(0x2c2d); FUN_1000_4e7c(0x2c4f); FUN_1000_4e7c(0x2c76);
-  FUN_1000_4e7c(0x2c9d); FUN_1000_4e7c(0x2cc2); FUN_1000_4e7c(0x2ce8);
+  game_printf(0x2c2d); game_printf(0x2c4f); game_printf(0x2c76);
+  game_printf(0x2c9d); game_printf(0x2cc2); game_printf(0x2ce8);
   /* menu loop */
   while (1) {
-    FUN_1000_4e7c(0x2d0c);
-    DAT_1008_4f6f = FUN_1000_69c4();
+    game_printf(0x2d0c);
+    DAT_1008_4f6f = read_key();
     if (DAT_1008_4f6f == 'x') break;
     int cost = 0, type = 0, is_weapon = 0;
     switch(DAT_1008_4f6f) {
@@ -1125,23 +1123,23 @@ static void talk_shop_armory(void) {
       default: continue;
     }
     if (DAT_1008_4f25 < cost) {
-      FUN_1000_4e7c(0x2d22);
+      game_printf(0x2d22);
     } else {
       DAT_1008_4f25 -= cost;
       if (is_weapon) DAT_1008_4f2f = type;
       else DAT_1008_4f31 = type;
-      FUN_1000_4e7c(0x2d48);
+      game_printf(0x2d48);
     }
   }
 }
 
 static void talk_shop_magic(void) {
-  FUN_1000_4e7c(0x2d56); FUN_1000_4e7c(0x2d90);
-  FUN_1000_4e7c(0x2dbd); FUN_1000_4e7c(0x2de8);
-  FUN_1000_4e7c(0x2e12); FUN_1000_4e7c(0x2e3b);
+  game_printf(0x2d56); game_printf(0x2d90);
+  game_printf(0x2dbd); game_printf(0x2de8);
+  game_printf(0x2e12); game_printf(0x2e3b);
   while (1) {
-    FUN_1000_4e7c(0x2e52);
-    DAT_1008_4f6f = FUN_1000_69c4();
+    game_printf(0x2e52);
+    DAT_1008_4f6f = read_key();
     if (DAT_1008_4f6f == 'x') break;
     int cost = 0, type = 0, is_spell = 1;
     switch(DAT_1008_4f6f) {
@@ -1154,7 +1152,7 @@ static void talk_shop_magic(void) {
       default: continue;
     }
     if (DAT_1008_4f25 < cost) {
-      FUN_1000_4e7c(0x2e68);
+      game_printf(0x2e68);
     } else {
       DAT_1008_4f25 -= cost;
       if (is_spell) {
@@ -1162,18 +1160,18 @@ static void talk_shop_magic(void) {
       } else {
         DAT_1008_4f33 = type;
       }
-      FUN_1000_4e7c(0x2ea2);
+      game_printf(0x2ea2);
     }
   }
 }
 
 static void talk_shop_tyr(void) {
-  FUN_1000_4e7c(0x337c); FUN_1000_4e7c(0x339a);
-  FUN_1000_4e7c(0x33af); FUN_1000_4e7c(0x33db);
-  FUN_1000_4e7c(0x3407); FUN_1000_4e7c(0x342e);
+  game_printf(0x337c); game_printf(0x339a);
+  game_printf(0x33af); game_printf(0x33db);
+  game_printf(0x3407); game_printf(0x342e);
   while (1) {
-    FUN_1000_4e7c(0x344e);
-    DAT_1008_4f6f = FUN_1000_69c4();
+    game_printf(0x344e);
+    DAT_1008_4f6f = read_key();
     if (DAT_1008_4f6f == 'x') break;
     int cost = 0, type = 0, is_weapon = 0;
     switch(DAT_1008_4f6f) {
@@ -1185,40 +1183,40 @@ static void talk_shop_tyr(void) {
       default: continue;
     }
     if (DAT_1008_4f25 < cost) {
-      FUN_1000_4e7c(0x3464);
+      game_printf(0x3464);
     } else {
       DAT_1008_4f25 -= cost;
       if (is_weapon) DAT_1008_4f2f = type;
       else DAT_1008_4f31 = type;
-      FUN_1000_4e7c(0x347a);
+      game_printf(0x347a);
     }
   }
 }
 
 static void talk_inn_happy(void) {
-  FUN_1000_4e7c(0x3486); FUN_1000_4e7c(0x34ae);
-  FUN_1000_4e7c(0x34dc); FUN_1000_4e7c(0x3510);
-  DAT_1008_4f6f = FUN_1000_69c4();
+  game_printf(0x3486); game_printf(0x34ae);
+  game_printf(0x34dc); game_printf(0x3510);
+  DAT_1008_4f6f = read_key();
   if (DAT_1008_4f6f == 'y') {
     if (DAT_1008_4f25 < 50) {
-      FUN_1000_4e7c(0x3520);
+      game_printf(0x3520);
     } else {
       DAT_1008_4f25 -= 50;
       DAT_1008_4f19 = DAT_1008_4f29;
       DAT_1008_4f1d = DAT_1008_4f2b;
-      FUN_1000_4e7c(0x3539); FUN_1000_4e7c(0x355d);
+      game_printf(0x3539); game_printf(0x355d);
     }
   }
 }
 
 static void talk_shop_thura(void) {
-  FUN_1000_4e7c(0x3578); FUN_1000_4e7c(0x35a0);
-  FUN_1000_4e7c(0x35ce); FUN_1000_4e7c(0x35fc);
-  FUN_1000_4e7c(0x360c); FUN_1000_4e7c(0x3638);
-  FUN_1000_4e7c(0x3664); FUN_1000_4e7c(0x367f);
+  game_printf(0x3578); game_printf(0x35a0);
+  game_printf(0x35ce); game_printf(0x35fc);
+  game_printf(0x360c); game_printf(0x3638);
+  game_printf(0x3664); game_printf(0x367f);
   while (1) {
-    FUN_1000_4e7c(0x3697);
-    DAT_1008_4f6f = FUN_1000_69c4();
+    game_printf(0x3697);
+    DAT_1008_4f6f = read_key();
     if (DAT_1008_4f6f == 'x') break;
     int cost = 0, type = 0, is_spell = 1;
     switch(DAT_1008_4f6f) {
@@ -1230,7 +1228,7 @@ static void talk_shop_thura(void) {
       default: continue;
     }
     if (DAT_1008_4f25 < cost) {
-      FUN_1000_4e7c(0x36ad);
+      game_printf(0x36ad);
     } else {
       DAT_1008_4f25 -= cost;
       if (is_spell) {
@@ -1238,21 +1236,21 @@ static void talk_shop_thura(void) {
       } else {
         DAT_1008_4f33 = type;
       }
-      FUN_1000_4e7c(0x36d6);
+      game_printf(0x36d6);
     }
   }
 }
 
-void __cdecl16near FUN_1000_12f6(void)
+void __cdecl16near talk(void)
 {
   DAT_1008_02a4 = 1;
-  FUN_1000_4e7c(0x2a86);
+  game_printf(0x2a86);
 
   switch(DAT_1008_4f49) {
   case 1: /* Tree Square - woman in carriage */
-    FUN_1000_4e7c(0x2a88); FUN_1000_4e7c(0x2aab);
-    FUN_1000_4e7c(0x2ad1); FUN_1000_4e7c(0x2af8);
-    FUN_1000_4e7c(0x2b20); FUN_1000_4e7c(0x2b47);
+    game_printf(0x2a88); game_printf(0x2aab);
+    game_printf(0x2ad1); game_printf(0x2af8);
+    game_printf(0x2b20); game_printf(0x2b47);
     break;
   case 2: /* Squirrel's Nook Inn */
     talk_inn_cheap();
@@ -1264,28 +1262,28 @@ void __cdecl16near FUN_1000_12f6(void)
     talk_shop_magic();
     break;
   case 5: /* Forest Gate - guard hint about Water Shoes */
-    FUN_1000_4e7c(0x2ebf); FUN_1000_4e7c(0x2ee9);
-    FUN_1000_4e7c(0x2f17); FUN_1000_4e7c(0x2f46);
+    game_printf(0x2ebf); game_printf(0x2ee9);
+    game_printf(0x2f17); game_printf(0x2f46);
     break;
   case 10: /* Big Oaks - squirrel ring story */
-    FUN_1000_4e7c(0x2f71); FUN_1000_4e7c(0x2f99);
-    FUN_1000_4e7c(0x2fc6); FUN_1000_4e7c(0x2ff3);
-    FUN_1000_4e7c(0x3022); FUN_1000_4e7c(0x3050);
+    game_printf(0x2f71); game_printf(0x2f99);
+    game_printf(0x2fc6); game_printf(0x2ff3);
+    game_printf(0x3022); game_printf(0x3050);
     break;
   case 20: /* Lake Shore - traveler story */
-    FUN_1000_4e7c(0x306e); FUN_1000_4e7c(0x3096);
-    FUN_1000_4e7c(0x30c2); FUN_1000_4e7c(0x30f0);
-    FUN_1000_4e7c(0x311f); FUN_1000_4e7c(0x314e);
-    FUN_1000_4e7c(0x3178); FUN_1000_4e7c(0x3199);
+    game_printf(0x306e); game_printf(0x3096);
+    game_printf(0x30c2); game_printf(0x30f0);
+    game_printf(0x311f); game_printf(0x314e);
+    game_printf(0x3178); game_printf(0x3199);
     break;
   case 26: /* Stony Gate - guard sword story */
-    FUN_1000_4e7c(0x31c8); FUN_1000_4e7c(0x31ef);
-    FUN_1000_4e7c(0x321d); FUN_1000_4e7c(0x3250);
-    FUN_1000_4e7c(0x327f); FUN_1000_4e7c(0x32ad);
+    game_printf(0x31c8); game_printf(0x31ef);
+    game_printf(0x321d); game_printf(0x3250);
+    game_printf(0x327f); game_printf(0x32ad);
     break;
   case 27: /* Empty Square - whisper about Rune Ring */
-    FUN_1000_4e7c(0x32d9); FUN_1000_4e7c(0x3302);
-    FUN_1000_4e7c(0x332e); FUN_1000_4e7c(0x335b);
+    game_printf(0x32d9); game_printf(0x3302);
+    game_printf(0x332e); game_printf(0x335b);
     break;
   case 28: /* Tyr's Battle Gear */
     talk_shop_tyr();
@@ -1297,23 +1295,22 @@ void __cdecl16near FUN_1000_12f6(void)
     talk_shop_thura();
     break;
   case 43: /* Throne Room - Bad King boss fight */
-    FUN_1000_4e7c(0x36e9); FUN_1000_4e7c(0x370b);
-    FUN_1000_4e7c(0x3729); FUN_1000_4e7c(0x3754);
-    FUN_1000_4e7c(0x377d);
+    game_printf(0x36e9); game_printf(0x370b);
+    game_printf(0x3729); game_printf(0x3754);
+    game_printf(0x377d);
     DAT_1008_02a4 = 5; /* Bad King fight */
     break;
   default:
-    FUN_1000_4e7c(0x37a5);
+    game_printf(0x37a5);
     break;
   }
 }
 
 
-// Function: FUN_1000_18a7
-// Identified as: magic_cast_spell
+// Function: magic
 // Address: 1000:18a7
 
-void __cdecl16near FUN_1000_18a7(void)
+void __cdecl16near magic(void)
 
 {
   int iVar1;
@@ -1322,27 +1319,27 @@ void __cdecl16near FUN_1000_18a7(void)
   
   cVar2 = DAT_1008_4f39 == 1;
   if ((bool)cVar2) {
-    FUN_1000_4e7c((char *)s_a__Heal__1_MP__1008_384f);
+    game_printf((char *)s_a__Heal__1_MP__1008_384f);
   }
   if (DAT_1008_4f43 == 1) {
-    FUN_1000_4e7c((char *)s_b__Heal_Major__5_MP__1008_3865);
+    game_printf((char *)s_b__Heal_Major__5_MP__1008_3865);
     cVar2 = cVar2 + '\x02';
   }
   if (DAT_1008_4f45 == 1) {
-    FUN_1000_4e7c((char *)s_c__Return__1_MP__1008_387b);
+    game_printf((char *)s_c__Return__1_MP__1008_387b);
     cVar2 = cVar2 + '\x04';
   }
   if (cVar2 == '\0') {
     pcVar3 = (char *)s_You_don_t_have_any_spells_you_ca_1008_3891;
 LAB_1000_18e7:
-    FUN_1000_4e7c(pcVar3);
+    game_printf(pcVar3);
   }
   else {
-    FUN_1000_4e7c((char *)s_x__Cancel_1008_38bd);
+    game_printf((char *)s_x__Cancel_1008_38bd);
     pcVar3 = (char *)s_Which_will_you_cast__1008_38c8;
     while( true ) {
-      FUN_1000_4e7c(pcVar3);
-      cVar2 = FUN_1000_69c4();
+      game_printf(pcVar3);
+      cVar2 = read_key();
       if (cVar2 == 'x') break;
       DAT_1008_4f6f = cVar2 + -0x61;
       if ((DAT_1008_4f6f < '\0') || ('\x02' < DAT_1008_4f6f)) {
@@ -1362,8 +1359,8 @@ LAB_1000_18e7:
               pcVar3 = (char *)s_Not_enough_MP__1008_3923;
               goto LAB_1000_18e7;
             }
-            FUN_1000_4e7c((char *)s_You_have_cast_Heal__1008_3933);
-            iVar1 = FUN_1000_29ab(3);
+            game_printf((char *)s_You_have_cast_Heal__1008_3933);
+            iVar1 = game_random(3);
             DAT_1008_4f19 = DAT_1008_4f19 + iVar1 + DAT_1008_4f27 + 5;
             if (DAT_1008_4f29 < DAT_1008_4f19) {
               DAT_1008_4f19 = DAT_1008_4f29;
@@ -1372,8 +1369,8 @@ LAB_1000_18e7:
           else {
             if (DAT_1008_4f6f == '\x05') {
               if (4 < DAT_1008_4f1d) {
-                FUN_1000_4e7c((char *)s_You_have_cast_Heal_Major__1008_3959);
-                iVar1 = FUN_1000_29ab(0xf);
+                game_printf((char *)s_You_have_cast_Heal_Major__1008_3959);
+                iVar1 = game_random(0xf);
                 DAT_1008_4f19 = DAT_1008_4f19 + iVar1 + DAT_1008_4f27 * 3 + 0x14;
                 if (DAT_1008_4f29 < DAT_1008_4f19) {
                   DAT_1008_4f19 = DAT_1008_4f29;
@@ -1392,7 +1389,7 @@ LAB_1000_18e7:
               pcVar3 = (char *)s_Not_enough_MP__1008_3975;
               goto LAB_1000_18e7;
             }
-            FUN_1000_4e7c((char *)s_You_have_cast_Return__1008_3985);
+            game_printf((char *)s_You_have_cast_Return__1008_3985);
             if (DAT_1008_4f49 == 0x2b) {
               pcVar3 = (char *)s_Return_fell_apart_in_mid_chant__1008_399d;
               goto LAB_1000_18e7;
@@ -1411,21 +1408,21 @@ LAB_1000_18e7:
 }
 
 
-// Function: FUN_1000_1a17
+// Function: status
 // Address: 1000:1a17
 
-void __cdecl16near FUN_1000_1a17(void)
+void __cdecl16near status(void)
 
 {
   char *pcVar1;
   
-  FUN_1000_4e7c((char *)s__s_Level__i__Exp___i__i___i_Gold_1008_39bf,PLAYER_NAME,DAT_1008_4f27,
+  game_printf((char *)s__s_Level__i__Exp___i__i___i_Gold_1008_39bf,PLAYER_NAME,DAT_1008_4f27,
                 DAT_1008_4f23,DAT_1008_4f27 * DAT_1008_4f27 * 4,DAT_1008_4f25);
-  FUN_1000_4e7c((char *)s_HP__i__i_MP__i__i_1008_39e9,DAT_1008_4f19,DAT_1008_4f29,DAT_1008_4f1d,
+  game_printf((char *)s_HP__i__i_MP__i__i_1008_39e9,DAT_1008_4f19,DAT_1008_4f29,DAT_1008_4f1d,
                 DAT_1008_4f2b);
-  FUN_1000_4e7c((char *)s_Strength__i_Attack__i_Defense__i_1008_39ff,DAT_1008_4f1b,DAT_1008_4f1f,
+  game_printf((char *)s_Strength__i_Attack__i_Defense__i_1008_39ff,DAT_1008_4f1b,DAT_1008_4f1f,
                 DAT_1008_4f21);
-  FUN_1000_4e7c((char *)s_Sword__1008_3a29);
+  game_printf((char *)s_Sword__1008_3a29);
   switch(DAT_1008_4f2f) {
   case 1:
     pcVar1 = (char *)s_Short_Sword_1008_3a31;
@@ -1445,9 +1442,9 @@ void __cdecl16near FUN_1000_1a17(void)
   default:
     goto switchD_1000_1a7e_default;
   }
-  FUN_1000_4e7c(pcVar1);
+  game_printf(pcVar1);
 switchD_1000_1a7e_default:
-  FUN_1000_4e7c((char *)s_Armor__1008_3a75);
+  game_printf((char *)s_Armor__1008_3a75);
   switch(DAT_1008_4f31) {
   case 1:
     pcVar1 = (char *)s_Leather_1008_3a7d;
@@ -1467,9 +1464,9 @@ switchD_1000_1a7e_default:
   default:
     goto switchD_1000_1ab3_default;
   }
-  FUN_1000_4e7c(pcVar1);
+  game_printf(pcVar1);
 switchD_1000_1ab3_default:
-  FUN_1000_4e7c((char *)s_Ring__1008_3ab4);
+  game_printf((char *)s_Ring__1008_3ab4);
   switch(DAT_1008_4f33) {
   case 1:
     pcVar1 = (char *)s_Power_Ring_1008_3abc;
@@ -1489,52 +1486,51 @@ switchD_1000_1ab3_default:
   default:
     goto switchD_1000_1ae8_default;
   }
-  FUN_1000_4e7c(pcVar1);
+  game_printf(pcVar1);
 switchD_1000_1ae8_default:
-  FUN_1000_4e7c((char *)s_Spells__1008_3af3);
+  game_printf((char *)s_Spells__1008_3af3);
   if (DAT_1008_4f39 == 1) {
-    FUN_1000_4e7c((char *)s_Heal_1008_3afd);
+    game_printf((char *)s_Heal_1008_3afd);
   }
   if (DAT_1008_4f3b == 1) {
-    FUN_1000_4e7c((char *)s_Fire_1008_3b09);
+    game_printf((char *)s_Fire_1008_3b09);
   }
   if (DAT_1008_4f3d == 1) {
-    FUN_1000_4e7c(0x3b15);
+    game_printf(0x3b15);
   }
   if (DAT_1008_4f3f == 1) {
-    FUN_1000_4e7c(0x3b20);
+    game_printf(0x3b20);
   }
   if (DAT_1008_4f41 == 1) {
-    FUN_1000_4e7c(0x3b2b);
+    game_printf(0x3b2b);
   }
   if (DAT_1008_4f43 == 1) {
-    FUN_1000_4e7c((char *)s_Heal_Major_1008_3b38);
+    game_printf((char *)s_Heal_Major_1008_3b38);
   }
   if (DAT_1008_4f45 == 1) {
-    FUN_1000_4e7c((char *)s_Return_1008_3b4a);
+    game_printf((char *)s_Return_1008_3b4a);
   }
   if (DAT_1008_4f47 == 1) {
-    FUN_1000_4e7c(0x3b58);
+    game_printf(0x3b58);
   }
   if (DAT_1008_4f2d == 1) {
-    FUN_1000_4e7c((char *)s_You_also_have_water_shoes_1008_3b64);
+    game_printf((char *)s_You_also_have_water_shoes_1008_3b64);
   }
   if (DAT_1008_4f35 == 1) {
-    FUN_1000_4e7c((char *)s_and_a_key_1008_3b7e);
+    game_printf((char *)s_and_a_key_1008_3b7e);
   }
   if (DAT_1008_4f2d == 1) {
-    FUN_1000_4e7c(0x3b89);
+    game_printf(0x3b89);
   }
   DAT_1008_02a4 = 0;
   return;
 }
 
 
-// Function: FUN_1000_1bd1
-// Identified as: fight
+// Function: update_stats
 // Address: 1000:1bd1
 
-void __cdecl16near FUN_1000_1bd1(void)
+void __cdecl16near update_stats(void)
 
 {
   DAT_1008_4f1f = DAT_1008_4f1b;
@@ -1564,7 +1560,7 @@ void __cdecl16near FUN_1000_1bd1(void)
     DAT_1008_4f1f = DAT_1008_4f1b + 100;
     break;
   default:
-    FUN_1000_4e7c((char *)s_Error_in_weapon__1008_3b8b);
+    game_printf((char *)s_Error_in_weapon__1008_3b8b);
   }
   switch(DAT_1008_4f31) {
   case 0:
@@ -1586,7 +1582,7 @@ void __cdecl16near FUN_1000_1bd1(void)
     DAT_1008_4f21 = 0x37;
     break;
   default:
-    FUN_1000_4e7c((char *)s_Error_in_armor__1008_3b9d);
+    game_printf((char *)s_Error_in_armor__1008_3b9d);
   }
   switch(DAT_1008_4f33) {
   case 0:
@@ -1608,40 +1604,39 @@ void __cdecl16near FUN_1000_1bd1(void)
   case 5:
     break;
   default:
-    FUN_1000_4e7c((char *)s_Error_in_ring__1008_3bae);
+    game_printf((char *)s_Error_in_ring__1008_3bae);
   }
   DAT_1008_4f70 = DAT_1008_4f33;
   return;
 }
 
 
-// Function: FUN_1000_1ce8
-// Identified as: enemy_turn
+// Function: fight
 // Address: 1000:1ce8
 
-void __cdecl16near FUN_1000_1ce8(void)
+void __cdecl16near fight(void)
 
 {
   int iVar1;
   
-  FUN_1000_4e7c((char *)s__s_attacks__1008_3bbd,PLAYER_NAME);
-  iVar1 = FUN_1000_25af(DAT_1008_4f1f,*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0xbc]);
+  game_printf((char *)s__s_attacks__1008_3bbd,PLAYER_NAME);
+  iVar1 = get_damage(DAT_1008_4f1f,*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0xbc]);
   if ((DAT_1008_4f4d == 0xe) && (DAT_1008_4f2f != 5)) {
-    FUN_1000_4e7c((char *)s_The_sword_had_no_effect__1008_3bcb);
+    game_printf((char *)s_The_sword_had_no_effect__1008_3bcb);
   }
   else {
     DAT_1008_4f4f = DAT_1008_4f4f - iVar1;
-    FUN_1000_4e7c((char *)s_The__s_receives__i_damage__1008_3be5,
+    game_printf((char *)s_The__s_receives__i_damage__1008_3be5,
                   DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]),iVar1);
   }
   return;
 }
 
 
-// Function: FUN_1000_1d4e
+// Function: comb_magic
 // Address: 1000:1d4e
 
-undefined2 __cdecl16near FUN_1000_1d4e(void)
+undefined2 __cdecl16near comb_magic(void)
 
 {
   int iVar1;
@@ -1653,7 +1648,7 @@ undefined2 __cdecl16near FUN_1000_1d4e(void)
   for (local_4 = 0; local_4 < 8; local_4 = local_4 + 1) {
     if (((undefined2 *)&DAT_1008_4f39)[local_4] == 1) {
       iVar1 = iVar1 + 1;
-      FUN_1000_4e7c(0x3c01,iVar1);
+      game_printf(0x3c01,iVar1);
       switch(local_4) {
       case 0:
         pcVar3 = (char *)s_Heal__1_MP__1008_3c07;
@@ -1682,15 +1677,15 @@ undefined2 __cdecl16near FUN_1000_1d4e(void)
       default:
         goto switchD_1000_1d80_default;
       }
-      FUN_1000_4e7c(pcVar3);
+      game_printf(pcVar3);
     }
 switchD_1000_1d80_default:
   }
   if (iVar1 != 0x60) {
-    FUN_1000_4e7c((char *)s_x__Cancel_1008_3cb3);
+    game_printf((char *)s_x__Cancel_1008_3cb3);
 LAB_1000_1dd3:
-    FUN_1000_4e7c((char *)s_Enter_Letter__1008_3cbf);
-    DAT_1008_4f6f = FUN_1000_69c4();
+    game_printf((char *)s_Enter_Letter__1008_3cbf);
+    DAT_1008_4f6f = read_key();
     switch(DAT_1008_4f6f) {
     case 'a':
     case 'b':
@@ -1748,15 +1743,15 @@ switchD_1000_1e4b_caseD_0:
   if (DAT_1008_4f1d < local_4) {
     pcVar3 = (char *)s_Not_enough_MP__1008_3cce;
 LAB_1000_1dc2:
-    FUN_1000_4e7c(pcVar3);
+    game_printf(pcVar3);
     return 1;
   }
-  FUN_1000_4e7c((char *)s__s_has_cast_1008_3cdf,PLAYER_NAME);
+  game_printf((char *)s__s_has_cast_1008_3cdf,PLAYER_NAME);
   DAT_1008_4f1d = DAT_1008_4f1d - local_4;
   switch(DAT_1008_4f6f) {
   case '\0':
-    FUN_1000_4e7c(0x3cee);
-    iVar1 = FUN_1000_29ab(4);
+    game_printf(0x3cee);
+    iVar1 = game_random(4);
     iVar1 = iVar1 + DAT_1008_4f27 + 5;
     DAT_1008_4f19 = DAT_1008_4f19 + iVar1;
     if (DAT_1008_4f29 < DAT_1008_4f19) {
@@ -1765,32 +1760,32 @@ LAB_1000_1dc2:
     pcVar3 = (char *)s_Recovered__i_HP__1008_3cf4;
     goto LAB_1000_1ee2;
   case '\x01':
-    iVar1 = FUN_1000_29ab(5);
+    iVar1 = game_random(5);
     local_4 = iVar1 + DAT_1008_4f27 + 8;
-    FUN_1000_4e7c((char *)s_Fire__1008_3d06);
+    game_printf((char *)s_Fire__1008_3d06);
     switch(DAT_1008_4f4d) {
     case 5:
     case 9:
       local_4 = local_4 + DAT_1008_4f27 + 0xe;
       break;
     case 0xd:
-      local_4 = FUN_1000_2817(local_4,10);
+      local_4 = divide_int(local_4,10);
       break;
     case 0xe:
       pcVar3 = (char *)s_The_spell_had_no_effect__1008_3d0c;
 LAB_1000_1f23:
-      FUN_1000_4e7c(pcVar3);
+      game_printf(pcVar3);
       return 0;
     case 0xf:
-      local_4 = FUN_1000_2817(local_4,0x21);
+      local_4 = divide_int(local_4,0x21);
     }
     DAT_1008_4f4f = DAT_1008_4f4f - local_4;
     uVar2 = *(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56];
     pcVar3 = (char *)s_The__s_receives__i_damage__1008_3d26;
     break;
   case '\x02':
-    FUN_1000_4e7c(0x3d42);
-    iVar1 = FUN_1000_29ab(5);
+    game_printf(0x3d42);
+    iVar1 = game_random(5);
     local_4 = iVar1 + DAT_1008_4f27 + 8;
     switch(DAT_1008_4f4d) {
     case 7:
@@ -1799,7 +1794,7 @@ LAB_1000_1f23:
     case 9:
     case 10:
     case 0xf:
-      local_4 = FUN_1000_2817(local_4,0x21);
+      local_4 = divide_int(local_4,0x21);
       break;
     case 0xe:
       pcVar3 = (char *)s_The_spell_had_no_effect__1008_3d47;
@@ -1810,8 +1805,8 @@ LAB_1000_1f23:
     pcVar3 = (char *)s_The__s_receives__i_damage__1008_3d61;
     break;
   case '\x03':
-    FUN_1000_4e7c(0x3d7d);
-    iVar1 = FUN_1000_29ab(5);
+    game_printf(0x3d7d);
+    iVar1 = game_random(5);
     local_4 = iVar1 + DAT_1008_4f27 + 8;
     switch(DAT_1008_4f4d) {
     case 6:
@@ -1822,7 +1817,7 @@ LAB_1000_1f23:
     case 10:
     case 0xd:
     case 0xf:
-      local_4 = FUN_1000_2817(local_4,0x21);
+      local_4 = divide_int(local_4,0x21);
       break;
     case 0xe:
       pcVar3 = (char *)s_The_spell_had_no_effect__1008_3d82;
@@ -1833,20 +1828,20 @@ LAB_1000_1f23:
     pcVar3 = (char *)s_The__s_receives__i_damage__1008_3d9c;
     break;
   case '\x04':
-    FUN_1000_4e7c(0x3db8);
-    DAT_1008_02aa = FUN_1000_29ab(4);
+    game_printf(0x3db8);
+    DAT_1008_02aa = game_random(4);
     if (10 < DAT_1008_4f4d) {
       DAT_1008_02aa = 0;
     }
     if (DAT_1008_02aa == 0) {
-      FUN_1000_4e7c((char *)s_The_spell_had_no_effect__1008_3dbf);
+      game_printf((char *)s_The_spell_had_no_effect__1008_3dbf);
       return 0;
     }
-    FUN_1000_4e7c((char *)s_The__s_is_asleep__1008_3dd9,DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]));
+    game_printf((char *)s_The__s_is_asleep__1008_3dd9,DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]));
     return 0;
   case '\x05':
-    FUN_1000_4e7c((char *)s_Heal_Major__1008_3dec);
-    iVar1 = FUN_1000_29ab(0xf);
+    game_printf((char *)s_Heal_Major__1008_3dec);
+    iVar1 = game_random(0xf);
     iVar1 = iVar1 + DAT_1008_4f27 * 3 + 0x14;
     DAT_1008_4f19 = DAT_1008_4f19 + iVar1;
     if (DAT_1008_4f29 < DAT_1008_4f19) {
@@ -1854,20 +1849,20 @@ LAB_1000_1f23:
     }
     pcVar3 = (char *)s_Recovered__i_HP__1008_3df8;
 LAB_1000_1ee2:
-    FUN_1000_4e7c(pcVar3,iVar1);
+    game_printf(pcVar3,iVar1);
     return 0;
   case '\x06':
-    FUN_1000_4e7c((char *)s_Return__1008_3e0a);
+    game_printf((char *)s_Return__1008_3e0a);
     if (10 < DAT_1008_4f4d) {
-      FUN_1000_4e7c((char *)s_The_spell_had_no_effect__1008_3e12);
+      game_printf((char *)s_The_spell_had_no_effect__1008_3e12);
       return 0;
     }
-    FUN_1000_4e7c((char *)s_Mist_carries__s_away__1008_3e2c,PLAYER_NAME);
+    game_printf((char *)s_Mist_carries__s_away__1008_3e2c,PLAYER_NAME);
     DAT_1008_02a6 = 1;
     return 0;
   case '\a':
-    FUN_1000_4e7c(0x3e43);
-    iVar1 = FUN_1000_29ab(0x29);
+    game_printf(0x3e43);
+    iVar1 = game_random(0x29);
     local_4 = iVar1 + DAT_1008_4f27 * 3 + 0x50;
     switch(DAT_1008_4f4d) {
     case 9:
@@ -1875,7 +1870,7 @@ LAB_1000_1ee2:
     case 0xd:
     case 0xf:
     case 0x10:
-      local_4 = FUN_1000_2817(local_4,0x21);
+      local_4 = divide_int(local_4,0x21);
     default:
       DAT_1008_4f4f = DAT_1008_4f4f - local_4;
       uVar2 = *(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56];
@@ -1889,24 +1884,24 @@ LAB_1000_1ee2:
   default:
     goto switchD_1000_1eaa_default;
   }
-  FUN_1000_4e7c(pcVar3,DS(uVar2),local_4);
+  game_printf(pcVar3,DS(uVar2),local_4);
 switchD_1000_1eaa_default:
   return 0;
 }
 
 
-// Function: FUN_1000_21ec
+// Function: run_away
 // Address: 1000:21ec
 
-void __cdecl16near FUN_1000_21ec(void)
+void __cdecl16near run_away(void)
 
 {
   int iVar1;
   
-  FUN_1000_4e7c((char *)s__s_turned_and_ran__1008_3e7f,PLAYER_NAME);
-  iVar1 = FUN_1000_29ab(7);
+  game_printf((char *)s__s_turned_and_ran__1008_3e7f,PLAYER_NAME);
+  iVar1 = game_random(7);
   if (iVar1 - DAT_1008_4f4d < 1) {
-    FUN_1000_4e7c((char *)s_But_there_was_no_escape__1008_3e93);
+    game_printf((char *)s_But_there_was_no_escape__1008_3e93);
   }
   else {
     DAT_1008_02a6 = 1;
@@ -1915,34 +1910,34 @@ void __cdecl16near FUN_1000_21ec(void)
 }
 
 
-// Function: FUN_1000_2222
+// Function: enemy_fight
 // Address: 1000:2222
 
-void __cdecl16near FUN_1000_2222(void)
+void __cdecl16near enemy_fight(void)
 
 {
   int iVar1;
   char *pcVar2;
   
-  FUN_1000_4e7c((char *)s_The__s_1008_3ead,DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]));
+  game_printf((char *)s_The__s_1008_3ead,DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]));
   if (DAT_1008_4f4d == 0x10) {
     pcVar2 = (char *)s_attack__1008_3eb7;
   }
   else {
     pcVar2 = (char *)s_attacks__1008_3ebf;
   }
-  FUN_1000_4e7c(pcVar2);
-  iVar1 = FUN_1000_25af(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x9a],DAT_1008_4f21);
+  game_printf(pcVar2);
+  iVar1 = get_damage(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x9a],DAT_1008_4f21);
   DAT_1008_4f19 = DAT_1008_4f19 - iVar1;
-  FUN_1000_4e7c((char *)s__s_takes__i_damage__1008_3ec8,PLAYER_NAME,iVar1);
+  game_printf((char *)s__s_takes__i_damage__1008_3ec8,PLAYER_NAME,iVar1);
   return;
 }
 
 
-// Function: FUN_1000_2284
+// Function: enemy_spell
 // Address: 1000:2284
 
-void __cdecl16near FUN_1000_2284(void)
+void __cdecl16near enemy_spell(void)
 
 {
   int iVar1;
@@ -1957,7 +1952,7 @@ void __cdecl16near FUN_1000_2284(void)
     local_4 = -3;
     break;
   default:
-    FUN_1000_2222();
+    enemy_fight();
     return;
   case 5:
     iVar1 = 4;
@@ -1973,7 +1968,7 @@ void __cdecl16near FUN_1000_2284(void)
     iVar1 = 0;
     break;
   case 10:
-    iVar1 = FUN_1000_29ab(2);
+    iVar1 = game_random(2);
     iVar1 = iVar1 + 3;
     break;
   case 0xc:
@@ -1985,7 +1980,7 @@ void __cdecl16near FUN_1000_2284(void)
     local_4 = 0x23;
     break;
   case 0xe:
-    iVar1 = FUN_1000_29ab(3);
+    iVar1 = game_random(3);
     iVar1 = iVar1 + 1;
     local_4 = 0x37;
     if (iVar1 == 3) {
@@ -1993,32 +1988,32 @@ void __cdecl16near FUN_1000_2284(void)
     }
     break;
   case 0xf:
-    iVar1 = FUN_1000_29ab(2);
+    iVar1 = game_random(2);
     iVar1 = iVar1 + 7;
     break;
   case 0x10:
-    iVar1 = FUN_1000_29ab(2);
+    iVar1 = game_random(2);
     iVar1 = iVar1 + 3;
     local_4 = 0x28;
   }
   if ((iVar1 < 5) || (iVar1 == 7)) {
-    FUN_1000_4e7c((char *)s_The__s_1008_3edd,DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]));
+    game_printf((char *)s_The__s_1008_3edd,DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]));
     if (DAT_1008_4f4d == 0x10) {
       pcVar3 = (char *)s_have_cast_1008_3ee7;
     }
     else {
       pcVar3 = (char *)s_has_cast_1008_3ef2;
     }
-    FUN_1000_4e7c(pcVar3);
+    game_printf(pcVar3);
   }
   else {
-    FUN_1000_4e7c((char *)s_The__s_has_blown_1008_3efc,DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]));
+    game_printf((char *)s_The__s_has_blown_1008_3efc,DS(*(undefined2 *)&seg_1008[DAT_1008_4f4d * 2 + 0x56]));
   }
   switch(iVar1) {
   case 0:
-    FUN_1000_4e7c(0x3f10);
-    iVar1 = FUN_1000_29ab(4);
-    FUN_1000_4e7c((char *)s_Recovered__i_HP__1008_3f16,iVar1 + 0xf);
+    game_printf(0x3f10);
+    iVar1 = game_random(4);
+    game_printf((char *)s_Recovered__i_HP__1008_3f16,iVar1 + 0xf);
     DAT_1008_4f4f = DAT_1008_4f4f + iVar1 + 0xf;
     if (DAT_1008_4f4f <= DAT_1008_4f51) {
       return;
@@ -2026,87 +2021,87 @@ void __cdecl16near FUN_1000_2284(void)
     DAT_1008_4f4f = DAT_1008_4f51;
     return;
   case 1:
-    FUN_1000_4e7c((char *)s_Fire__1008_3f28);
-    iVar1 = FUN_1000_29ab(5);
+    game_printf((char *)s_Fire__1008_3f28);
+    iVar1 = game_random(5);
     iVar1 = iVar1 + local_4 + 8;
     if (DAT_1008_4f33 == 5) {
-      iVar1 = FUN_1000_2817(iVar1,0x21);
+      iVar1 = divide_int(iVar1,0x21);
     }
     DAT_1008_4f19 = DAT_1008_4f19 - iVar1;
     pcVar3 = (char *)s__s_takes__i_damage__1008_3f2e;
     break;
   case 2:
-    FUN_1000_4e7c(0x3f43);
-    iVar1 = FUN_1000_29ab(5);
+    game_printf(0x3f43);
+    iVar1 = game_random(5);
     iVar1 = iVar1 + local_4 + 0x12;
     if (DAT_1008_4f33 == 5) {
-      iVar1 = FUN_1000_2817(iVar1,0x21);
+      iVar1 = divide_int(iVar1,0x21);
     }
     DAT_1008_4f19 = DAT_1008_4f19 - iVar1;
     pcVar3 = (char *)s__s_takes__i_damage__1008_3f48;
     break;
   case 3:
-    FUN_1000_4e7c(0x3f5d);
-    iVar1 = FUN_1000_29ab(5);
+    game_printf(0x3f5d);
+    iVar1 = game_random(5);
     iVar1 = iVar1 + local_4 + 0x14;
     if (DAT_1008_4f33 == 5) {
-      iVar1 = FUN_1000_2817(iVar1,0x21);
+      iVar1 = divide_int(iVar1,0x21);
     }
     DAT_1008_4f19 = DAT_1008_4f19 - iVar1;
     pcVar3 = (char *)s__s_takes__i_damage__1008_3f62;
     break;
   case 4:
-    FUN_1000_4e7c(0x3f77);
-    DAT_1008_02a8 = FUN_1000_29ab(4);
+    game_printf(0x3f77);
+    DAT_1008_02a8 = game_random(4);
     if (DAT_1008_4f33 == 5) {
       DAT_1008_02a8 = 0;
     }
     if (DAT_1008_02a8 == 0) {
-      FUN_1000_4e7c((char *)s_The_spell_had_no_effect__1008_3f7e);
+      game_printf((char *)s_The_spell_had_no_effect__1008_3f7e);
       return;
     }
-    FUN_1000_4e7c((char *)s__s_is_asleep__1008_3f98,PLAYER_NAME);
+    game_printf((char *)s__s_is_asleep__1008_3f98,PLAYER_NAME);
     return;
   case 5:
-    FUN_1000_4e7c((char *)s_blitz_breath__1008_3fa7);
-    iVar1 = FUN_1000_29ab(0x15);
+    game_printf((char *)s_blitz_breath__1008_3fa7);
+    iVar1 = game_random(0x15);
     iVar1 = iVar1 + local_4 * 2;
-    iVar2 = FUN_1000_29ab(local_4);
+    iVar2 = game_random(local_4);
     iVar1 = iVar1 + iVar2;
-    iVar2 = FUN_1000_29ab(local_4);
+    iVar2 = game_random(local_4);
     iVar1 = iVar1 + iVar2;
-    iVar2 = FUN_1000_29ab(local_4);
+    iVar2 = game_random(local_4);
     iVar1 = iVar1 + iVar2 + 10;
     if (DAT_1008_4f33 == 5) {
-      iVar1 = FUN_1000_2817(iVar1,0x21);
+      iVar1 = divide_int(iVar1,0x21);
     }
     DAT_1008_4f19 = DAT_1008_4f19 - iVar1;
     pcVar3 = (char *)s__s_receives__i_damage__1008_3fb5;
     break;
   case 6:
-    FUN_1000_4e7c((char *)s_flaming_breath__1008_3fcd);
-    iVar1 = FUN_1000_29ab(0xb);
+    game_printf((char *)s_flaming_breath__1008_3fcd);
+    iVar1 = game_random(0xb);
     iVar1 = iVar1 + local_4 + 5;
     if (DAT_1008_4f33 == 5) {
-      iVar1 = FUN_1000_2817(iVar1,0x21);
+      iVar1 = divide_int(iVar1,0x21);
     }
     DAT_1008_4f19 = DAT_1008_4f19 - iVar1;
     pcVar3 = (char *)s__s_receives__i_damage__1008_3fdd;
     break;
   case 7:
-    FUN_1000_4e7c(0x3ff5);
-    iVar1 = FUN_1000_29ab(0x15);
+    game_printf(0x3ff5);
+    iVar1 = game_random(0x15);
     iVar1 = iVar1 + 0x4b;
     if (DAT_1008_4f33 == 5) {
-      iVar1 = FUN_1000_2817(iVar1,0x21);
+      iVar1 = divide_int(iVar1,0x21);
     }
     DAT_1008_4f19 = DAT_1008_4f19 - iVar1;
     pcVar3 = (char *)s__s_receives__i_damage__1008_3ffb;
     break;
   case 8:
-    FUN_1000_4e7c((char *)s_poison_breath__1008_4013);
+    game_printf((char *)s_poison_breath__1008_4013);
     if (DAT_1008_4f33 == 5) {
-      FUN_1000_4e7c((char *)s__s_resisted__1008_4022,PLAYER_NAME);
+      game_printf((char *)s__s_resisted__1008_4022,PLAYER_NAME);
     }
     else {
       DAT_1008_4f19 = 0;
@@ -2114,28 +2109,28 @@ void __cdecl16near FUN_1000_2284(void)
   default:
     goto switchD_1000_237b_default;
   }
-  FUN_1000_4e7c(pcVar3,PLAYER_NAME,iVar1);
+  game_printf(pcVar3,PLAYER_NAME,iVar1);
 switchD_1000_237b_default:
   return;
 }
 
 
-// Function: FUN_1000_25af
+// Function: get_damage
 // Address: 1000:25af
 
-int __cdecl16near FUN_1000_25af(int param_1,int param_2)
+int __cdecl16near get_damage(int param_1,int param_2)
 
 {
   int iVar1;
   undefined2 local_4;
   
-  local_4 = FUN_1000_29ab(0x1f);
+  local_4 = game_random(0x1f);
   local_4 = local_4 + 0x46;
   if ((100 < param_1) && (DAT_1008_4f2f == 5)) {
-    local_4 = FUN_1000_29ab(8);
+    local_4 = game_random(8);
     local_4 = local_4 + 0x5d;
   }
-  iVar1 = FUN_1000_2817(param_1,local_4);
+  iVar1 = divide_int(param_1,local_4);
   iVar1 = iVar1 - param_2;
   if (iVar1 < 1) {
     iVar1 = 1;
@@ -2144,42 +2139,42 @@ int __cdecl16near FUN_1000_25af(int param_1,int param_2)
 }
 
 
-// Function: FUN_1000_25fd
+// Function: quit
 // Address: 1000:25fd
 
-void __cdecl16near FUN_1000_25fd(void)
+void __cdecl16near quit(void)
 
 {
   do {
-    FUN_1000_4e7c((char *)s_Are_you_sure_you_want_to_quit____1008_4030);
-    DAT_1008_4f6f = FUN_1000_69c4();
+    game_printf((char *)s_Are_you_sure_you_want_to_quit____1008_4030);
+    DAT_1008_4f6f = read_key();
     if (DAT_1008_4f6f == 'y') break;
   } while (DAT_1008_4f6f != 'n');
   if (DAT_1008_4f6f == 'y') {
-    FUN_1000_28fc();
-    FUN_1000_3430(0);
+    print_freew();
+    exit_game(0);
   }
   return;
 }
 
 
-// Function: FUN_1000_262f
+// Function: save_me
 // Address: 1000:262f
 
-void __cdecl16near FUN_1000_262f(void)
+void __cdecl16near save_me(void)
 
 {
   int iVar1;
   FILE *f;
 
   if (DAT_1008_4f49 == 0x2b) {
-    FUN_1000_4e7c((intptr_t)s_Not_a_good_place_to_save__1008_4060);
+    game_printf((intptr_t)s_Not_a_good_place_to_save__1008_4060);
     return;
   }
   sprintf(SAVE_BUF, "save%i.dat", DAT_1008_4f55);
   f = fopen(SAVE_BUF, "w");
   if (f == NULL) {
-    FUN_1000_4e7c((intptr_t)s_Not_a_good_place_to_save__1008_4060);
+    game_printf((intptr_t)s_Not_a_good_place_to_save__1008_4060);
     return;
   }
   fprintf(f, "%s\n%i\n%i\n%i\n", PLAYER_NAME, DAT_1008_4f27, DAT_1008_4f23, DAT_1008_4f25);
@@ -2199,15 +2194,15 @@ void __cdecl16near FUN_1000_262f(void)
     DAT_1008_02ac = 0;
   }
   DAT_1008_02a4 = 0;
-  FUN_1000_4e7c((intptr_t)s_____Game_Saved_____1008_40c6);
+  game_printf((intptr_t)s_____Game_Saved_____1008_40c6);
   return;
 }
 
 
-// Function: FUN_1000_2744
+// Function: read_save_slot
 // Address: 1000:2744
 
-void __cdecl16near FUN_1000_2744(void)
+void __cdecl16near read_save_slot(void)
 
 {
   int iVar1;
@@ -2227,18 +2222,18 @@ void __cdecl16near FUN_1000_2744(void)
   }
   fclose(f);
   DAT_1008_4f70 = DAT_1008_4f33;
-  FUN_1000_1bd1();
-  FUN_1000_4e7c((intptr_t)s_____Game_Loaded_____1008_4115);
+  update_stats();
+  game_printf((intptr_t)s_____Game_Loaded_____1008_4115);
   return;
 }
 
 
-// Function: FUN_1000_2817
+// Function: divide_int
 // Address: 1000:2817
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-int __cdecl16near FUN_1000_2817(int param_1,int param_2)
+int __cdecl16near divide_int(int param_1,int param_2)
 
 {
   // Simple integer arithmetic: param_1 * param_2 / 100
@@ -2246,81 +2241,79 @@ int __cdecl16near FUN_1000_2817(int param_1,int param_2)
 }
 
 
-// Function: FUN_1000_287b
+// Function: main_help
 // Address: 1000:287b
 
-void __cdecl16near FUN_1000_287b(void)
+void __cdecl16near main_help(void)
 
 {
-  FUN_1000_4e7c((char *)s_B_There_are_two_parts_to_the_gam_1008_4137 + 1);
-  FUN_1000_4e7c((char *)s_These_are_the_commands_used_when_1008_416f);
-  FUN_1000_4e7c((char *)s_m__m_ove__Lets_you_walk_to_a_dif_1008_41a1);
-  FUN_1000_4e7c((char *)s_l__l_ook__Gives_you_a_descriptio_1008_41da);
-  FUN_1000_4e7c((char *)s_t__t_alk__Lets_you_talk_to_anyon_1008_4216);
-  FUN_1000_4e7c((char *)s_this_command_to_buy_things_from_s_1008_424e);
-  FUN_1000_4e7c((char *)s_s__s_earch__Lets_you_search_for_t_1008_4287);
-  FUN_1000_4e7c((char *)s_passages__and_so_on__1008_42c0);
-  FUN_1000_4e7c((char *)s_c__c_ast__Lets_you_use_a_magic_s_1008_42e3);
-  FUN_1000_4e7c((char *)s_a_Status__Shows_a_list_of_statis_1008_4311);
-  FUN_1000_4e7c((char *)s_MP__strength__etc__1008_434b);
-  FUN_1000_4e7c((char *)s_b_Save__Saves_your_game__1008_436c);
+  game_printf((char *)s_B_There_are_two_parts_to_the_gam_1008_4137 + 1);
+  game_printf((char *)s_These_are_the_commands_used_when_1008_416f);
+  game_printf((char *)s_m__m_ove__Lets_you_walk_to_a_dif_1008_41a1);
+  game_printf((char *)s_l__l_ook__Gives_you_a_descriptio_1008_41da);
+  game_printf((char *)s_t__t_alk__Lets_you_talk_to_anyon_1008_4216);
+  game_printf((char *)s_this_command_to_buy_things_from_s_1008_424e);
+  game_printf((char *)s_s__s_earch__Lets_you_search_for_t_1008_4287);
+  game_printf((char *)s_passages__and_so_on__1008_42c0);
+  game_printf((char *)s_c__c_ast__Lets_you_use_a_magic_s_1008_42e3);
+  game_printf((char *)s_a_Status__Shows_a_list_of_statis_1008_4311);
+  game_printf((char *)s_MP__strength__etc__1008_434b);
+  game_printf((char *)s_b_Save__Saves_your_game__1008_436c);
   return;
 }
 
 
-// Function: FUN_1000_28d4
-// Identified as: status
+// Function: combat_help
 // Address: 1000:28d4
 
-void __cdecl16near FUN_1000_28d4(void)
+void __cdecl16near combat_help(void)
 
 {
-  FUN_1000_4e7c((char *)s_These_are_the_commands_used_in_b_1008_438e);
-  FUN_1000_4e7c((char *)s_f__f_ight__Lets_you_attack_the_e_1008_43b7);
-  FUN_1000_4e7c((char *)s_c__c_ast__Lets_you_use_a_magic_s_1008_43f5);
-  FUN_1000_4e7c((char *)s_r__r_un__Too_hot_for_you__Use__r_1008_4423);
-  FUN_1000_4e7c((char *)s_Careful__It_doesn_t_work_with_to_1008_445b);
+  game_printf((char *)s_These_are_the_commands_used_in_b_1008_438e);
+  game_printf((char *)s_f__f_ight__Lets_you_attack_the_e_1008_43b7);
+  game_printf((char *)s_c__c_ast__Lets_you_use_a_magic_s_1008_43f5);
+  game_printf((char *)s_r__r_un__Too_hot_for_you__Use__r_1008_4423);
+  game_printf((char *)s_Careful__It_doesn_t_work_with_to_1008_445b);
   return;
 }
 
 
-// Function: FUN_1000_28fc
+// Function: print_freew
 // Address: 1000:28fc
 
-void __cdecl16near FUN_1000_28fc(void)
+void __cdecl16near print_freew(void)
 
 {
-  FUN_1000_4e7c((char *)s_This_game_is_freeware__You_re_un_1008_4498);
-  FUN_1000_4e7c((char *)s_on_to_pay_for_it__You_re_welcome_1008_44ce);
-  FUN_1000_4e7c((char *)s_friend__as_long_as_you_don_t_cha_1008_4500);
-  FUN_1000_4e7c((char *)s_However__if_you_d_like_to_suppor_1008_4529);
-  FUN_1000_4e7c((char *)s_efforts__I_d_appreciate_any_cont_1008_455e);
-  FUN_1000_4e7c((char *)s_to_send__Or_if_you_have_any_sugg_1008_4591);
-  FUN_1000_4e7c((char *)s_or_just_want_to_tell_me_what_you_1008_45c3);
-  FUN_1000_4e7c((char *)s_Bad_King__I_d_appreciate_hearing_1008_45f4);
-  FUN_1000_4e7c((char *)s_I_m_working_on_a_game_called_Tow_1008_4620);
-  FUN_1000_4e7c((char *)s_will_be_a_more_complex_RPG__with_1008_4654);
-  FUN_1000_4e7c((char *)s_storyline_and_a_much_longer_play_1008_4687);
-  FUN_1000_4e7c((char *)s_to_start_working_with_graphics_a_1008_46ba);
-  FUN_1000_4e7c((char *)s_later_on__If_you_d_like_me_to_ke_1008_46eb);
-  FUN_1000_4e7c((char *)s_on_FlatRat_Games__write_me__1008_471d);
-  FUN_1000_4e7c((char *)s_Thanks_for_trying_The_Bad_King____1008_473a,(char *)s_Sincerely__1008_4763
+  game_printf((char *)s_This_game_is_freeware__You_re_un_1008_4498);
+  game_printf((char *)s_on_to_pay_for_it__You_re_welcome_1008_44ce);
+  game_printf((char *)s_friend__as_long_as_you_don_t_cha_1008_4500);
+  game_printf((char *)s_However__if_you_d_like_to_suppor_1008_4529);
+  game_printf((char *)s_efforts__I_d_appreciate_any_cont_1008_455e);
+  game_printf((char *)s_to_send__Or_if_you_have_any_sugg_1008_4591);
+  game_printf((char *)s_or_just_want_to_tell_me_what_you_1008_45c3);
+  game_printf((char *)s_Bad_King__I_d_appreciate_hearing_1008_45f4);
+  game_printf((char *)s_I_m_working_on_a_game_called_Tow_1008_4620);
+  game_printf((char *)s_will_be_a_more_complex_RPG__with_1008_4654);
+  game_printf((char *)s_storyline_and_a_much_longer_play_1008_4687);
+  game_printf((char *)s_to_start_working_with_graphics_a_1008_46ba);
+  game_printf((char *)s_later_on__If_you_d_like_me_to_ke_1008_46eb);
+  game_printf((char *)s_on_FlatRat_Games__write_me__1008_471d);
+  game_printf((char *)s_Thanks_for_trying_The_Bad_King____1008_473a,(char *)s_Sincerely__1008_4763
                );
-  FUN_1000_4e7c((char *)s_Griffin_Knodle_1008_476e);
-  FUN_1000_4e7c((char *)s_14611_Vashon_Hwy_SW__1008_4784);
-  FUN_1000_4e7c((char *)s_Vashon__WA_98070_1008_479f);
-  FUN_1000_4e7c((char *)s_On_America_Online__GriffinJK_1008_47b7);
-  FUN_1000_4e7c((char *)s__Press_a_key_to_continue__1008_47d8);
-  FUN_1000_69c4();
+  game_printf((char *)s_Griffin_Knodle_1008_476e);
+  game_printf((char *)s_14611_Vashon_Hwy_SW__1008_4784);
+  game_printf((char *)s_Vashon__WA_98070_1008_479f);
+  game_printf((char *)s_On_America_Online__GriffinJK_1008_47b7);
+  game_printf((char *)s__Press_a_key_to_continue__1008_47d8);
+  read_key();
   return;
 }
 
 
-// Function: FUN_1000_299b
-// Identified as: get_damage
+// Function: randomize
 // Address: 1000:299b
 
-void __cdecl16near FUN_1000_299b(void)
+void __cdecl16near randomize(void)
 
 {
   undefined2 uVar1;
@@ -2328,23 +2321,22 @@ void __cdecl16near FUN_1000_299b(void)
   if (g_game_seed != 0) {
     uVar1 = (undefined2)g_game_seed;
   } else {
-    uVar1 = FUN_1000_3eb8(0);
+    uVar1 = get_time(0);
   }
-  FUN_1000_36f6(uVar1);
+  set_seed(uVar1);
   return;
 }
 
 
-// Function: FUN_1000_29ab
-// Identified as: random
+// Function: game_random
 // Address: 1000:29ab
 
-int __cdecl16near FUN_1000_29ab(int param_1)
+int __cdecl16near game_random(int param_1)
 
 {
   int uVar1;
 
-  uVar1 = (int)FUN_1000_3707(0x8000,0);
+  uVar1 = (int)rand_engine(0x8000,0);
   if (param_1 != 0) {
     uVar1 = uVar1 % param_1;
   }
@@ -2352,11 +2344,10 @@ int __cdecl16near FUN_1000_29ab(int param_1)
 }
 
 
-// Function: FUN_1000_3430
-// Identified as: WINMAIN
+// Function: exit_game
 // Address: 1000:3430
 
-void __cdecl16near FUN_1000_3430(undefined2 param_1)
+void __cdecl16near exit_game(undefined2 param_1)
 
 {
   _disable_raw_mode();
@@ -2364,10 +2355,10 @@ void __cdecl16near FUN_1000_3430(undefined2 param_1)
 }
 
 
-// Function: FUN_1000_36f6
+// Function: set_seed
 // Address: 1000:36f6
 
-void __cdecl16near FUN_1000_36f6(undefined2 param_1)
+void __cdecl16near set_seed(undefined2 param_1)
 
 {
   DAT_1008_4b90 = 0;
@@ -2376,14 +2367,14 @@ void __cdecl16near FUN_1000_36f6(undefined2 param_1)
 }
 
 
-// Function: FUN_1000_3707
+// Function: rand_engine
 // Address: 1000:3707
 // Borland/Turbo C rand() engine: advances the 32-bit seed stored in
 // DAT_1008_4b8e (low) / DAT_1008_4b90 (high) and returns (seed>>16)&0x7fff.
 // (The original decompilation relied on __lmul via uninitialized register
 // pseudo-variables; reimplemented directly from the global seed.)
 
-ulong __cdecl16near FUN_1000_3707(int param_1, int param_2)
+ulong __cdecl16near rand_engine(int param_1, int param_2)
 
 {
   unsigned long seed;
@@ -2397,10 +2388,10 @@ ulong __cdecl16near FUN_1000_3707(int param_1, int param_2)
 }
 
 
-// Function: FUN_1000_3eb8
+// Function: get_time
 // Address: 1000:3eb8
 
-undefined4 __cdecl16near FUN_1000_3eb8(undefined2 *param_1)
+undefined4 __cdecl16near get_time(undefined2 *param_1)
 
 {
   undefined4 uVar1 = (undefined4)time(NULL);
@@ -2412,10 +2403,10 @@ undefined4 __cdecl16near FUN_1000_3eb8(undefined2 *param_1)
 }
 
 
-// Function: FUN_1000_4b78
+// Function: set_default_name
 // Address: 1000:4b78
 
-undefined1 * __cdecl16near FUN_1000_4b78(undefined1 *param_1)
+undefined1 * __cdecl16near set_default_name(undefined1 *param_1)
 
 {
   strcpy((char *)param_1, "thomas");
@@ -2423,10 +2414,10 @@ undefined1 * __cdecl16near FUN_1000_4b78(undefined1 *param_1)
 }
 
 
-// Function: FUN_1000_4e7c
+// Function: game_printf
 // Address: 1000:4e7c
 
-void FUN_1000_4e7c(intptr_t fmt_val, ...)
+void game_printf(intptr_t fmt_val, ...)
 
 {
   const char *fmt;
@@ -2442,10 +2433,10 @@ void FUN_1000_4e7c(intptr_t fmt_val, ...)
 }
 
 
-// Function: FUN_1000_53a6
+// Function: game_strcmp
 // Address: 1000:53a6
 
-int __cdecl16near FUN_1000_53a6(intptr_t param_1,intptr_t param_2)
+int __cdecl16near game_strcmp(intptr_t param_1,intptr_t param_2)
 
 {
   char *s1 = (param_1 > 0 && param_1 < 0x6000) ? (char*)&seg_1008[param_1] : (char*)param_1;
@@ -2454,10 +2445,10 @@ int __cdecl16near FUN_1000_53a6(intptr_t param_1,intptr_t param_2)
 }
 
 
-// Function: FUN_1000_69c4
+// Function: read_key
 // Address: 1000:69c4
 
-int FUN_1000_69c4(void)
+int read_key(void)
 
 {
   int ch;
@@ -2476,7 +2467,7 @@ int main(void)
     g_game_seed = strtol(seed_env, NULL, 10);
   }
   atexit(_disable_raw_mode);
-  FUN_1000_0170(0, 0, 0);
+  main_game_loop(0, 0, 0);
   return 0;
 }
 
